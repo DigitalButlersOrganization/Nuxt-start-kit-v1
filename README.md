@@ -1,1 +1,1 @@
-# Vue start kit v1
+# Nuxt start kit v1

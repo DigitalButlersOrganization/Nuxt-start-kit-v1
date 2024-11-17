@@ -23,6 +23,10 @@ importers:
       vue-router:
         specifier: latest
         version: 4.4.5(vue@3.5.13(typescript@5.6.3))
+    devDependencies:
+      eslint-define-config:
+        specifier: ^2.1.0
+        version: 2.1.0
 
 packages:
 
@@ -1775,6 +1779,10 @@ packages:
 
   eslint-config-flat-gitignore@0.2.0:
     resolution: {integrity: sha512-s4lsQLYX+76FCt3PZPwdLwWlqssa5SLufl2gopFmCo3PETOLY3OW5IrD3/l2R0FfYEJvd9BRJ19yJ+yfc5oW3g==}
+
+  eslint-define-config@2.1.0:
+    resolution: {integrity: sha512-QUp6pM9pjKEVannNAbSJNeRuYwW3LshejfyBBpjeMGaJjaDUpVps4C6KVR8R7dWZnD3i0synmrE36znjTkJvdQ==}
+    engines: {node: '>=18.0.0', npm: '>=9.0.0', pnpm: '>=8.6.0'}
 
   eslint-flat-config-utils@0.4.0:
     resolution: {integrity: sha512-kfd5kQZC+BMO0YwTol6zxjKX1zAsk8JfSAopbKjKqmENTJcew+yBejuvccAg37cvOrN0Mh+DVbeyznuNWEjt4A==}
@@ -5790,6 +5798,8 @@ snapshots:
       find-up-simple: 1.0.0
     transitivePeerDependencies:
       - eslint
+
+  eslint-define-config@2.1.0: {}
 
   eslint-flat-config-utils@0.4.0:
     dependencies:
