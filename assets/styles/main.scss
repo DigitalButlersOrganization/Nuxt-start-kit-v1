@@ -1,8 +1,11 @@
-@use 'vars' as *;
+@use 'variables' as *;
 @use 'mixins' as *;
 
-@import 'normalize.css/normalize.css';
+@use 'modern-normalize/modern-normalize.css';
+@use 'fonts';
+;
 
 * {
   color: $primary;
+  font-family: 'Oswald', sans-serif;
 }
