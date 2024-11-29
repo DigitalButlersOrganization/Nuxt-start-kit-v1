@@ -1,5 +1,7 @@
 <script setup lang="ts">
-const { data } = await useStrapi().find('blogs');
+const { data } = await useStrapi().find('blogs', {
+  populate: '*',
+});
 console.log(data);
 </script>
 <template>
