@@ -1,0 +1,27 @@
+@mixin line-clamp($lines-number: 3) {
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: $lines-number;
+}
+
+@mixin visually-hidden() {
+  position: absolute !important;
+  overflow: hidden !important;
+  padding: 0 !important;
+  border: 0 !important;
+  margin: -1px !important;
+  block-size: 1px !important;
+  clip: rect(0, 0, 0, 0) !important;
+  inline-size: 1px !important;
+  white-space: nowrap !important;
+}
+
+// Useful for "Skip to main content" links;
+@mixin visually-hidden-focusable() {
+  &:not(:focus):not(:focus-within) {
+    @include visually-hidden();
+  }
+}
+
+// I need to add clump() generator
