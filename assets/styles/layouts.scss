@@ -1,0 +1,18 @@
+@use 'functions' as *;
+
+html {
+  font-size: 16px;
+}
+
+.section {
+  width: 100%;
+}
+
+.container {
+  width: 100%;
+  max-width: pxToRem(1400);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: linearClump(2, 1);
+  padding-right: linearClump(2, 1);
+}

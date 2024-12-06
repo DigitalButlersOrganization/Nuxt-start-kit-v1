@@ -1,11 +1,14 @@
-@use 'variables' as *;
-@use 'mixins' as *;
-
 @use 'modern-normalize/modern-normalize.css';
 @use 'fonts';
-;
+@use 'layouts';
+
+@use 'variables' as *;
+@use 'functions' as *;
+@use 'mixins' as *;
 
 * {
   color: $primary;
   font-family: 'Oswald', sans-serif;
+  // font-size: pxToRem(40);
+  font-size: linearClump(2, 1);
 }
