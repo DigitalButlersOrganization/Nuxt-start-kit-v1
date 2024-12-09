@@ -11,17 +11,17 @@ interface Article {
   mainContent: string;
 }
 </script>
+
 <template>
   <section class="section">
     <div class="container">
-      <h1>Добро пожаловать на домашнюю страницу</h1>
-      <AppAlert> Это автоматически импортированный компонент. </AppAlert>
+      <h1>Home page</h1>
 
       <div class="example" v-for="item in data" :key="item.id">
         <div class="example__list">
           <div class="example__item">
             <div class="example__item-header">
-              <h2>Имя статьи</h2>
+              <h2>Article Name</h2>
             </div>
             <div class="example__item-main">
               {{ item.articleName }}
@@ -49,7 +49,7 @@ interface Article {
               <h2>Main content 2</h2>
             </div>
             <div class="example__item-main">
-              <!-- <RichTextComponent :content="item.mainContent" /> -->
+              <RichText :content="item.mainContent" />
             </div>
           </div>
         </div>
@@ -57,6 +57,7 @@ interface Article {
     </div>
   </section>
 </template>
+
 <style scoped lang="scss">
 .example {
   width: 100%;

@@ -1,4 +1,4 @@
-@use 'modern-normalize/modern-normalize.css';
+@use 'modern-normalize/modern-normalize.css'; // instead of 'normalize'
 @use 'fonts';
 @use 'layouts';
 
@@ -9,6 +9,5 @@
 * {
   color: $primary;
   font-family: 'Oswald', sans-serif;
-  // font-size: pxToRem(40);
-  font-size: linearClump(2, 1);
+  font-size: linearClump(1, 2);
 }
