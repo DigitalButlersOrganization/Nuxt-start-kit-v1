@@ -37,10 +37,17 @@ export class ContentParser {
     return htmlContent;
   }
 
+
   generateImageHtml(image) {
+    const origin = 'http://localhost:1337/'
     const imageTemplate = (!this.isDynamicImageSize || !image.formats || image.formats.length <= 1)
       ? `<img src="${image.url}" alt="${image.alternativeText || image.name}" width="${image.width}" height="${image.height}" />`
-      : `<picture><source srcset="${image.url}" type="image/webp"><img src="${image.url}" alt="${image.alternativeText || image.name}" width="${image.width}" height="${image.height}" /></picture>`;
+      : 
+      `<picture>
+      <source media="(min-width:${image.formats.large.width}px)" srcset="${origin}${image.formats.large.url}" type="${image.formats.large.mime}">
+      <source media="(min-width:${image.formats.medium.width}px)" srcset="${origin}${image.formats.medium.url}" type="${image.formats.medium.mime}">
+      <source media="(min-width:${image.formats.small.width}px)" srcset="${origin}${image.formats.small.url}" type="${image.formats.small.mime}">
+      <img src="${image.url}" alt="${image.alternativeText || image.name}" width="${image.width}" height="${image.height}" /></picture>`;
     return imageTemplate;
   }
 
@@ -71,12 +78,32 @@ export class ContentParser {
     return `<blockquote>${quoteText}</blockquote>`;
   }
 
-  // Метод для извлечения текста из дочерних элементов
   getTextFromChildren(children) {
     return children
-      .filter(child => child.type === 'text')
-      .map(child => child.text)
+      .map(child => this.handleTextStyle(child))
       .join('');
+  }
+
+  handleTextStyle(child) {
+    let text = child.text || '';
+
+    if (child.bold && child.italic && child.underline) {
+      text = `<strong><em><u>${text}</u></em></strong>`;
+    } else if (child.italic && child.underline) {
+      text = `<em><u>${text}</u></em>`;
+    } else if (child.bold && child.underline) {
+      text = `<strong><u>${text}</u></strong>`;
+    } else if (child.bold && child.italic) {
+      text = `<strong><em>${text}</em></strong>`;
+    } else if (child.bold) {
+      text = `<strong>${text}</strong>`;
+    } else if (child.italic) {
+      text = `<em>${text}</em>`;
+    } else if (child.underline) {
+      text = `<u>${text}</u>`;
+    }
+
+    return text;
   }
 }
 
