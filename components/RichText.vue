@@ -7,7 +7,12 @@ interface Props {
 const props = withDefaults(defineProps<Props>(), {
   content: [],
 });
-const parsedData = new ContentParser(props.content);
+const parsedData = new ContentParser({
+  content: props.content,
+  options: {
+    showEmptyParagraphs: true,
+  },
+});
 
 console.log(props.content);
 </script>

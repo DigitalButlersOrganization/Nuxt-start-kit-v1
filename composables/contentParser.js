@@ -1,9 +1,9 @@
-
 export class ContentParser {
-  constructor(content) {
+  constructor({ content, options }) {
     this.isDynamicImageSize = true;
-    this.content = content || []; 
+    this.content = content || [];
     this.htmlMarkup = '';
+    this.showEmptyParagraphs = options.showEmptyParagraphs || false;
   }
 
   init() {
@@ -12,48 +12,57 @@ export class ContentParser {
 
   parseContent(content) {
     let temporaryMarkup = '';
-    content.forEach(item => {
-      if (item.type === 'link') {
-        temporaryMarkup += this.generateOuterMarkup({item, tag: 'a'});
-      } else if (item.type === 'paragraph') {
-        temporaryMarkup += this.generateOuterMarkup({item, tag: 'p'});
-      } else if (item.type === 'list') {
-        temporaryMarkup += this.generateOuterMarkup({item, tag: 'ul'});
-      } else if (item.type === 'list-item') {
-        temporaryMarkup += this.generateOuterMarkup({item, tag: 'li'});
-      } else if (item.type === 'heading') {
-        temporaryMarkup += this.generateOuterMarkup({item, tag: 'h1'});
-      } else if (item.type === 'quote') {
-        temporaryMarkup += this.generateOuterMarkup({item, tag: 'blockquote'});
+    content.forEach((item) => {
+      switch (item.type) {
+        case 'link':
+          temporaryMarkup += this.generateOuterMarkup({ item, tag: 'a' });
+          break;
+        case 'paragraph':
+          temporaryMarkup += this.generateOuterMarkup({ item, tag: 'p' });
+          break;
+        case 'list':
+          temporaryMarkup += this.generateOuterMarkup({ item, tag: 'ul' });
+          break;
+        case 'list-item':
+          temporaryMarkup += this.generateOuterMarkup({ item, tag: 'li' });
+          break;
+        case 'heading':
+          temporaryMarkup += this.generateOuterMarkup({ item, tag: 'h1' });
+          break;
+        case 'quote':
+          temporaryMarkup += this.generateOuterMarkup({ item, tag: 'blockquote' });
+          break;
+        default:
+          console.log(item.type);
+          temporaryMarkup += '';
       }
     });
     return temporaryMarkup;
   }
 
-  generateOuterMarkup({item, tag}){
+  generateOuterMarkup({ item, tag }) {
     const innerMarkup = this.generateInnerMarkup(item);
     return `<${tag}>${innerMarkup}</${tag}>`;
   }
 
   generateInnerMarkup(item) {
-    if(item.children){
+    if (item.children) {
       return item.children
-      .map((child) => {
-        return this.handleTextStyle(child)
-      })
-      .join('');
-    } else{
-      return item.text || '&nbsp !'  
+        .map((child) => {
+          return this.handleTextStyle(child);
+        })
+        .join('');
+    } else {
+      return item.text || '&nbsp; !';
     }
   }
 
-  handleTextStyle(child) { 
-    
-    const textContent = child.text || '&nbsp'; 
+  handleTextStyle(child) {
+    const textContent = child.text || (this.showEmptyParagraphs ? '&nbsp;' : '');
     let markup = '';
-    if(child.children){
-      console.log(child, 'child');
+    if (child.children) {
       markup = this.parseContent([child]);
+      return markup;
     }
 
     if (child.bold && child.italic && child.underline) {
@@ -70,7 +79,7 @@ export class ContentParser {
       markup = `<em>${textContent}</em>`;
     } else if (child.underline) {
       markup = `<u>${textContent}</u>`;
-    }else{
+    } else {
       markup = textContent;
     }
 
@@ -79,4 +88,3 @@ export class ContentParser {
 }
 
 export default ContentParser;
-
