@@ -14,8 +14,6 @@ const parsedData = new ContentParser({
     imagesSize: 'full',
   },
 });
-
-console.log(props.content);
 </script>
 
 <template>

@@ -1,16 +1,29 @@
 <script setup lang="ts">
-const { data } = (await useStrapi().find('blogs', {
-  populate: '*',
-  // locale: 'ru',
-})) as { data: Article[] };
+import { useRoute } from '#app';
 
-console.log(data);
+const route = useRoute();
+const slug = route.params.slug;
 
 interface Article {
   id: number;
   articleName: string;
   locale: string;
   mainContent: string;
+}
+const { data } = (await useStrapi().find('blogs', {
+  filters: {
+    slug: { $eq: slug },
+  },
+  populate: {
+    singleImage: true,
+    galleryImages: true,
+  },
+  locale: 'en',
+})) as { data: Article[] };
+console.log(data);
+
+if (!data || data.length === 0) {
+  console.error('Статья не найдена');
 }
 </script>
 
@@ -51,14 +64,3 @@ interface Article {
     </div>
   </section>
 </template>
-
-<style scoped lang="scss">
-.example {
-  width: 100%;
-  &__example-list {
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
-  }
-}
-</style>
