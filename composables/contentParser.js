@@ -4,6 +4,13 @@ export class ContentParser {
     this.content = content || [];
     this.htmlMarkup = '';
     this.showEmptyParagraphs = options.showEmptyParagraphs || false;
+    this.typesOfTextStylization = [
+      { jsonName: 'code', tagName: 'code' },
+      { jsonName: 'strikethrough', tagName: 's' },
+      { jsonName: 'underline', tagName: 'u' },
+      { jsonName: 'italic', tagName: 'i' },
+      { jsonName: 'bold', tagName: 'b' },
+    ];
   }
 
   init() {
@@ -15,22 +22,26 @@ export class ContentParser {
     content.forEach((item) => {
       switch (item.type) {
         case 'link':
-          temporaryMarkup += this.generateOuterMarkup({ item, tag: 'a' });
+          temporaryMarkup += this.generateOuterMarkup({ item, tag: 'a', attributes: `href="${item.url}"` });
           break;
         case 'paragraph':
           temporaryMarkup += this.generateOuterMarkup({ item, tag: 'p' });
           break;
         case 'list':
-          temporaryMarkup += this.generateOuterMarkup({ item, tag: 'ul' });
+          temporaryMarkup += this.generateOuterMarkup({ item, tag: `${item.format === 'unordered' ? 'ul' : 'ol'}` });
           break;
         case 'list-item':
           temporaryMarkup += this.generateOuterMarkup({ item, tag: 'li' });
           break;
         case 'heading':
-          temporaryMarkup += this.generateOuterMarkup({ item, tag: 'h1' });
+          temporaryMarkup += this.generateOuterMarkup({ item, tag: `h${item.level}` });
           break;
         case 'quote':
           temporaryMarkup += this.generateOuterMarkup({ item, tag: 'blockquote' });
+          break;
+        case 'code':
+          const language = item.language === 'css' ? 'style' : item.language === 'javascript' ? 'script' : 'code';
+          temporaryMarkup += this.generateOuterMarkup({ item, tag: language });
           break;
         default:
           console.log(item.type);
@@ -40,9 +51,10 @@ export class ContentParser {
     return temporaryMarkup;
   }
 
-  generateOuterMarkup({ item, tag }) {
+  generateOuterMarkup({ item, tag, attributes }) {
     const innerMarkup = this.generateInnerMarkup(item);
-    return `<${tag}>${innerMarkup}</${tag}>`;
+
+    return `<${tag} ${attributes || ''}>${innerMarkup}</${tag}>`;
   }
 
   generateInnerMarkup(item) {
@@ -53,35 +65,24 @@ export class ContentParser {
         })
         .join('');
     } else {
-      return item.text || '&nbsp; !';
+      return item.text || (this.showEmptyParagraphs ? '&zwnj;' : '');
     }
   }
 
   handleTextStyle(child) {
-    const textContent = child.text || (this.showEmptyParagraphs ? '&nbsp;' : '');
+    const textContent = child.text || (this.showEmptyParagraphs ? '&zwnj;' : '');
     let markup = '';
     if (child.children) {
       markup = this.parseContent([child]);
       return markup;
     }
 
-    if (child.bold && child.italic && child.underline) {
-      markup = `<strong><em><u>${textContent}</u></em></strong>`;
-    } else if (child.italic && child.underline) {
-      markup = `<em><u>${textContent}</u></em>`;
-    } else if (child.bold && child.underline) {
-      markup = `<strong><u>${textContent}</u></strong>`;
-    } else if (child.bold && child.italic) {
-      markup = `<strong><em>${textContent}</em></strong>`;
-    } else if (child.bold) {
-      markup = `<strong>${textContent}</strong>`;
-    } else if (child.italic) {
-      markup = `<em>${textContent}</em>`;
-    } else if (child.underline) {
-      markup = `<u>${textContent}</u>`;
-    } else {
-      markup = textContent;
-    }
+    markup = textContent;
+    this.typesOfTextStylization.forEach((type) => {
+      if (child[type.jsonName]) {
+        markup = `<${type.tagName}>${markup}</${type.tagName}>`;
+      }
+    });
 
     return markup;
   }
