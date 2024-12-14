@@ -1,8 +1,10 @@
 <script setup lang="ts">
 import { useRoute } from '#app';
+import { useI18n } from 'vue-i18n';
 
 const route = useRoute();
 const slug = route.params.slug;
+const { locale } = useI18n();
 
 interface Article {
   id: number;
@@ -18,12 +20,12 @@ const { data } = (await useStrapi().find('blogs', {
     singleImage: true,
     galleryImages: true,
   },
-  locale: 'en',
+  locale: locale.value,
 })) as { data: Article[] };
 console.log(data);
 
 if (!data || data.length === 0) {
-  console.error('Статья не найдена');
+  console.error('Article not found');
 }
 </script>
 
