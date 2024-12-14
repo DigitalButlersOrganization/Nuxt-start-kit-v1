@@ -1,109 +1,80 @@
 
 export class ContentParser {
-  constructor(content){
+  constructor(content) {
     this.isDynamicImageSize = true;
-    this.content = content || [];
+    this.content = content || []; 
+    this.htmlMarkup = '';
   }
 
   init() {
-    const htmlContent = this.parseContent(this.content);
-    return htmlContent;
+    return this.parseContent(this.content);
   }
 
-  parseContent(content) { 
-    let htmlContent = '';
-
+  parseContent(content) {
+    let temporaryMarkup = '';
     content.forEach(item => {
-      if (item.type === 'image' && item.image) {
-        htmlContent += this.generateImageHtml(item.image);
-      } else if (item.type === 'link' && item.url) {
-        htmlContent += this.generateLinkHtml(item);
+      if (item.type === 'link') {
+        temporaryMarkup += this.generateOuterMarkup({item, tag: 'a'});
       } else if (item.type === 'paragraph') {
-        htmlContent += this.generateParagraphHtml(item);
+        temporaryMarkup += this.generateOuterMarkup({item, tag: 'p'});
       } else if (item.type === 'list') {
-        htmlContent += this.generateListHtml(item);
+        temporaryMarkup += this.generateOuterMarkup({item, tag: 'ul'});
+      } else if (item.type === 'list-item') {
+        temporaryMarkup += this.generateOuterMarkup({item, tag: 'li'});
       } else if (item.type === 'heading') {
-        htmlContent += this.generateHeadingHtml(item);
+        temporaryMarkup += this.generateOuterMarkup({item, tag: 'h1'});
       } else if (item.type === 'quote') {
-        htmlContent += this.generateQuoteHtml(item);
-      }
-
-      // Рекурсивная обработка дочерних элементов
-      if (item.children && Array.isArray(item.children)) {
-        htmlContent += this.parseContent(item.children);
+        temporaryMarkup += this.generateOuterMarkup({item, tag: 'blockquote'});
       }
     });
-
-    return htmlContent;
+    return temporaryMarkup;
   }
 
-
-  generateImageHtml(image) {
-    const origin = 'http://localhost:1337/'
-    const imageTemplate = (!this.isDynamicImageSize || !image.formats || image.formats.length <= 1)
-      ? `<img src="${image.url}" alt="${image.alternativeText || image.name}" width="${image.width}" height="${image.height}" />`
-      : 
-      `<picture>
-      <source media="(min-width:${image.formats.large.width}px)" srcset="${origin}${image.formats.large.url}" type="${image.formats.large.mime}">
-      <source media="(min-width:${image.formats.medium.width}px)" srcset="${origin}${image.formats.medium.url}" type="${image.formats.medium.mime}">
-      <source media="(min-width:${image.formats.small.width}px)" srcset="${origin}${image.formats.small.url}" type="${image.formats.small.mime}">
-      <img src="${image.url}" alt="${image.alternativeText || image.name}" width="${image.width}" height="${image.height}" /></picture>`;
-    return imageTemplate;
+  generateOuterMarkup({item, tag}){
+    const innerMarkup = this.generateInnerMarkup(item);
+    return `<${tag}>${innerMarkup}</${tag}>`;
   }
 
-  generateLinkHtml(item) {
-    const linkText = this.getTextFromChildren(item.children);
-    return `<a href="${item.url}">${linkText}</a>`;
-  }
-
-  generateParagraphHtml(item) {
-    const paragraphText = this.getTextFromChildren(item.children);
-    return `<p>${paragraphText}</p>`;
-  }
- 
-  generateListHtml(item) {
-    const listItems = item.children.map(child => {
-      return `<li>${this.getTextFromChildren(child.children)}</li>`;
-    }).join('');
-    return `<ul>${listItems}</ul>`;
-  }
-
-  generateHeadingHtml(item) {
-    const headingText = this.getTextFromChildren(item.children);
-    return `<h${item.level}>${headingText}</h${item.level}>`;
-  }
-
-  generateQuoteHtml(item) {
-    const quoteText = this.getTextFromChildren(item.children);
-    return `<blockquote>${quoteText}</blockquote>`;
-  }
-
-  getTextFromChildren(children) {
-    return children
-      .map(child => this.handleTextStyle(child))
+  generateInnerMarkup(item) {
+    if(item.children){
+      return item.children
+      .map((child) => {
+        return this.handleTextStyle(child)
+      })
       .join('');
+    } else{
+      return item.text || '&nbsp !'  
+    }
   }
 
-  handleTextStyle(child) {
-    let text = child.text || '';
-
-    if (child.bold && child.italic && child.underline) {
-      text = `<strong><em><u>${text}</u></em></strong>`;
-    } else if (child.italic && child.underline) {
-      text = `<em><u>${text}</u></em>`;
-    } else if (child.bold && child.underline) {
-      text = `<strong><u>${text}</u></strong>`;
-    } else if (child.bold && child.italic) {
-      text = `<strong><em>${text}</em></strong>`;
-    } else if (child.bold) {
-      text = `<strong>${text}</strong>`;
-    } else if (child.italic) {
-      text = `<em>${text}</em>`;
-    } else if (child.underline) {
-      text = `<u>${text}</u>`;
+  handleTextStyle(child) { 
+    
+    const textContent = child.text || '&nbsp'; 
+    let markup = '';
+    if(child.children){
+      console.log(child, 'child');
+      markup = this.parseContent([child]);
     }
 
-    return text;
+    if (child.bold && child.italic && child.underline) {
+      markup = `<strong><em><u>${textContent}</u></em></strong>`;
+    } else if (child.italic && child.underline) {
+      markup = `<em><u>${textContent}</u></em>`;
+    } else if (child.bold && child.underline) {
+      markup = `<strong><u>${textContent}</u></strong>`;
+    } else if (child.bold && child.italic) {
+      markup = `<strong><em>${textContent}</em></strong>`;
+    } else if (child.bold) {
+      markup = `<strong>${textContent}</strong>`;
+    } else if (child.italic) {
+      markup = `<em>${textContent}</em>`;
+    } else if (child.underline) {
+      markup = `<u>${textContent}</u>`;
+    }else{
+      markup = textContent;
+    }
+
+    return markup;
   }
 }
 

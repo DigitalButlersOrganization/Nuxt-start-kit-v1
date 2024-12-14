@@ -2,7 +2,6 @@
 const { data } = (await useStrapi().find('blogs', {
   populate: '*',
 })) as { data: Article[] };
-console.log(data);
 
 interface Article {
   id: number;
