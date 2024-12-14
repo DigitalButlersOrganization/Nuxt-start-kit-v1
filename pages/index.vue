@@ -3,6 +3,8 @@ const { data } = (await useStrapi().find('blogs', {
   populate: '*',
 })) as { data: Article[] };
 
+// console.log(data);
+
 interface Article {
   id: number;
   articleName: string;
@@ -38,14 +40,6 @@ interface Article {
           <div class="example__item">
             <div class="example__item-header">
               <h2>Main content</h2>
-            </div>
-            <div class="example__item-main">
-              {{ item.mainContent }}
-            </div>
-          </div>
-          <div class="example__item">
-            <div class="example__item-header">
-              <h2>Main content 2</h2>
             </div>
             <div class="example__item-main">
               <RichText :content="item.mainContent" />

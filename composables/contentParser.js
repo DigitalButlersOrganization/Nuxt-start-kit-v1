@@ -1,9 +1,10 @@
 export class ContentParser {
   constructor({ content, options }) {
-    this.isDynamicImageSize = true;
     this.content = content || [];
     this.htmlMarkup = '';
     this.showEmptyParagraphs = options.showEmptyParagraphs || false;
+    this.imagesSizes = ['full', 'huge', 'large', 'medium', 'small', 'thumbnail'];
+    this.imagesSize = options.imagesSize && this.imagesSizes.includes(options.imagesSize) ? options.imagesSize : this.imagesSizes[0];
     this.typesOfTextStylization = [
       { jsonName: 'code', tagName: 'code' },
       { jsonName: 'strikethrough', tagName: 's' },
@@ -21,6 +22,9 @@ export class ContentParser {
     let temporaryMarkup = '';
     content.forEach((item) => {
       switch (item.type) {
+        case 'image':
+          temporaryMarkup += this.generateImageMarkup(item);
+          break;
         case 'link':
           temporaryMarkup += this.generateOuterMarkup({ item, tag: 'a', attributes: `href="${item.url}"` });
           break;
@@ -49,6 +53,35 @@ export class ContentParser {
       }
     });
     return temporaryMarkup;
+  }
+
+  generateImageMarkup(item) {
+    const { image } = item;
+    if (!image) return '';
+    const origin = new URL(image.url).origin;
+    const alternativeText = image.alternativeText || image.name;
+    const figcaptionMarkup = item.image.caption ? `<figcaption>${image.caption}</figcaption>` : '';
+
+    const hugeImageMarkup = `<img src="${image.url}" alt="${alternativeText}" type="${image.mime}"/>`;
+    let imageMarkup = '';
+
+    if (this.imagesSize === 'huge') {
+      imageMarkup = hugeImageMarkup;
+    } else if (this.imagesSize === 'full') {
+      let baseSourceMarkup = '';
+
+      Object.keys(image.formats).forEach((format) => {
+        baseSourceMarkup = `<source media="(min-width:${image.formats[format].width}px)" srcset="${origin}${image.formats[format].url}" type="${image.formats[format].mime}">` + baseSourceMarkup;
+      });
+      baseSourceMarkup = `<source media="(min-width:${image.width}px)" srcset="${image.url}" type="${image.mime}"> ` + baseSourceMarkup;
+
+      imageMarkup = `<picture>${baseSourceMarkup}${hugeImageMarkup}</picture>`;
+    } else {
+      imageMarkup = `<img src="${origin}${image.formats[this.imagesSize].url}" alt="${alternativeText}" type="${image.formats[this.imagesSize].mime}"/>`;
+    }
+
+    const finalMarkup = `<figure>${imageMarkup}${figcaptionMarkup}</figure>`;
+    return finalMarkup;
   }
 
   generateOuterMarkup({ item, tag, attributes }) {

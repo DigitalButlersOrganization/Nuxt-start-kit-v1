@@ -11,6 +11,7 @@ const parsedData = new ContentParser({
   content: props.content,
   options: {
     showEmptyParagraphs: true,
+    imagesSize: 'full',
   },
 });
 
