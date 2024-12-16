@@ -2,11 +2,9 @@
   <header class="header">
     <div class="container">
       <div class="header__markup">
-        <NuxtLink to="/">Home</NuxtLink>
-        <NuxtLink to="/about">About</NuxtLink>
-        <NuxtLink to="/contacts">Contacts</NuxtLink>
-        <NuxtLink to="/blog">Blog</NuxtLink>
-        <NuxtLink to="/ui-guide">UI-Guide</NuxtLink>
+        <NuxtLink to="/">{{ $t('page.home') }}</NuxtLink>
+        <NuxtLink to="/blog">{{ $t('page.blog') }}</NuxtLink>
+        <NuxtLink to="/ui-guide">{{ $t('page.ui-guide') }}</NuxtLink>
       </div>
     </div>
   </header>
