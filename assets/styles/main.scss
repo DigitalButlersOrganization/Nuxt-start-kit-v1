@@ -1,6 +1,7 @@
 @use 'modern-normalize/modern-normalize.css'; // instead of 'normalize'
 @use 'fonts';
 @use 'layouts';
+@use 'reset';
 
 @use 'variables' as *;
 @use 'functions' as *;

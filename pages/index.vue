@@ -1,7 +1,10 @@
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n';
+const { locale } = useI18n();
+
 const { data } = (await useStrapi().find('blogs', {
   populate: '*',
-  // locale: 'ru',
+  locale: locale.value,
 })) as { data: Article[] };
 
 console.log(data);

@@ -25,19 +25,18 @@ export default defineNuxtConfig({
   },
   i18n: {
     locales: [
-      { code: 'en', language: 'en-US', file: 'en.json', dir: 'ltr' },
-      { code: 'ru', language: 'ru-RU', file: 'ru.json', dir: 'ltr' },
+      { code: 'en', language: 'en-US', file: 'en.json', dir: 'ltr', name: 'English' },
+      { code: 'ru', language: 'ru-RU', file: 'ru.json', dir: 'ltr', name: 'Русский' },
     ],
     defaultLocale: 'en',
     strategy: 'prefix_except_default',
     langDir: resolve('locales/'),
-    vueI18n: './i18n.config.ts',
     detectBrowserLanguage: {
       useCookie: true,
       cookieKey: 'i18n_redirected',
-      redirectOn: 'root', // Опции: 'root', 'all'
-      fallbackLocale: 'en', // Если язык браузера не поддерживается
-      alwaysRedirect: false, // Отключить автоматический редирект
+      redirectOn: 'all',
+      fallbackLocale: 'en',
+      alwaysRedirect: false,
     },
   },
 });
