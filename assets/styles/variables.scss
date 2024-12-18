@@ -1,1 +1,26 @@
 $primary: rgb(0, 0, 0);
+
+:root {
+  --palette-1--1: #000;
+  --palette-1--2: #fff;
+  --palette-1--3: #f3f3f3;
+  --palette-1--4: #e8e7e7;
+  --palette-1--5: #c3c3c3;
+  --palette-1--6: #b7b7b7;
+  --palette-1--7: #363535;
+  --palette-1--8: #242424;
+
+
+  --palette-2--1: #f85863;
+  --palette-2--2: #3eec12;
+
+  --color-text--1: var(--palette-1--1);
+  --color-text--2: var(--palette-1--2);
+  --color-background--1: var(--palette-1--2);
+  --color-background--2: var(--palette-1--1);
+  --transition--duration: .5s;
+  --transition--easing: ease;
+  --transition--properties: all;
+  --transition--default: var(--transition--duration) var(--transition--easing) var(--transition--properties);
+
+}

@@ -9,7 +9,7 @@ const availableLocales = computed(() => {
 
 <template>
   <header class="header">
-    <div class="container">
+    <Container>
       <div class="header__markup">
         <div class="header__markup-column">
           <NuxtLink to="/">{{ $t('page.home') }}</NuxtLink>
@@ -22,7 +22,7 @@ const availableLocales = computed(() => {
           </NuxtLink>
         </div>
       </div>
-    </div>
+    </Container>
   </header>
   <main>
     <slot />

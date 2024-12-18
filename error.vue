@@ -1,5 +1,7 @@
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n';
+const route = useRoute();
+console.log(route);
 
 const { t } = useI18n();
 
@@ -23,12 +25,12 @@ useHead({
 </script>
 
 <template>
-  <NuxtLayout name="default">
-    <section class="section">
-      <div class="container">
+  <NuxtLayout name="error">
+    <Section>
+      <Container>
         <h1>{{ errorData.title }}</h1>
         <p>{{ errorData.description }}</p>
-      </div>
-    </section>
+      </Container>
+    </Section>
   </NuxtLayout>
 </template>
