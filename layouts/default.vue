@@ -1,6 +1,16 @@
-<script setup>
-const { locale, locales } = useI18n();
+<script setup lang="ts">
+const { locale, locales, t } = useI18n();
 const switchLocalePath = useSwitchLocalePath();
+
+const currentDir = computed(() => {
+  return locales?.value?.find((l) => l.code === locale.value)?.dir || 'ltr';
+});
+
+useHead({
+  htmlAttrs: {
+    dir: currentDir,
+  },
+});
 
 const availableLocales = computed(() => {
   return locales.value.filter((i) => i.code !== locale.value);
@@ -12,14 +22,15 @@ const availableLocales = computed(() => {
     <Container>
       <div class="header__markup">
         <div class="header__markup-column">
-          <NuxtLink to="/">{{ $t('page.home') }}</NuxtLink>
-          <NuxtLink to="/blog">{{ $t('page.blog') }}</NuxtLink>
-          <NuxtLink to="/ui-guide">{{ $t('page.ui-guide') }}</NuxtLink>
+          <NuxtLink to="/">{{ t('page.home') }}</NuxtLink>
+          <NuxtLink to="/blog">{{ t('page.blog') }}</NuxtLink>
+          <NuxtLink to="/ui-guide">{{ t('page.ui-guide') }}</NuxtLink>
         </div>
         <div class="header__markup-column">
           <NuxtLink v-for="locale in availableLocales" :key="locale.code" :to="switchLocalePath(locale.code)">
             {{ locale.name }}
           </NuxtLink>
+          <CustomSvg name="UserPublicAvatar" :size="'medium'" />
         </div>
       </div>
     </Container>
@@ -44,6 +55,7 @@ const availableLocales = computed(() => {
     gap: 2rem;
     &-column {
       display: flex;
+      align-items: center;
       gap: 1rem;
     }
   }
