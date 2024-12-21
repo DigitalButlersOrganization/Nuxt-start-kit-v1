@@ -40,7 +40,7 @@ if (!data || data.length === 0) {
 <template>
   <Section class="section">
     <Container>
-      <h1>{{ $t('page.blog') }}</h1>
+      <h1>{{ t('page.blog') }}</h1>
       <div class="example" v-for="item in data" :key="item.id">
         <div class="example__list">
           <div class="example__item">

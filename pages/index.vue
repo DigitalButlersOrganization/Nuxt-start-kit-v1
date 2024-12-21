@@ -18,10 +18,9 @@ interface Article {
 </script>
 
 <template>
-  <section class="section">
-    <div class="container">
+  <Section>
+    <Container>
       <h1>Home page</h1>
-
       <div class="example" v-for="item in data" :key="item.id">
         <div class="example__list">
           <div class="example__item">
@@ -51,8 +50,8 @@ interface Article {
           </div>
         </div>
       </div>
-    </div>
-  </section>
+    </Container>
+  </Section>
 </template>
 
 <style scoped lang="scss">

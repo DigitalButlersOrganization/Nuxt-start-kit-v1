@@ -23,10 +23,5 @@ const parsedData = new ContentParser({
 <style lang="scss" scoped>
 .rich-text {
   width: 100%;
-
-  *,
-  * > * {
-    max-width: 100%;
-  }
 }
 </style>
