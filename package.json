@@ -16,6 +16,7 @@
     "@nuxtjs/strapi": "^2.0.0",
     "modern-normalize": "^3.0.1",
     "nuxt": "^3.14.159",
+    "nuxt-svgo": "4.0.9",
     "vue": "latest",
     "vue-router": "latest"
   },
