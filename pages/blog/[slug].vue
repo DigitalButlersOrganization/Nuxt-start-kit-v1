@@ -69,3 +69,14 @@ useHead({
     </Container>
   </Section>
 </template>
+
+<style scoped lang="scss">
+.example {
+  width: 100%;
+  &__list {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+}
+</style>

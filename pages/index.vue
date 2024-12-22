@@ -21,46 +21,9 @@ interface Article {
   <Section>
     <Container>
       <h1>Home page</h1>
-      <div class="example" v-for="item in data" :key="item.id">
-        <div class="example__list">
-          <div class="example__item">
-            <div class="example__item-header">
-              <h2>Article Name</h2>
-            </div>
-            <div class="example__item-main">
-              {{ item.articleName }}
-            </div>
-          </div>
-
-          <div class="example__item">
-            <div class="example__item-header">
-              <h2>Locale</h2>
-            </div>
-            <div class="example__item-main">
-              {{ item.locale }}
-            </div>
-          </div>
-          <div class="example__item">
-            <div class="example__item-header">
-              <h2>Main content</h2>
-            </div>
-            <div class="example__item-main">
-              <RichText :content="item.mainContent" />
-            </div>
-          </div>
-        </div>
-      </div>
+      <LoginForm />
     </Container>
   </Section>
 </template>
 
-<style scoped lang="scss">
-.example {
-  width: 100%;
-  &__example-list {
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
-  }
-}
-</style>
+<style scoped lang="scss"></style>
