@@ -10,7 +10,6 @@ $primary: rgb(0, 0, 0);
   --palette-1--7: #363535;
   --palette-1--8: #242424;
 
-
   --palette-2--1: #f85863;
   --palette-2--2: #3eec12;
 
@@ -18,9 +17,9 @@ $primary: rgb(0, 0, 0);
   --color-text--2: var(--palette-1--2);
   --color-background--1: var(--palette-1--2);
   --color-background--2: var(--palette-1--1);
+
   --transition--duration: .5s;
   --transition--easing: ease;
   --transition--properties: all;
   --transition--default: var(--transition--duration) var(--transition--easing) var(--transition--properties);
-
 }

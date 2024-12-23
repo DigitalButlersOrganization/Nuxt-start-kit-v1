@@ -31,6 +31,7 @@ const availableLocales = computed(() => {
             {{ locale.name }}
           </NuxtLink>
           <CustomSvg name="UserPublicAvatar" :size="'medium'" />
+          <SvgoUserPublicAvatar />
         </div>
       </div>
     </Container>
