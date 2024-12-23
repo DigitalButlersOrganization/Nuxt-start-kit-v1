@@ -11,8 +11,13 @@ export default defineNuxtConfig({
       link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.svg' }],
     },
   },
+  runtimeConfig: {
+    public: {
+      strapiBaseUrl: process.env.STRAPI_BASE_URL,
+    },
+  },
   strapi: {
-    url: process.env.STRAPI_URL || 'http://localhost:1337',
+    url: process.env.STRAPI_BASE_URL,
     prefix: '/api',
     admin: '/admin',
     version: 'v5',

@@ -30,8 +30,7 @@ const availableLocales = computed(() => {
           <NuxtLink v-for="locale in availableLocales" :key="locale.code" :to="switchLocalePath(locale.code)">
             {{ locale.name }}
           </NuxtLink>
-          <CustomSvg name="UserPublicAvatar" :size="'medium'" />
-          <SvgoUserPublicAvatar />
+          <SvgoUserPublicAvatar class="svg" />
         </div>
       </div>
     </Container>

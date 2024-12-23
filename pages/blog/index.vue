@@ -11,22 +11,37 @@ useHead({
     { property: 'og:description', content: 'Description of the blog page' },
   ],
 });
+
 interface Article {
   id: number;
+  slug: string;
   articleName: string;
   locale: string;
   mainContent: string;
   shortDescription: string;
-  singleImage: any;
+  singleImage: {
+    url: string;
+    alternativeText: string;
+  };
+  blogCategories: {
+    id: number;
+    categoryName: string;
+    backgroundColor: string;
+    textColor: string;
+  }[];
+  dateOfCreating: string;
 }
+
 const { data } = (await useStrapi().find('blogs', {
-  // fields: ['id'],
-  fields: ['id', 'articleName', 'locale', 'shortDescription', 'slug'],
+  fields: ['id', 'articleName', 'locale', 'shortDescription', 'slug', 'dateOfCreating'],
   populate: {
     singleImage: true,
+    blogCategories: true,
   },
+  sort: ['dateOfCreating:desc'], // Сортируем по убыванию даты
   locale: locale.value,
 })) as { data: Article[] };
+
 console.log(data);
 
 if (!data || data.length === 0) {
@@ -41,45 +56,32 @@ if (!data || data.length === 0) {
   <Section class="section">
     <Container>
       <h1>{{ t('page.blog') }}</h1>
-      <div class="example" v-for="item in data" :key="item.id">
-        <div class="example__list">
-          <div class="example__item">
-            <div class="example__item-header">
-              <h2>Locale</h2>
-            </div>
-            <div class="example__item-main">
-              {{ item.locale }}
-            </div>
-          </div>
-          <div class="example__item">
-            <div class="example__item-header">
-              <h2>articleName</h2>
-            </div>
-            <div class="example__item-main">
-              {{ item.articleName }}
-            </div>
-          </div>
-          <div class="example__item">
-            <div class="example__item-header">
-              <h2>shortDescription</h2>
-            </div>
-            <div class="example__item-main">
-              {{ item.shortDescription }}
-            </div>
-          </div>
-        </div>
+      <div class="grid">
+        <TestBlogCard
+          v-for="item in data"
+          :key="item.id"
+          :href="`/blog/${item.slug}`"
+          :title="item.articleName"
+          :description="item.shortDescription"
+          :imageSrc="item.singleImage.url"
+          :imageAlt="item.singleImage.alternativeText"
+          :dateOfCreating="item.dateOfCreating"
+          :blogCategories="item.blogCategories"
+          class="grid__item"
+        />
       </div>
     </Container>
   </Section>
 </template>
 
 <style scoped lang="scss">
-.example {
+.grid {
   width: 100%;
-  &__list {
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+  &__item {
+    width: 100%;
   }
 }
 </style>

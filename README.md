@@ -11,3 +11,7 @@
 ## Stylization
 
 We use only logical properties. Forget about margin-left and similar properties.
+
+## Strapi URL
+
+Change ".env copy" file to ".env". Than set real address for your strapi project
