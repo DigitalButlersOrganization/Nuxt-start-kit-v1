@@ -16,11 +16,11 @@
   },
   "validation": {
     "common": {
-      "invalid": "This field is invalid.",
-      "required": "This field is required.",
+      "invalid": "This field is invalid",
+      "required": "This field is required",
       "min": "This field is too short",
       "max": "This field is too long",
-      "match": "This field does not match the main field."
+      "match": "This field does not match the main field"
     }
   }
 }

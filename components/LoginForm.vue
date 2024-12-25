@@ -1,8 +1,9 @@
 <script setup lang="ts">
 import { reactive, ref } from 'vue';
 import { useI18n } from 'vue-i18n';
-import { createSchema } from '@/schemas/formSchema';
+import { useSchema } from '@/schemas/formSchema';
 import { ValidationError } from 'yup';
+import { handleValidationErrors } from '@/utils/validation';
 
 const { t } = useI18n();
 
@@ -24,7 +25,8 @@ const form = reactive<Form>({
 
 const errors = ref<Errors>({});
 
-const schema = createSchema(t);
+const schema = useSchema(t);
+
 const validateForm = async () => {
   errors.value = {};
 
@@ -33,11 +35,7 @@ const validateForm = async () => {
     console.log('Форма прошла валидацию:', form);
   } catch (validationErrors: unknown) {
     if (validationErrors instanceof ValidationError) {
-      validationErrors.inner.forEach((err: { path?: string; message?: string }) => {
-        if (err.path) {
-          errors.value[err.path] = err.message || 'error';
-        }
-      });
+      errors.value = handleValidationErrors(validationErrors); // тут нужно добить логику. Не хочу выводить дефолтные ошибку
     } else {
       console.error('Unexpected error:', validationErrors);
     }
@@ -47,18 +45,10 @@ const validateForm = async () => {
 
 <template>
   <VeeForm :validation-schema="schema" @submit="validateForm">
-    <div>
-      <label for="email">Email</label>
-      <VeeField name="email" as="input" type="email" placeholder="Введите email" />
-      <VeeErrorMessage name="email" />
-    </div>
+    <CustomInput name="email" type="email" labelText="Email" placeholder="Введите email" />
+    <CustomInput name="password" type="password" labelText="Пароль" placeholder="Введите пароль" />
+    <CustomInput name="confirmPassword" type="password" labelText="Повторите пароль" placeholder="Подтвердите пароль" />
 
-    <div>
-      <label for="password">Пароль</label>
-      <VeeField name="password" as="input" type="password" placeholder="Введите пароль" />
-      <VeeErrorMessage name="password" />
-    </div>
-
-    <button type="submit">Войти</button>
+    <button type="submit">Зарегистрироваться</button>
   </VeeForm>
 </template>

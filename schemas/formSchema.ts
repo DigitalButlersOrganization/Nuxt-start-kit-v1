@@ -1,6 +1,6 @@
 import * as yup from 'yup';
 
-export const createSchema = (t: any) => {
+export const useSchema = (t: any) => {
   return yup.object({
     email: yup.string().email(t('validation.common.invalid')).required(t('validation.common.required')),
     password: yup.string().min(6, t('validation.common.min')).required(t('validation.common.required')),
