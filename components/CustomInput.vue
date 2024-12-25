@@ -9,6 +9,7 @@ interface Props {
   tag?: 'input' | 'textarea';
   labelText: string;
   isLabelHidden?: boolean;
+  error?: string;
 }
 const props = withDefaults(defineProps<Props>(), {
   tag: 'input',
@@ -16,14 +17,16 @@ const props = withDefaults(defineProps<Props>(), {
   size: 'medium',
   isIcon: false,
   isLabelHidden: false,
+  name: '',
+  error: '',
 });
 </script>
 
 <template>
-  <label class="label">
-    <span class="label-text">Label</span>
-    <component :is="props.tag" :type="props.type" :placeholder="props.placeholder" :id="props.id" :name="props.name" :value="props.value" :class="props.tag" />
+  <label>
+    <VeeField :name="props.name" :as="props.tag" :type="props.type" :placeholder="props.placeholder" :id="props.id" :class="[props.tag === 'textarea' ? 'textarea' : 'input']" />
   </label>
+  <VeeErrorMessage :name="props.error" />
 </template>
 
 <style lang="scss" scoped>

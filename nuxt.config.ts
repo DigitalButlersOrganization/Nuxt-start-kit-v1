@@ -4,7 +4,7 @@ import { resolve } from 'path';
 export default defineNuxtConfig({
   compatibilityDate: '2024-04-03',
   devtools: { enabled: true },
-  modules: ['@nuxtjs/strapi', '@nuxt/eslint', '@nuxtjs/i18n', 'nuxt-svgo'],
+  modules: ['@nuxtjs/strapi', '@nuxt/eslint', '@nuxtjs/i18n', 'nuxt-svgo', '@vee-validate/nuxt'],
   css: ['@/assets/styles/main.scss'],
   app: {
     head: {
@@ -47,5 +47,14 @@ export default defineNuxtConfig({
   svgo: {
     autoImportPath: './assets/images/icons',
     defaultImport: 'component',
+  },
+  veeValidate: {
+    autoImports: true,
+    componentNames: {
+      Form: 'VeeForm',
+      Field: 'VeeField',
+      FieldArray: 'VeeFieldArray',
+      ErrorMessage: 'VeeErrorMessage',
+    },
   },
 });

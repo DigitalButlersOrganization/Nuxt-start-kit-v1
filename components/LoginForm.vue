@@ -24,8 +24,8 @@ const form = reactive<Form>({
 
 const errors = ref<Errors>({});
 
+const schema = createSchema(t);
 const validateForm = async () => {
-  const schema = createSchema(t);
   errors.value = {};
 
   try {
@@ -46,25 +46,19 @@ const validateForm = async () => {
 </script>
 
 <template>
-  <form @submit.prevent="validateForm">
+  <VeeForm :validation-schema="schema" @submit="validateForm">
     <div>
-      <label for="email">Email:</label>
-      <input v-model="form.email" id="email" type="email" />
-      <span v-if="errors.email">{{ errors.email }}</span>
+      <label for="email">Email</label>
+      <VeeField name="email" as="input" type="email" placeholder="Введите email" />
+      <VeeErrorMessage name="email" />
     </div>
 
     <div>
-      <label for="password">Password:</label>
-      <input v-model="form.password" id="password" type="password" />
-      <span v-if="errors.password">{{ errors.password }}</span>
+      <label for="password">Пароль</label>
+      <VeeField name="password" as="input" type="password" placeholder="Введите пароль" />
+      <VeeErrorMessage name="password" />
     </div>
 
-    <div>
-      <label for="confirmPassword">Password confirmation:</label>
-      <input v-model="form.confirmPassword" id="confirmPassword" type="password" />
-      <span v-if="errors.confirmPassword">{{ errors.confirmPassword }}</span>
-    </div>
-
-    <button type="submit">Submit</button>
-  </form>
+    <button type="submit">Войти</button>
+  </VeeForm>
 </template>
