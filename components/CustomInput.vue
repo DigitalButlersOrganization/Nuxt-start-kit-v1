@@ -24,7 +24,7 @@ const props = withDefaults(defineProps<Props>(), {
   <div class="custom-input">
     <label v-if="!props.isLabelHidden"
       >{{ props.labelText || props.name }}
-      <VeeField :name="props.name" :as="props.tag" :type="props.type" :placeholder="props.placeholder" :class="[props.tag === 'textarea' ? 'textarea' : 'input']" />
+      <VeeField :name="props.name" :as="props.tag" :type="props.type || 'text'" :placeholder="props.placeholder" :class="props.tag || 'input'" :value="props.value" />
     </label>
     <VeeErrorMessage :name="props.name" class="error-message" />
   </div>

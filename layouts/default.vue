@@ -22,9 +22,9 @@ const availableLocales = computed(() => {
     <Container>
       <div class="header__markup">
         <div class="header__markup-column">
-          <NuxtLink to="/">{{ t('page.home') }}</NuxtLink>
-          <NuxtLink to="/blog">{{ t('page.blog') }}</NuxtLink>
-          <NuxtLink to="/ui-guide">{{ t('page.ui-guide') }}</NuxtLink>
+          <NuxtLink to="/">{{ t('PAGE.HOME') }}</NuxtLink>
+          <NuxtLink to="/blog">{{ t('PAGE.BLOG') }}</NuxtLink>
+          <NuxtLink to="/ui-guide">{{ t(['PAGE', 'UI_GUIDE'].join('.')) }}</NuxtLink>
         </div>
         <div class="header__markup-column">
           <NuxtLink v-for="locale in availableLocales" :key="locale.code" :to="switchLocalePath(locale.code)">

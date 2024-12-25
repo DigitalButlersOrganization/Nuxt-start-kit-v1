@@ -1,26 +1,45 @@
 {
-  "page": {
-    "home": "Home",
-    "blog": "Blog",
-    "ui-guide": "UI-Guide"
+  "CTA": {
+    "REGISTER": "Register"
   },
-  "error": {
-    "indefinite": {
-      "title": "Something went wrong.",
-      "description": "Sorry, there's been an unforeseen error. Please try this page again later."
+  "PAGE": {
+    "HOME": "Home",
+    "BLOG": "Blog",
+    "UI_GUIDE": "UI-Guide"
+  },
+  "ERROR": {
+    "INDEFINITE": {
+      "TITLE": "Something went wrong.",
+      "DESCRIPTION": "Sorry, there's been an unforeseen error. Please try this page again later."
     },
-    "page_not_found": {
-      "title": "Page Not Found.",
-      "description": "The page you are looking for does not exist."
+    "PAGE_NOT_FOUND": {
+      "TITLE": "Page Not Found.",
+      "DESCRIPTION": "The page you are looking for does not exist."
     }
   },
-  "validation": {
-    "common": {
-      "invalid": "This field is invalid",
-      "required": "This field is required",
-      "min": "This field is too short",
-      "max": "This field is too long",
-      "match": "This field does not match the main field"
+  "FORM": {
+    "FIELDS": {
+      "EMAIL": {
+        "LABEL": "Enter your email address",
+        "PLACEHOLDER": "youraddress&#64;google.com",
+        "VALUE": ""
+      },
+      "PASSWORD": {
+        "LABEL": "Enter your password",
+        "PLACEHOLDER": "******",
+        "VALUE": ""
+      },
+      "COMMON": {}
+    }
+  },
+  "VALIDATION": {
+    "COMMON": {
+      "INVALID": "This field is invalid",
+      "REQUIRED": "This field is required",
+      "MIN": "This field is too short",
+      "MAX": "This field is too long",
+      "MATCH": "This field does not match the main field",
+      "COMMON": "Validation error"
     }
   }
 }

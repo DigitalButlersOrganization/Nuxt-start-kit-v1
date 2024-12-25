@@ -55,7 +55,7 @@ if (!data || data.length === 0) {
 <template>
   <Section class="section">
     <Container>
-      <h1>{{ t('page.blog') }}</h1>
+      <h1>{{ t('PAGE.BLOG') }}</h1>
       <div class="grid">
         <TestBlogCard
           v-for="item in data"

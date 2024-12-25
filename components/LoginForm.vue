@@ -35,7 +35,7 @@ const validateForm = async () => {
     console.log('Форма прошла валидацию:', form);
   } catch (validationErrors: unknown) {
     if (validationErrors instanceof ValidationError) {
-      errors.value = handleValidationErrors(validationErrors); // тут нужно добить логику. Не хочу выводить дефолтные ошибку
+      errors.value = handleValidationErrors(validationErrors, t);
     } else {
       console.error('Unexpected error:', validationErrors);
     }
@@ -49,6 +49,6 @@ const validateForm = async () => {
     <CustomInput name="password" type="password" labelText="Пароль" placeholder="Введите пароль" />
     <CustomInput name="confirmPassword" type="password" labelText="Повторите пароль" placeholder="Подтвердите пароль" />
 
-    <button type="submit">Зарегистрироваться</button>
+    <button type="submit">{{ t('CTA.REGISTER') }}</button>
   </VeeForm>
 </template>

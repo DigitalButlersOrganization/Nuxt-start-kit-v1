@@ -1,17 +1,39 @@
 {
-  "page": {
-    "home": "Главная",
-    "blog": "Блог",
-    "ui-guide": "Интерфейс"
+  "PAGE": {
+    "HOME": "Главная",
+    "BLOG": "Блог",
+    "UI_GUIDE": "Интерфейс"
   },
-  "error": {
-    "indefinite": {
-      "title": "Что-то пошло не так.",
-      "description": "Извините, произошла непредвиденная ошибка. Попробуйте посетить эту страницу позже."
+  "ERROR": {
+    "INDEFINITE": {
+      "TITLE": "Что-то пошло не так.",
+      "DESCRIPTION": "Извините, произошла непредвиденная ошибка. Попробуйте посетить эту страницу позже."
     },
-    "page_not_found": {
-      "title": "Страница не найдена.",
-      "description": "Страница, которую вы ищите, не существует."
+    "PAGE_NOT_FOUND": {
+      "TITLE": "Страница не найдена.",
+      "DESCRIPTION": "Страница, которую вы ищите, не существует."
+    }
+  },
+  "FORM": {
+    "FIELDS": {
+      "EMAIL": {
+        "LABEL": "Enter your email address",
+        "PLACEHOLDER": "youraddress&#64;google.com"
+      },
+      "PASSWORD": {
+        "LABEL": "Enter your password",
+        "PLACEHOLDER": "******"
+      },
+      "COMMON": {}
+    }
+  },
+  "VALIDATION": {
+    "COMMON": {
+      "INVALID": "This field is invalid",
+      "REQUIRED": "This field is required",
+      "MIN": "This field is too short",
+      "MAX": "This field is too long",
+      "MATCH": "This field does not match the main field"
     }
   }
 }

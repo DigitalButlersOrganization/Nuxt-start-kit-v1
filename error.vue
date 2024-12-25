@@ -13,8 +13,8 @@ const errorData = computed(() => {
     title: '',
     description: '',
   };
-  data.title = props.error && props.error.statusCode === 404 ? t('error.page_not_found.title') : t('error.indefinite.title');
-  data.description = props.error && props.error.statusCode === 404 ? t('error.page_not_found.description') : t('error.indefinite.description');
+  data.title = props.error && props.error.statusCode === 404 ? t('ERROR.PAGE_NOT_FOUND.TITLE') : t('ERROR.INDEFINITE.TITLE');
+  data.description = props.error && props.error.statusCode === 404 ? t('ERROR.PAGE_NOT_FOUND.DESCRIPTION') : t('ERROR.INDEFINITE.DESCRIPTION');
   return data;
 });
 
