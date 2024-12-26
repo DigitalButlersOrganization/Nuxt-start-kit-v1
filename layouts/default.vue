@@ -29,7 +29,8 @@ const availableLocales = computed(() => {
           <NuxtLink v-for="locale in availableLocales" :key="locale.code" :to="switchLocalePath(locale.code)">
             {{ locale.name }}
           </NuxtLink>
-          <NuxtLink :to="$localePath('authorization')">{{ t('CTA.LOGIN') }}</NuxtLink>
+          <CustomButton tag="a" :to="$localePath('authorization')">{{ t('CTA.LOGIN') }}</CustomButton>
+          <!-- <NuxtLink :to="$localePath('authorization')">{{ t('CTA.LOGIN') }}</NuxtLink> -->
           <SvgoUserPublicAvatar class="svg" />
         </div>
       </div>

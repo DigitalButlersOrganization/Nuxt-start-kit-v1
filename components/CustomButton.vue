@@ -15,15 +15,19 @@ const props = withDefaults(defineProps<Props>(), {
   tag: 'button',
   style: 'solid',
   size: 'medium',
-  isDisabled: false,
   isFullWidth: false,
   isLoading: false,
+});
+
+const tag = computed(() => {
+  if (props.to || props.tag === 'a') return defineNuxtLink({});
+  return props.tag;
 });
 </script>
 
 <template>
   <component
-    :is="props.tag === 'a' ? 'NuxtLink' : props.tag"
+    :is="tag"
     :class="[
       MAIN_CLASS,
       props.isDisabled ? `${MAIN_CLASS}--disabled` : null,
@@ -33,7 +37,7 @@ const props = withDefaults(defineProps<Props>(), {
       props.isLoading ? `${MAIN_CLASS}--loading` : null,
     ]"
     :to="props.tag === 'a' ? props.to : null"
-    :disabled="props.isDisabled && props.tag === 'button'"
+    :disabled="props.isDisabled && props.tag === 'button' ? '' : null"
     :type="props.tag !== 'button' ? null : props.type || props.tag"
     :tabindex="props.tag === 'button' ? null : props.isDisabled ? -1 : 0"
   >
