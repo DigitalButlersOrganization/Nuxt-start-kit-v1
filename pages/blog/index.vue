@@ -4,11 +4,11 @@ import { useI18n } from 'vue-i18n';
 const { locale, t } = useI18n();
 
 useHead({
-  title: t('page.blog'),
+  title: t('PAGE.BLOG.TITLE'),
   meta: [
-    { name: 'description', content: 'Description of the blog page' },
-    { property: 'og:title', content: t('page.blog') },
-    { property: 'og:description', content: 'Description of the blog page' },
+    { name: 'description', content: t('PA GE.BLOG.DESCRIPTION') },
+    { property: 'og:title', content: t('PAGE.BLOG.TITLE') },
+    { property: 'og:description', content: t('PAGE.BLOG.DESCRIPTION') },
   ],
 });
 
@@ -38,24 +38,17 @@ const { data } = (await useStrapi().find('blogs', {
     singleImage: true,
     blogCategories: true,
   },
-  sort: ['dateOfCreating:desc'], // Сортируем по убыванию даты
+  sort: ['dateOfCreating:desc'],
   locale: locale.value,
 })) as { data: Article[] };
 
 console.log(data);
-
-if (!data || data.length === 0) {
-  throw createError({
-    statusCode: 404,
-    statusMessage: 'Article not found',
-  });
-}
 </script>
 
 <template>
   <Section class="section">
     <Container>
-      <h1>{{ t('PAGE.BLOG') }}</h1>
+      <h1>{{ t('PAGE.BLOG.TITLE') }}</h1>
       <div class="grid">
         <TestBlogCard
           v-for="item in data"

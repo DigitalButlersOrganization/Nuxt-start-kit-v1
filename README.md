@@ -8,9 +8,11 @@
 
 -In nuxt.config.ts, configure the parameters for i18n based on the specific requirements of your project.
 
+-In the "locales" folder, translation files are stored. Avoid nesting deeper than three levels. Strive to maintain a balance between creating a clear hierarchy of entities and preventing excessively deep nesting.
+
 ## Stylization
 
-We use only logical properties. Forget about margin-left and similar properties.
+Use only logical properties. Forget about margin-left and similar properties.
 
 ## Strapi URL
 

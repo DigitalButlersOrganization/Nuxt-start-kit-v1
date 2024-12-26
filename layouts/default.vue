@@ -22,14 +22,14 @@ const availableLocales = computed(() => {
     <Container>
       <div class="header__markup">
         <div class="header__markup-column">
-          <NuxtLink to="/">{{ t('PAGE.HOME') }}</NuxtLink>
-          <NuxtLink to="/blog">{{ t('PAGE.BLOG') }}</NuxtLink>
-          <NuxtLink to="/ui-guide">{{ t(['PAGE', 'UI_GUIDE'].join('.')) }}</NuxtLink>
+          <NuxtLink :to="$localePath('index')">{{ t('PAGE.HOME.TITLE') }}</NuxtLink>
+          <NuxtLink :to="$localePath('blog')">{{ t('PAGE.BLOG.TITLE') }}</NuxtLink>
         </div>
         <div class="header__markup-column">
           <NuxtLink v-for="locale in availableLocales" :key="locale.code" :to="switchLocalePath(locale.code)">
             {{ locale.name }}
           </NuxtLink>
+          <NuxtLink :to="$localePath('authorization')">{{ t('CTA.LOGIN') }}</NuxtLink>
           <SvgoUserPublicAvatar class="svg" />
         </div>
       </div>

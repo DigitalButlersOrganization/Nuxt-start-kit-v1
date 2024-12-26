@@ -49,6 +49,8 @@ const validateForm = async () => {
     <CustomInput name="password" type="password" labelText="Пароль" placeholder="Введите пароль" />
     <CustomInput name="confirmPassword" type="password" labelText="Повторите пароль" placeholder="Подтвердите пароль" />
 
-    <button type="submit">{{ t('CTA.REGISTER') }}</button>
+    <CustomButton type="submit" :isLoading="false">
+      {{ t('CTA.REGISTER') }}
+    </CustomButton>
   </VeeForm>
 </template>

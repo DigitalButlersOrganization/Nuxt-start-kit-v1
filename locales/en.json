@@ -1,11 +1,21 @@
 {
   "CTA": {
-    "REGISTER": "Register"
+    "REGISTER": "Register",
+    "LOGIN": "Log in"
   },
   "PAGE": {
-    "HOME": "Home",
-    "BLOG": "Blog",
-    "UI_GUIDE": "UI-Guide"
+    "HOME": {
+      "TITLE": "Home",
+      "DESCRIPTION": "Some description about the home page"
+    },
+    "BLOG": {
+      "TITLE": "Blog",
+      "DESCRIPTION": "Some description about the blog page"
+    },
+    "AUTHORIZATION": {
+      "TITLE": "Authorization",
+      "DESCRIPTION": "Some description about the authorization page"
+    }
   },
   "ERROR": {
     "INDEFINITE": {
@@ -18,28 +28,22 @@
     }
   },
   "FORM": {
-    "FIELDS": {
-      "EMAIL": {
-        "LABEL": "Enter your email address",
-        "PLACEHOLDER": "youraddress&#64;google.com",
-        "VALUE": ""
-      },
-      "PASSWORD": {
-        "LABEL": "Enter your password",
-        "PLACEHOLDER": "******",
-        "VALUE": ""
-      },
-      "COMMON": {}
+    "EMAIL": {
+      "LABEL": "Enter your email address",
+      "PLACEHOLDER": "youraddress&#64;google.com",
+      "VALUE": ""
+    },
+    "PASSWORD": {
+      "LABEL": "Enter your password",
+      "PLACEHOLDER": "******",
+      "VALUE": ""
     }
   },
   "VALIDATION": {
-    "COMMON": {
-      "INVALID": "This field is invalid",
-      "REQUIRED": "This field is required",
-      "MIN": "This field is too short",
-      "MAX": "This field is too long",
-      "MATCH": "This field does not match the main field",
-      "COMMON": "Validation error"
-    }
+    "FIELD_INVALID": "This field is invalid",
+    "REQUIRED": "This field is required",
+    "MIN": "This field is too short",
+    "MAX": "This field is too long",
+    "PASSWORD_MISMATCH": "The password must match the password in the main field"
   }
 }

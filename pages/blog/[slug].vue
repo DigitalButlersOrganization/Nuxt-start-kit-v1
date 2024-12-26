@@ -28,7 +28,7 @@ console.log(data);
 if (!data || data.length === 0) {
   throw createError({
     statusCode: 404,
-    statusMessage: t('error.page_not_found.title'),
+    statusMessage: t('ERROR.PAGE_NOT_FOUND.TITLE'),
   });
 }
 useHead({

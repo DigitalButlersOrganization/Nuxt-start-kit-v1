@@ -1,39 +1,49 @@
 {
+  "CTA": {
+    "REGISTER": "Зарегистрироваться",
+    "LOGIN": "Авторизоваться"
+  },
   "PAGE": {
-    "HOME": "Главная",
-    "BLOG": "Блог",
-    "UI_GUIDE": "Интерфейс"
+    "HOME": {
+      "TITLE": "Главная",
+      "DESCRIPTION": "Какое-то описание главной страницы"
+    },
+    "BLOG": {
+      "TITLE": "Блог",
+      "DESCRIPTION": "Какое-то описание страницы блога"
+    },
+    "AUTHORIZATION": {
+      "TITLE": "Авторизация",
+      "DESCRIPTION": "Какое-то описание страницы авторизации"
+    }
   },
   "ERROR": {
     "INDEFINITE": {
       "TITLE": "Что-то пошло не так.",
-      "DESCRIPTION": "Извините, произошла непредвиденная ошибка. Попробуйте посетить эту страницу позже."
+      "DESCRIPTION": "Извините, произошла непредвиденная ошибка. Пожалуйста, попробуйте зайти на эту страницу позже."
     },
     "PAGE_NOT_FOUND": {
-      "TITLE": "Страница не найдена.",
-      "DESCRIPTION": "Страница, которую вы ищите, не существует."
+      "TITLE": "Страница не найдена.",
+      "DESCRIPTION": "Страница, которую вы ищете, не существует."
     }
   },
   "FORM": {
-    "FIELDS": {
-      "EMAIL": {
-        "LABEL": "Enter your email address",
-        "PLACEHOLDER": "youraddress&#64;google.com"
-      },
-      "PASSWORD": {
-        "LABEL": "Enter your password",
-        "PLACEHOLDER": "******"
-      },
-      "COMMON": {}
+    "EMAIL": {
+      "LABEL": "Введите ваш адрес электронной почты",
+      "PLACEHOLDER": "email&#64;google.com",
+      "VALUE": ""
+    },
+    "PASSWORD": {
+      "LABEL": "Введите ваш пароль",
+      "PLACEHOLDER": "******",
+      "VALUE": ""
     }
   },
   "VALIDATION": {
-    "COMMON": {
-      "INVALID": "This field is invalid",
-      "REQUIRED": "This field is required",
-      "MIN": "This field is too short",
-      "MAX": "This field is too long",
-      "MATCH": "This field does not match the main field"
-    }
+    "FIELD_INVALID": "Это поле заполнено неверно",
+    "REQUIRED": "Это поле обязательно для заполнения",
+    "MIN": "Это поле слишком короткое",
+    "MAX": "Это поле слишком длинное",
+    "PASSWORD_MISMATCH": "Пароль должен совпадать с паролем в основном поле"
   }
 }
