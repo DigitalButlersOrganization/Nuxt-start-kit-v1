@@ -18,6 +18,7 @@
     "modern-normalize": "^3.0.1",
     "nuxt": "^3.14.159",
     "nuxt-svgo": "4.0.9",
+    "radix-vue": "^1.9.11",
     "vue": "latest",
     "vue-router": "latest",
     "yup": "^1.6.1"

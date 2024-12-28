@@ -11,10 +11,6 @@ useHead({
     dir: currentDir,
   },
 });
-
-const availableLocales = computed(() => {
-  return locales.value.filter((i) => i.code !== locale.value);
-});
 </script>
 
 <template>
@@ -26,12 +22,7 @@ const availableLocales = computed(() => {
           <NuxtLink :to="$localePath('blog')">{{ t('PAGE.BLOG.TITLE') }}</NuxtLink>
         </div>
         <div class="header__markup-column">
-          <NuxtLink v-for="locale in availableLocales" :key="locale.code" :to="switchLocalePath(locale.code)">
-            {{ locale.name }}
-          </NuxtLink>
-          <CustomButton tag="a" :to="$localePath('authorization')">{{ t('CTA.LOGIN') }}</CustomButton>
-          <!-- <NuxtLink :to="$localePath('authorization')">{{ t('CTA.LOGIN') }}</NuxtLink> -->
-          <SvgoUserPublicAvatar class="svg" />
+          <NavigationMenu />
         </div>
       </div>
     </Container>
