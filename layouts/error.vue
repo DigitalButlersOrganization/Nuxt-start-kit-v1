@@ -1,11 +1,11 @@
 <script setup lang="ts"></script>
 <template>
   <NuxtLayout name="default">
-    <section>
-      <div class="container">
+    <Section>
+      <Container>
         <sidebar>AAAAAAAA</sidebar>
-        <slot />
-      </div>
-    </section>
+      </Container>
+      <slot />
+    </Section>
   </NuxtLayout>
 </template>

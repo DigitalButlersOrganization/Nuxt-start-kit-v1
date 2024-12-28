@@ -28,9 +28,7 @@ const availableLocales = computed(() => {
         <NavigationMenuContent class="NavigationMenuContent">
           <div class="NavigationMenuContentItem">Вы зашли как гость</div>
           <div class="NavigationMenuContentItem">
-            <CustomButton tag="a" :to="$localePath('authorization')">
-              {{ t('CTA.LOGIN') }}
-            </CustomButton>
+            <AuthorizationDialog />
           </div>
         </NavigationMenuContent>
       </NavigationMenuItem>
