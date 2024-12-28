@@ -32,3 +32,19 @@
 - Change ".env copy" file to ".env". Than set real address for your strapi project
 <br/>
 <hr/>
+
+## Components
+
+<br/>
+
+- You can use both custom components and components from built-in libraries such as "radix-vue" and "nuxt-svgo". The project has automatic imports configured, so you don't need to import a component before using it.
+<br/>
+<hr/>
+
+## Forms
+
+<br/>
+
+- Two libraries are used for form validation: "@vee-validate/nuxt" and "yup".
+<br/>
+<hr/>
