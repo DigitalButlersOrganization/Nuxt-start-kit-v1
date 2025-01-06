@@ -45,7 +45,7 @@ const validateForm = async () => {
 
 <template>
   <VeeForm :validation-schema="schema" @submit="validateForm">
-    <CustomInput name="email" type="email" labelText="Email" placeholder="Введите email" />
+    <CustomInput name="email" type="email" :labelText="`${t('FORM.EMAIL.LABEL')}`" :placeholder="`${t('FORM.EMAIL.PLACEHOLDER')}`" />
     <CustomInput name="password" type="password" labelText="Пароль" placeholder="Введите пароль" />
     <CustomInput name="confirmPassword" type="password" labelText="Повторите пароль" placeholder="Подтвердите пароль" />
 

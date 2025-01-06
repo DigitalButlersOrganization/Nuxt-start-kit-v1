@@ -11,21 +11,26 @@ const availableLocales = computed(() => {
 </script>
 
 <template>
-  <NavigationMenuRoot class="NavigationMenuRoot">
-    <NavigationMenuList class="NavigationMenuList navigation__list">
-      <NavigationMenuItem class="NavigationMenuItem">
-        <NavigationMenuTrigger class="NavigationMenuTrigger"> {{ currentLocale.name }} ⬇️ </NavigationMenuTrigger>
-        <NavigationMenuContent class="NavigationMenuContent">
+  <NavigationMenuRoot class="navigation-menu" dir="inherit">
+    <NavigationMenuList class="navigation-menu__list">
+      <NavigationMenuItem class="navigation-menu__item">
+        <NavigationMenuTrigger class="navigation-menu__trigger">
+          <div class="navigation-menu__trigger-text">
+            {{ currentLocale.name }}
+          </div>
+          <div class="navigation-menu__trigger-arrow">⬇️</div>
+        </NavigationMenuTrigger>
+        <NavigationMenuContent class="navigation-menu__content">
           <NuxtLink v-for="locale in availableLocales" :key="locale.code" :to="switchLocalePath(locale.code)">
             {{ locale.name }}
           </NuxtLink>
         </NavigationMenuContent>
       </NavigationMenuItem>
-      <NavigationMenuItem class="NavigationMenuItem">
-        <NavigationMenuTrigger class="NavigationMenuTrigger">
+      <NavigationMenuItem class="navigation-menu__item">
+        <NavigationMenuTrigger class="navigation-menu__trigger">
           <SvgoUserPublicAvatar class="svg svg--small" />
         </NavigationMenuTrigger>
-        <NavigationMenuContent class="NavigationMenuContent">
+        <NavigationMenuContent class="navigation-menu__content">
           <div class="NavigationMenuContentItem">Вы зашли как гость</div>
           <div class="NavigationMenuContentItem">
             <AuthorizationDialog />
@@ -33,93 +38,46 @@ const availableLocales = computed(() => {
         </NavigationMenuContent>
       </NavigationMenuItem>
     </NavigationMenuList>
-    <NavigationMenuViewport class="NavigationMenuViewport" />
+    <NavigationMenuViewport class="navigation-menu__viewport" />
   </NavigationMenuRoot>
 </template>
 
 <style lang="scss">
-.NavigationMenuRoot {
+.navigation-menu {
   position: relative;
-}
-.NavigationMenuList {
-  display: flex;
-  list-style: none;
-}
-.NavigationMenuTrigger {
-  padding: 0.25rem 0.5rem;
-  min-height: 2.5rem;
-}
-.NavigationMenuViewport {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  transition: width, height, 250ms ease;
-}
-.NavigationMenuContent {
-  position: absolute;
-  top: 0;
-  left: 0;
-  animation-duration: 250ms;
-  animation-timing-function: ease;
-  background: #fff;
-  width: 100%;
-  border: 1px solid #000;
-  padding: 0.5rem;
-}
-.NavigationMenuContent[data-motion='from-start'] {
-  animation-name: enterFromLeft;
-}
-.NavigationMenuContent[data-motion='from-end'] {
-  animation-name: enterFromRight;
-}
-.NavigationMenuContent[data-motion='to-start'] {
-  animation-name: exitToLeft;
-}
-.NavigationMenuContent[data-motion='to-end'] {
-  animation-name: exitToRight;
-}
-
-@keyframes enterFromRight {
-  from {
-    opacity: 0;
-    transform: translateX(200px);
+  &__list {
+    display: flex;
+    list-style: none;
   }
-  to {
-    opacity: 1;
-    transform: translateX(0);
+  &__trigger {
+    padding: 0.25rem 1rem;
+    min-height: 2.5rem;
+    display: flex;
+    &-arrow {
+      transition: transform, 150ms ease;
+    }
+    &[aria-expanded='true'] {
+      .navigation-menu__trigger-arrow {
+        transform: rotate(-180deg);
+      }
+    }
   }
-}
-
-@keyframes enterFromLeft {
-  from {
-    opacity: 0;
-    transform: translateX(-200px);
+  &__content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    animation-duration: 250ms;
+    animation-timing-function: ease;
+    background: #fff;
+    width: 100%;
+    border: 1px solid #000;
+    padding: 0.5rem;
   }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-@keyframes exitToRight {
-  from {
-    opacity: 1;
-    transform: translateX(0);
-  }
-  to {
-    opacity: 0;
-    transform: translateX(200px);
-  }
-}
-
-@keyframes exitToLeft {
-  from {
-    opacity: 1;
-    transform: translateX(0);
-  }
-  to {
-    opacity: 0;
-    transform: translateX(-200px);
+  &__viewport {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: width, height, 250ms ease;
   }
 }
 </style>

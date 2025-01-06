@@ -38,6 +38,10 @@
 <br/>
 
 - You can use both custom components and components from built-in libraries such as "radix-vue" and "nuxt-svgo". The project has automatic imports configured, so you don't need to import a component before using it.
+
+- "radix-vue" lets to use unstyled, accessible components
+
+- "nuxt-svgo" lets to use svg from assets as markup
 <br/>
 <hr/>
 

@@ -11,10 +11,6 @@
     "BLOG": {
       "TITLE": "Blog",
       "DESCRIPTION": "Some description about the blog page"
-    },
-    "AUTHORIZATION": {
-      "TITLE": "Authorization",
-      "DESCRIPTION": "Some description about the authorization page"
     }
   },
   "ERROR": {
@@ -37,6 +33,11 @@
       "LABEL": "Enter your password",
       "PLACEHOLDER": "******",
       "VALUE": ""
+    },
+    "CONFIRM_PASSWORD": {
+      "LABEL": "Confirm your password",
+      "PLACEHOLDER": "******",
+      "VALUE": ""
     }
   },
   "VALIDATION": {
@@ -45,5 +46,25 @@
     "MIN": "This field is too short",
     "MAX": "This field is too long",
     "PASSWORD_MISMATCH": "The password must match the password in the main field"
+  },
+  "AUTHORIZATION": {
+    "LOGIN": {
+      "TITLE": "Log in",
+      "DESCRIPTION": "Log in to your account",
+      "SUBMIT": "Log in",
+      "FORGOT_PASSWORD": "Forgot your password?",
+      "SECOND_VARIANT": "Don't have an account? Register"
+    },
+    "REGISTER": {
+      "TITLE": "Register",
+      "DESCRIPTION": "Create a new account",
+      "SUBMIT": "Register",
+      "SECOND_VARIANT": "Already have an account? Log in"
+    },
+    "FORGOT_PASSWORD": {
+      "TITLE": "Forgot your password?",
+      "DESCRIPTION": "Enter your email address and we'll send you a link to reset your password",
+      "SUBMIT": "Send reset link"
+    }
   }
 }
