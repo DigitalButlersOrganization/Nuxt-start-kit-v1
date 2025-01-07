@@ -7,8 +7,19 @@ import { handleValidationErrors } from '@/utils/validation';
 
 const { t } = useI18n();
 
+interface Props {
+  variant?: 'login' | 'register' | 'forgotPassword';
+}
+
+const props = defineProps<Props>();
+
+function decodeContent(content: string) {
+  const parser = new DOMParser();
+  const doc = parser.parseFromString(content, 'text/html');
+  return doc.documentElement.textContent || '';
+}
 interface Form {
-  email: string;
+  email?: string;
   password: string;
   confirmPassword: string;
 }
@@ -45,12 +56,21 @@ const validateForm = async () => {
 
 <template>
   <VeeForm :validation-schema="schema" @submit="validateForm">
-    <CustomInput name="email" type="email" :labelText="`${t('FORM.EMAIL.LABEL')}`" :placeholder="`${t('FORM.EMAIL.PLACEHOLDER')}`" />
-    <CustomInput name="password" type="password" labelText="Пароль" placeholder="Введите пароль" />
-    <CustomInput name="confirmPassword" type="password" labelText="Повторите пароль" placeholder="Подтвердите пароль" />
+    <CustomInput name="email" type="email" :labelText="`${t('FORM.EMAIL.LABEL')}`" :placeholder="`${decodeContent(t('FORM.EMAIL.PLACEHOLDER'))}`" />
+    <CustomInput name="password" type="password" :labelText="t('FORM.PASSWORD.LABEL')" :placeholder="t('FORM.PASSWORD.PLACEHOLDER')" />
+    <CustomInput name="confirmPassword" type="password" :labelText="t('FORM.CONFIRM_PASSWORD.LABEL')" :placeholder="t('FORM.CONFIRM_PASSWORD.PLACEHOLDER')" />
 
     <CustomButton type="submit" :isLoading="false">
       {{ t('CTA.REGISTER') }}
     </CustomButton>
+
+    <Dialog v-if="props.variant === 'register'" :title="t('AUTHORIZATION.REGISTER.TITLE')" :description="t('AUTHORIZATION.REGISTER.DESCRIPTION')">
+      <template #trigger>
+        {{ t('AUTHORIZATION.REGISTER.CTA') }}
+      </template>
+      <template #default>
+        <LoginForm />
+      </template>
+    </Dialog>
   </VeeForm>
 </template>
