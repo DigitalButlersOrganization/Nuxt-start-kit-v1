@@ -48,23 +48,29 @@
     "PASSWORD_MISMATCH": "The password must match the password in the main field"
   },
   "AUTHORIZATION": {
+    "INFO": {
+      "PUBLIC_GREETING": "Hello, guest!",
+      "PUBLIC_DESCRIPTION": "Please log in or register to access the full functionality of the site",
+      "AUTHENTICATED_GREETING": "Hello, {name}!",
+      "AUTHENTICATED_DESCRIPTION": "You are logged in. Enjoy your stay!"
+    },
     "LOGIN": {
-      "TITLE": "Log in",
+      "TITLE": "Authentication",
       "DESCRIPTION": "Log in to your account",
-      "SUBMIT": "Log in",
+      "CTA": "Log in",
       "FORGOT_PASSWORD": "Forgot your password?",
       "SECOND_VARIANT": "Don't have an account? Register"
     },
     "REGISTER": {
-      "TITLE": "Register",
+      "TITLE": "Registration",
       "DESCRIPTION": "Create a new account",
-      "SUBMIT": "Register",
+      "CTA": "Register",
       "SECOND_VARIANT": "Already have an account? Log in"
     },
     "FORGOT_PASSWORD": {
       "TITLE": "Forgot your password?",
       "DESCRIPTION": "Enter your email address and we'll send you a link to reset your password",
-      "SUBMIT": "Send reset link"
+      "CTA": "Send reset link"
     }
   }
 }

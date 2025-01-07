@@ -1,22 +1,24 @@
 <script setup lang="ts">
-const { t } = useI18n();
+interface Props {
+  title?: string;
+  description?: string;
+}
+const props = defineProps<Props>();
 </script>
 
 <template>
   <DialogRoot class="dialog">
     <DialogTrigger class="dialog__trigger">
-      <CustomButton tag="div" class="dialog__trigger-button">
-        {{ t('CTA.LOGIN') }}
-      </CustomButton>
+      <slot name="trigger" />
     </DialogTrigger>
     <DialogPortal class="dialog__portal">
       <DialogOverlay class="dialog__overlay" />
       <DialogContent class="dialog__content">
-        <DialogTitle class="dialog__title"> {{ t('AUTHORIZATION.LOGIN.TITLE') }} </DialogTitle>
+        <DialogTitle class="dialog__title">{{ props.title }} </DialogTitle>
         <DialogDescription class="dialog__description">
-          {{ t('AUTHORIZATION.LOGIN.DESCRIPTION') }}
+          {{ props.description }}
         </DialogDescription>
-        <LoginForm />
+        <slot name="default" />
         <DialogClose class="dialog__close" aria-label="Close">
           <SvgoSquareRoundedX class="svg svg--small" />
         </DialogClose>
@@ -49,10 +51,16 @@ const { t } = useI18n();
   }
 
   &__content {
-    position: relative;
-    width: 90%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    translate: -50% 0;
+    width: 100%;
     max-width: 500px;
-    margin: auto;
+    margin: 0;
+    margin-left: 50%;
+    margin-top: 25vh;
+    height: 50%;
     padding: 20px;
     background: #fff;
     border-radius: 8px;
@@ -99,11 +107,11 @@ const { t } = useI18n();
 @keyframes fadeIn {
   from {
     opacity: 0;
-    transform: scale(0.9);
+    scale: 0.9;
   }
   to {
     opacity: 1;
-    transform: scale(1);
+    scale: 1;
   }
 }
 </style>

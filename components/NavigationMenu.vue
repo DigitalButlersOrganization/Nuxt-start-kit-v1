@@ -31,9 +31,27 @@ const availableLocales = computed(() => {
           <SvgoUserPublicAvatar class="svg svg--small" />
         </NavigationMenuTrigger>
         <NavigationMenuContent class="navigation-menu__content">
-          <div class="NavigationMenuContentItem">Вы зашли как гость</div>
-          <div class="NavigationMenuContentItem">
-            <AuthorizationDialog />
+          <div class="navigation-menu__content-detail">{{ t('AUTHORIZATION.INFO.PUBLIC_GREETING') }}</div>
+          <div class="navigation-menu__content-detail">{{ t('AUTHORIZATION.INFO.PUBLIC_DESCRIPTION') }}</div>
+          <div class="navigation-menu__content-detail">
+            <Dialog :title="t('AUTHORIZATION.LOGIN.TITLE')" :description="t('AUTHORIZATION.LOGIN.DESCRIPTION')">
+              <template #trigger>
+                {{ t('AUTHORIZATION.LOGIN.CTA') }}
+              </template>
+              <template #default>
+                <LoginForm />
+              </template>
+            </Dialog>
+          </div>
+          <div class="navigation-menu__content-detail">
+            <Dialog :title="t('AUTHORIZATION.REGISTER.TITLE')" :description="t('AUTHORIZATION.REGISTER.DESCRIPTION')">
+              <template #trigger>
+                {{ t('AUTHORIZATION.REGISTER.CTA') }}
+              </template>
+              <template #default>
+                <LoginForm />
+              </template>
+            </Dialog>
           </div>
         </NavigationMenuContent>
       </NavigationMenuItem>
@@ -72,6 +90,12 @@ const availableLocales = computed(() => {
     width: 100%;
     border: 1px solid #000;
     padding: 0.5rem;
+    display: flex;
+    flex-direction: column;
+
+    &-detail {
+      margin-bottom: 0.5rem;
+    }
   }
   &__viewport {
     position: relative;
