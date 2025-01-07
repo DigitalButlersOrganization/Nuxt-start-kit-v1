@@ -31,27 +31,33 @@ const availableLocales = computed(() => {
           <SvgoUserPublicAvatar class="svg svg--small" />
         </NavigationMenuTrigger>
         <NavigationMenuContent class="navigation-menu__content">
-          <div class="navigation-menu__content-detail">{{ t('AUTHORIZATION.INFO.PUBLIC_GREETING') }}</div>
-          <div class="navigation-menu__content-detail">{{ t('AUTHORIZATION.INFO.PUBLIC_DESCRIPTION') }}</div>
           <div class="navigation-menu__content-detail">
-            <Dialog :title="t('AUTHORIZATION.LOGIN.TITLE')" :description="t('AUTHORIZATION.LOGIN.DESCRIPTION')">
-              <template #trigger>
-                {{ t('AUTHORIZATION.LOGIN.CTA') }}
-              </template>
-              <template #default>
-                <LoginForm />
-              </template>
-            </Dialog>
+            <Text :text="t('AUTHORIZATION.INFO.PUBLIC_GREETING')" size="lg" />
           </div>
           <div class="navigation-menu__content-detail">
-            <Dialog :title="t('AUTHORIZATION.REGISTER.TITLE')" :description="t('AUTHORIZATION.REGISTER.DESCRIPTION')">
-              <template #trigger>
-                {{ t('AUTHORIZATION.REGISTER.CTA') }}
-              </template>
-              <template #default>
-                <LoginForm />
-              </template>
-            </Dialog>
+            <Text :text="t('AUTHORIZATION.INFO.PUBLIC_DESCRIPTION')" size="lg" />
+          </div>
+          <div class="navigation-menu__content-detail-box">
+            <div class="navigation-menu__content-detail">
+              <Dialog :title="t('AUTHORIZATION.LOGIN.TITLE')" :description="t('AUTHORIZATION.LOGIN.DESCRIPTION')">
+                <template #trigger>
+                  <Text :text="t('AUTHORIZATION.LOGIN.CTA')" size="lg" />
+                </template>
+                <template #default>
+                  <LoginForm variant="login" />
+                </template>
+              </Dialog>
+            </div>
+            <div class="navigation-menu__content-detail">
+              <Dialog :title="t('AUTHORIZATION.REGISTER.TITLE')" :description="t('AUTHORIZATION.REGISTER.DESCRIPTION')">
+                <template #trigger>
+                  <Text :text="t('AUTHORIZATION.REGISTER.CTA')" size="lg" />
+                </template>
+                <template #default>
+                  <LoginForm variant="register" />
+                </template>
+              </Dialog>
+            </div>
           </div>
         </NavigationMenuContent>
       </NavigationMenuItem>
@@ -71,6 +77,7 @@ const availableLocales = computed(() => {
     padding: 0.25rem 1rem;
     min-height: 2.5rem;
     display: flex;
+    gap: 0.5rem;
     &-arrow {
       transition: transform, 150ms ease;
     }
@@ -89,10 +96,14 @@ const availableLocales = computed(() => {
     background: #fff;
     width: 100%;
     border: 1px solid #000;
-    padding: 0.5rem;
+    padding: 0.5rem 1rem;
     display: flex;
     flex-direction: column;
 
+    &-detail-box {
+      display: flex;
+      gap: 0.5rem;
+    }
     &-detail {
       margin-bottom: 0.5rem;
     }

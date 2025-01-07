@@ -17,6 +17,12 @@ body {
   font-size: linearClump(1.5, 1.25);
 }
 
+*:focus-visible {
+  box-shadow: 0 0 0 2px #fff, 0 0 0 4px #000, 0 0 4px 8px #fff;
+  border-radius: 3px;
+  outline: none;
+}
+
 a {
   text-decoration: none;
   color: currentColor;

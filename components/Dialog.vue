@@ -14,9 +14,11 @@ const props = defineProps<Props>();
     <DialogPortal class="dialog__portal">
       <DialogOverlay class="dialog__overlay" />
       <DialogContent class="dialog__content">
-        <DialogTitle class="dialog__title">{{ props.title }} </DialogTitle>
+        <DialogTitle class="dialog__title">
+          <Text :text="props.title" tag="span" />
+        </DialogTitle>
         <DialogDescription class="dialog__description">
-          {{ props.description }}
+          <Text :text="props.description" tag="span" size="md" />
         </DialogDescription>
         <slot name="default" />
         <DialogClose class="dialog__close" aria-label="Close">
@@ -32,6 +34,7 @@ const props = defineProps<Props>();
   &__trigger {
     display: inline-block;
     cursor: pointer;
+    padding: 0.25rem 0.5rem;
 
     &-button {
       background: red !important;
@@ -66,6 +69,7 @@ const props = defineProps<Props>();
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     animation: fadeIn 0.3s ease-out;
+    overflow: auto;
 
     &.dialog__content--centered {
       top: 50%;
