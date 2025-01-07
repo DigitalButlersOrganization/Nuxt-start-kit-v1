@@ -22,31 +22,43 @@ const props = withDefaults(defineProps<Props>(), {
 
 <template>
   <div class="custom-input">
-    <label v-if="!props.isLabelHidden"
-      >{{ props.labelText || props.name }}
+    <label class="label">
+      <Text :text="props.labelText || props.name" class="pseudo-label" :class="{ 'pseudo-label--visually-hidden': props.isLabelHidden }" />
       <VeeField :name="props.name" :as="props.tag" :type="props.type || 'text'" :placeholder="props.placeholder" :class="props.tag || 'input'" :value="props.value" />
     </label>
+
     <VeeErrorMessage :name="props.name" class="error-message" />
   </div>
 </template>
 
 <style lang="scss" scoped>
+@use '@/assets/styles/mixins' as *;
+
 .custom-input {
   margin-bottom: 1rem;
-
-  .textarea,
-  .input {
-    border: 1px solid #ccc;
-    border-radius: 0.25rem;
-    padding: 0.5rem;
-    width: 100%;
-    font-size: 1rem;
+}
+.label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.pseudo-label {
+  &--visually-hidden {
+    @include visually-hidden();
   }
+}
+.textarea,
+.input {
+  border: 1px solid #ccc;
+  border-radius: 0.25rem;
+  padding: 0.5rem;
+  width: 100%;
+  font-size: 1rem;
+}
 
-  .error-message {
-    color: red;
-    font-size: 0.875rem;
-    margin-top: 0.25rem;
-  }
+.error-message {
+  color: red;
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
 }
 </style>
