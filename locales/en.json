@@ -1,7 +1,9 @@
 {
   "CTA": {
     "REGISTER": "Register",
-    "LOGIN": "Log in"
+    "LOGIN": "Log in",
+    "LOGOUT": "Log out",
+    "RESET_PASSWORD": "Reset password"
   },
   "PAGE": {
     "HOME": {

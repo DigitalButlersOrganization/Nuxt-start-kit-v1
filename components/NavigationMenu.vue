@@ -41,20 +41,20 @@ const availableLocales = computed(() => {
             <div class="navigation-menu__content-detail">
               <Dialog :title="t('AUTHORIZATION.LOGIN.TITLE')" :description="t('AUTHORIZATION.LOGIN.DESCRIPTION')">
                 <template #trigger>
-                  <Text :text="t('AUTHORIZATION.LOGIN.CTA')" size="lg" />
+                  <Text :text="t('AUTHORIZATION.LOGIN.TITLE')" size="lg" />
                 </template>
                 <template #default>
-                  <LoginForm variant="login" />
+                  <AuthorizationFormLogin />
                 </template>
               </Dialog>
             </div>
             <div class="navigation-menu__content-detail">
               <Dialog :title="t('AUTHORIZATION.REGISTER.TITLE')" :description="t('AUTHORIZATION.REGISTER.DESCRIPTION')">
                 <template #trigger>
-                  <Text :text="t('AUTHORIZATION.REGISTER.CTA')" size="lg" />
+                  <Text :text="t('AUTHORIZATION.REGISTER.TITLE')" size="lg" />
                 </template>
                 <template #default>
-                  <LoginForm variant="register" />
+                  <AuthorizationFormRegistration />
                 </template>
               </Dialog>
             </div>
@@ -99,13 +99,15 @@ const availableLocales = computed(() => {
     padding: 0.5rem 1rem;
     display: flex;
     flex-direction: column;
+    gap: 0.5rem;
 
     &-detail-box {
       display: flex;
+      flex-direction: column;
       gap: 0.5rem;
     }
     &-detail {
-      margin-bottom: 0.5rem;
+      width: 100%;
     }
   }
   &__viewport {

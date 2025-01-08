@@ -23,7 +23,7 @@ const props = withDefaults(defineProps<Props>(), {
 <template>
   <div class="custom-input">
     <label class="label">
-      <Text :text="props.labelText || props.name" class="pseudo-label" :class="{ 'pseudo-label--visually-hidden': props.isLabelHidden }" />
+      <Text :text="props.labelText || props.name" class="pseudo-label" :class="{ 'pseudo-label--visually-hidden': props.isLabelHidden }" size="lg" />
       <VeeField :name="props.name" :as="props.tag" :type="props.type || 'text'" :placeholder="props.placeholder" :class="props.tag || 'input'" :value="props.value" />
     </label>
 

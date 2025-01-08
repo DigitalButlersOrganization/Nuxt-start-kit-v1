@@ -15,7 +15,7 @@ const props = defineProps<Props>();
       <DialogOverlay class="dialog__overlay" />
       <DialogContent class="dialog__content">
         <DialogTitle class="dialog__title">
-          <Text :text="props.title" tag="span" />
+          <Text :text="props.title" tag="span" size="lg" />
         </DialogTitle>
         <DialogDescription class="dialog__description">
           <Text :text="props.description" tag="span" size="md" />
