@@ -2,6 +2,7 @@
 import { withDefaults, defineProps } from 'vue';
 
 interface Props {
+  modelValue?: string;
   value?: string;
   placeholder?: string;
   type?: string;
@@ -12,6 +13,7 @@ interface Props {
   isLabelHidden?: boolean;
   error?: string;
 }
+const emit = defineEmits(['update:modelValue']);
 
 const props = withDefaults(defineProps<Props>(), {
   tag: 'input',
@@ -24,7 +26,15 @@ const props = withDefaults(defineProps<Props>(), {
   <div class="custom-input">
     <label class="label">
       <Text :text="props.labelText || props.name" class="pseudo-label" :class="{ 'pseudo-label--visually-hidden': props.isLabelHidden }" size="lg" />
-      <VeeField :name="props.name" :as="props.tag" :type="props.type || 'text'" :placeholder="props.placeholder" :class="props.tag || 'input'" :value="props.value" />
+      <VeeField
+        :value="props.modelValue || props.value || null"
+        @input="emit('update:modelValue', $event.target.value)"
+        :name="props.name"
+        :as="props.tag"
+        :type="props.type || 'text'"
+        :placeholder="props.placeholder"
+        :class="props.tag || 'input'"
+      />
     </label>
 
     <VeeErrorMessage :name="props.name" class="error-message" />
