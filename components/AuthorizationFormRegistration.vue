@@ -1,23 +1,11 @@
 <script setup lang="ts">
-import { reactive, ref } from 'vue';
 import { useI18n } from 'vue-i18n';
 import { useSchema } from '@/schemas/formSchema';
 import { ValidationError } from 'yup';
-import { handleValidationErrors } from '@/utils/validation';
+import { handleValidationErrors, decodeContent } from '@/utils';
 
 const { t } = useI18n();
 
-interface Props {
-  variant?: 'login' | 'register' | 'forgotPassword';
-}
-
-const props = defineProps<Props>();
-
-function decodeContent(content: string) {
-  const parser = new DOMParser();
-  const doc = parser.parseFromString(content, 'text/html');
-  return doc.documentElement.textContent || '';
-}
 interface Form {
   email?: string;
   password: string;
@@ -55,7 +43,7 @@ const validateForm = async () => {
 </script>
 
 <template>
-  <VeeForm :validation-schema="schema" @submit="validateForm">
+  <VeeForm :validation-schema="schema" @submit="validateForm" class="form">
     <CustomInput name="email" type="email" :labelText="`${t('FORM.EMAIL.LABEL')}`" :placeholder="`${decodeContent(t('FORM.EMAIL.PLACEHOLDER'))}`" />
     <CustomInput name="password" type="password" :labelText="t('FORM.PASSWORD.LABEL')" :placeholder="t('FORM.PASSWORD.PLACEHOLDER')" />
     <CustomInput name="confirmPassword" type="password" :labelText="t('FORM.CONFIRM_PASSWORD.LABEL')" :placeholder="t('FORM.CONFIRM_PASSWORD.PLACEHOLDER')" />
@@ -64,13 +52,15 @@ const validateForm = async () => {
       {{ t('CTA.REGISTER') }}
     </CustomButton>
 
-    <Dialog v-if="props.variant === 'register'" :title="t('AUTHORIZATION.REGISTER.TITLE')" :description="t('AUTHORIZATION.REGISTER.DESCRIPTION')">
+    <Dialog :title="t('AUTHORIZATION.LOGIN.TITLE')" :description="t('AUTHORIZATION.LOGIN.DESCRIPTION')">
       <template #trigger>
-        {{ t('AUTHORIZATION.REGISTER.CTA') }}
+        {{ t('AUTHORIZATION.LOGIN.TITLE') }}
       </template>
       <template #default>
-        <LoginForm />
+        <AuthorizationFormLogin />
       </template>
     </Dialog>
   </VeeForm>
 </template>
+
+<style lang="scss" scoped></style>
