@@ -36,7 +36,12 @@ const getFullImageUrl = () => {
       <p>{{ props.dateOfCreating }}</p>
     </div>
     <div class="card__tags">
-      <span v-for="category in props.blogCategories" :key="category.id" :style="`background-color:${category.backgroundColor}; color: ${category.textColor}`">{{ category.categoryName }}</span>
+      <span
+        v-for="category in props.blogCategories"
+        :key="category.id"
+        :style="`background-color:${category.backgroundColor}; color: ${category.textColor}`"
+        >{{ category.categoryName }}</span
+      >
     </div>
   </NuxtLink>
 </template>

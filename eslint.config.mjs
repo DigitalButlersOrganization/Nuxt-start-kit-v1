@@ -17,4 +17,10 @@ export default defineFlatConfig([
       'no-undef': 'off',
     },
   },
+  {
+    extends: ['plugin:prettier/recommended'],
+    rules: {
+      'prettier/prettier': 'error',
+    },
+  },
 ]);

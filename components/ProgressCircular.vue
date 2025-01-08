@@ -29,11 +29,20 @@ const classes = computed(() => ({
   'progress-circular--loader': props.isLoader,
 }));
 
-const progressDasharray = computed(() => `${SVG_CIRCLE_PERIMETER * props.value} ${SVG_CIRCLE_PERIMETER}`);
+const progressDasharray = computed(
+  () => `${SVG_CIRCLE_PERIMETER * props.value} ${SVG_CIRCLE_PERIMETER}`
+);
 </script>
 
 <template>
-  <div class="progress-circular" :class="classes" role="progressbar" aria-valuemax="1" aria-valuemin="0" :aria-valuenow="value">
+  <div
+    class="progress-circular"
+    :class="classes"
+    role="progressbar"
+    aria-valuemax="1"
+    aria-valuemin="0"
+    :aria-valuenow="value"
+  >
     <svg class="progress-circular__svg" viewBox="-5 -5 110 110" xmlns="http://www.w3.org/2000/svg">
       <circle cx="50" cy="50" r="50" />
     </svg>
@@ -82,7 +91,9 @@ const progressDasharray = computed(() => `${SVG_CIRCLE_PERIMETER * props.value} 
   &--loader {
     .progress-circular {
       &__svg {
-        animation: loader-dasharray 2s ease-in-out infinite, loader-rotation 0.85s linear infinite;
+        animation:
+          loader-dasharray 2s ease-in-out infinite,
+          loader-rotation 0.85s linear infinite;
       }
     }
   }

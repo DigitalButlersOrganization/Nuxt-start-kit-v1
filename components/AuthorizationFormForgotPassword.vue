@@ -44,7 +44,12 @@ const validateForm = async () => {
 
 <template>
   <VeeForm :validation-schema="schema" @submit="validateForm" class="form">
-    <CustomInput name="email" type="email" :labelText="`${t('FORM.EMAIL.LABEL')}`" :placeholder="`${decodeContent(t('FORM.EMAIL.PLACEHOLDER'))}`" />
+    <CustomInput
+      name="email"
+      type="email"
+      :labelText="`${t('FORM.EMAIL.LABEL')}`"
+      :placeholder="`${decodeContent(t('FORM.EMAIL.PLACEHOLDER'))}`"
+    />
 
     <CustomButton type="submit" :isLoading="false">
       {{ t('CTA.RESET_PASSWORD') }}

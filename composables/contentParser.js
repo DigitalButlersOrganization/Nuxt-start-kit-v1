@@ -4,7 +4,10 @@ export class ContentParser {
     this.htmlMarkup = '';
     this.showEmptyParagraphs = options.showEmptyParagraphs || false;
     this.imagesSizes = ['full', 'huge', 'large', 'medium', 'small', 'thumbnail'];
-    this.imagesSize = options.imagesSize && this.imagesSizes.includes(options.imagesSize) ? options.imagesSize : this.imagesSizes[0];
+    this.imagesSize =
+      options.imagesSize && this.imagesSizes.includes(options.imagesSize)
+        ? options.imagesSize
+        : this.imagesSizes[0];
     this.typesOfTextStylization = [
       { jsonName: 'code', tagName: 'code' },
       { jsonName: 'strikethrough', tagName: 's' },
@@ -26,13 +29,20 @@ export class ContentParser {
           temporaryMarkup += this.generateImageMarkup(item);
           break;
         case 'link':
-          temporaryMarkup += this.generateOuterMarkup({ item, tag: 'a', attributes: `href="${item.url}"` });
+          temporaryMarkup += this.generateOuterMarkup({
+            item,
+            tag: 'a',
+            attributes: `href="${item.url}"`,
+          });
           break;
         case 'paragraph':
           temporaryMarkup += this.generateOuterMarkup({ item, tag: 'p' });
           break;
         case 'list':
-          temporaryMarkup += this.generateOuterMarkup({ item, tag: `${item.format === 'unordered' ? 'ul' : 'ol'}` });
+          temporaryMarkup += this.generateOuterMarkup({
+            item,
+            tag: `${item.format === 'unordered' ? 'ul' : 'ol'}`,
+          });
           break;
         case 'list-item':
           temporaryMarkup += this.generateOuterMarkup({ item, tag: 'li' });
@@ -44,7 +54,8 @@ export class ContentParser {
           temporaryMarkup += this.generateOuterMarkup({ item, tag: 'blockquote' });
           break;
         case 'code':
-          const language = item.language === 'css' ? 'style' : item.language === 'javascript' ? 'script' : 'code';
+          const language =
+            item.language === 'css' ? 'style' : item.language === 'javascript' ? 'script' : 'code';
           temporaryMarkup += this.generateOuterMarkup({ item, tag: language });
           break;
         default:
@@ -71,9 +82,13 @@ export class ContentParser {
       let baseSourceMarkup = '';
 
       Object.keys(image.formats).forEach((format) => {
-        baseSourceMarkup = `<source media="(min-width:${image.formats[format].width}px)" srcset="${origin}${image.formats[format].url}" type="${image.formats[format].mime}">` + baseSourceMarkup;
+        baseSourceMarkup =
+          `<source media="(min-width:${image.formats[format].width}px)" srcset="${origin}${image.formats[format].url}" type="${image.formats[format].mime}">` +
+          baseSourceMarkup;
       });
-      baseSourceMarkup = `<source media="(min-width:${image.width}px)" srcset="${image.url}" type="${image.mime}"> ` + baseSourceMarkup;
+      baseSourceMarkup =
+        `<source media="(min-width:${image.width}px)" srcset="${image.url}" type="${image.mime}"> ` +
+        baseSourceMarkup;
 
       imageMarkup = `<picture>${baseSourceMarkup}${hugeImageMarkup}</picture>`;
     } else {

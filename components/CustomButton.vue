@@ -50,7 +50,9 @@ const tag = computed(() => {
     <div v-if="$slots['append']" :class="`${MAIN_CLASS}__append`">
       <slot name="append" />
     </div>
-    <div :class="[`${MAIN_CLASS}__loader`, props.isLoading ? `${MAIN_CLASS}__loader--visible` : null]">
+    <div
+      :class="[`${MAIN_CLASS}__loader`, props.isLoading ? `${MAIN_CLASS}__loader--visible` : null]"
+    >
       <ProgressCircular :is-loader="props.isLoading" :class="`${MAIN_CLASS}__loader-progress`" />
     </div>
   </component>

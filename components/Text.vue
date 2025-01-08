@@ -13,7 +13,9 @@ const props = withDefaults(defineProps<Props>(), {
 </script>
 
 <template>
-  <component :is="props.tag" class="text" :class="props.size ? `text--${props.size}` : null">{{ props.text }}</component>
+  <component :is="props.tag" class="text" :class="props.size ? `text--${props.size}` : null">{{
+    props.text
+  }}</component>
 </template>
 
 <style lang="scss" scoped>

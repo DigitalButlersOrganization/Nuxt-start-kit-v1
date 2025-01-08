@@ -44,13 +44,26 @@ const validateForm = async () => {
 
 <template>
   <VeeForm :validation-schema="schema" @submit="validateForm" class="form">
-    <CustomInput name="email" type="email" :labelText="`${t('FORM.EMAIL.LABEL')}`" :placeholder="`${decodeContent(t('FORM.EMAIL.PLACEHOLDER'))}`" />
-    <CustomInput name="password" type="password" :labelText="t('FORM.PASSWORD.LABEL')" :placeholder="t('FORM.PASSWORD.PLACEHOLDER')" />
+    <CustomInput
+      name="email"
+      type="email"
+      :labelText="`${t('FORM.EMAIL.LABEL')}`"
+      :placeholder="`${decodeContent(t('FORM.EMAIL.PLACEHOLDER'))}`"
+    />
+    <CustomInput
+      name="password"
+      type="password"
+      :labelText="t('FORM.PASSWORD.LABEL')"
+      :placeholder="t('FORM.PASSWORD.PLACEHOLDER')"
+    />
     <CustomButton type="submit" :isLoading="false">
       {{ t('CTA.LOGIN') }}
     </CustomButton>
 
-    <Dialog :title="t('AUTHORIZATION.REGISTER.TITLE')" :description="t('AUTHORIZATION.REGISTER.DESCRIPTION')">
+    <Dialog
+      :title="t('AUTHORIZATION.REGISTER.TITLE')"
+      :description="t('AUTHORIZATION.REGISTER.DESCRIPTION')"
+    >
       <template #trigger>
         {{ t('AUTHORIZATION.REGISTER.TITLE') }}
       </template>
@@ -58,7 +71,10 @@ const validateForm = async () => {
         <AuthorizationFormRegistration />
       </template>
     </Dialog>
-    <Dialog :title="t('AUTHORIZATION.FORGOT_PASSWORD.TITLE')" :description="t('AUTHORIZATION.FORGOT_PASSWORD.DESCRIPTION')">
+    <Dialog
+      :title="t('AUTHORIZATION.FORGOT_PASSWORD.TITLE')"
+      :description="t('AUTHORIZATION.FORGOT_PASSWORD.DESCRIPTION')"
+    >
       <template #trigger>
         {{ t('AUTHORIZATION.FORGOT_PASSWORD.TITLE') }}
       </template>

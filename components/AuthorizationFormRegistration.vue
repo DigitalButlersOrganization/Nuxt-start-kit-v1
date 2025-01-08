@@ -85,15 +85,36 @@ const validateForm = async () => {
 
 <template>
   <VeeForm :validation-schema="schema" @submit="validateForm">
-    <CustomInput v-model="form.email" name="email" type="email" :labelText="`${t('FORM.EMAIL.LABEL')}`" :placeholder="`${decodeContent(t('FORM.EMAIL.PLACEHOLDER'))}`" />
-    <CustomInput v-model="form.password" name="password" type="password" :labelText="t('FORM.PASSWORD.LABEL')" :placeholder="t('FORM.PASSWORD.PLACEHOLDER')" />
-    <CustomInput v-model="form.confirmPassword" name="confirmPassword" type="password" :labelText="t('FORM.CONFIRM_PASSWORD.LABEL')" :placeholder="t('FORM.CONFIRM_PASSWORD.PLACEHOLDER')" />
+    <CustomInput
+      v-model="form.email"
+      name="email"
+      type="email"
+      :labelText="`${t('FORM.EMAIL.LABEL')}`"
+      :placeholder="`${decodeContent(t('FORM.EMAIL.PLACEHOLDER'))}`"
+    />
+    <CustomInput
+      v-model="form.password"
+      name="password"
+      type="password"
+      :labelText="t('FORM.PASSWORD.LABEL')"
+      :placeholder="t('FORM.PASSWORD.PLACEHOLDER')"
+    />
+    <CustomInput
+      v-model="form.confirmPassword"
+      name="confirmPassword"
+      type="password"
+      :labelText="t('FORM.CONFIRM_PASSWORD.LABEL')"
+      :placeholder="t('FORM.CONFIRM_PASSWORD.PLACEHOLDER')"
+    />
 
     <CustomButton type="submit" :isLoading="isLoading">
       {{ t('CTA.REGISTER') }}
     </CustomButton>
 
-    <Dialog :title="t('AUTHORIZATION.LOGIN.TITLE')" :description="t('AUTHORIZATION.LOGIN.DESCRIPTION')">
+    <Dialog
+      :title="t('AUTHORIZATION.LOGIN.TITLE')"
+      :description="t('AUTHORIZATION.LOGIN.DESCRIPTION')"
+    >
       <template #trigger>
         {{ t('AUTHORIZATION.LOGIN.TITLE') }}
       </template>

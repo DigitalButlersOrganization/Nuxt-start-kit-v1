@@ -4,7 +4,10 @@ interface TranslationFunction {
   (key: string): string;
 }
 
-export const handleValidationErrors = (validationErrors: ValidationError, t: TranslationFunction) => {
+export const handleValidationErrors = (
+  validationErrors: ValidationError,
+  t: TranslationFunction
+) => {
   const errors: Record<string, string> = {};
 
   validationErrors.inner.forEach((err) => {

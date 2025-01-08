@@ -21,7 +21,11 @@ const availableLocales = computed(() => {
           <div class="navigation-menu__trigger-arrow">⬇️</div>
         </NavigationMenuTrigger>
         <NavigationMenuContent class="navigation-menu__content">
-          <NuxtLink v-for="locale in availableLocales" :key="locale.code" :to="switchLocalePath(locale.code)">
+          <NuxtLink
+            v-for="locale in availableLocales"
+            :key="locale.code"
+            :to="switchLocalePath(locale.code)"
+          >
             {{ locale.name }}
           </NuxtLink>
         </NavigationMenuContent>
@@ -39,7 +43,10 @@ const availableLocales = computed(() => {
           </div>
           <div class="navigation-menu__content-detail-box">
             <div class="navigation-menu__content-detail">
-              <Dialog :title="t('AUTHORIZATION.LOGIN.TITLE')" :description="t('AUTHORIZATION.LOGIN.DESCRIPTION')">
+              <Dialog
+                :title="t('AUTHORIZATION.LOGIN.TITLE')"
+                :description="t('AUTHORIZATION.LOGIN.DESCRIPTION')"
+              >
                 <template #trigger>
                   <Text :text="t('AUTHORIZATION.LOGIN.TITLE')" size="lg" />
                 </template>
@@ -49,7 +56,10 @@ const availableLocales = computed(() => {
               </Dialog>
             </div>
             <div class="navigation-menu__content-detail">
-              <Dialog :title="t('AUTHORIZATION.REGISTER.TITLE')" :description="t('AUTHORIZATION.REGISTER.DESCRIPTION')">
+              <Dialog
+                :title="t('AUTHORIZATION.REGISTER.TITLE')"
+                :description="t('AUTHORIZATION.REGISTER.DESCRIPTION')"
+              >
                 <template #trigger>
                   <Text :text="t('AUTHORIZATION.REGISTER.TITLE')" size="lg" />
                 </template>
@@ -79,7 +89,9 @@ const availableLocales = computed(() => {
     display: flex;
     gap: 0.5rem;
     &-arrow {
-      transition: transform, 150ms ease;
+      transition:
+        transform,
+        150ms ease;
     }
     &[aria-expanded='true'] {
       .navigation-menu__trigger-arrow {
@@ -114,7 +126,10 @@ const availableLocales = computed(() => {
     position: relative;
     width: 100%;
     height: 100%;
-    transition: width, height, 250ms ease;
+    transition:
+      width,
+      height,
+      250ms ease;
   }
 }
 </style>

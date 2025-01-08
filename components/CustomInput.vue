@@ -25,7 +25,12 @@ const props = withDefaults(defineProps<Props>(), {
 <template>
   <div class="custom-input">
     <label class="label">
-      <Text :text="props.labelText || props.name" class="pseudo-label" :class="{ 'pseudo-label--visually-hidden': props.isLabelHidden }" size="lg" />
+      <Text
+        :text="props.labelText || props.name"
+        class="pseudo-label"
+        :class="{ 'pseudo-label--visually-hidden': props.isLabelHidden }"
+        size="lg"
+      />
       <VeeField
         :value="props.modelValue || props.value || null"
         @input="emit('update:modelValue', $event.target.value)"

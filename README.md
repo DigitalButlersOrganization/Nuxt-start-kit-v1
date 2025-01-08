@@ -52,3 +52,23 @@
 - Two libraries are used for form validation: "@vee-validate/nuxt" and "yup".
 <br/>
 <hr/>
+
+## Code formatter
+
+<br/>
+
+- Add settings to .vscode/settings.json:
+
+{
+"editor.formatOnSave": true,
+"editor.codeActionsOnSave": {
+"source.fixAll.eslint": true,
+"source.fixAll.stylelint": true
+},
+"eslint.validate": ["javascript", "typescript", "vue"],
+"stylelint.validate": ["vue", "css", "scss"],
+"prettier.enable": true
+}
+
+<br/>
+<hr/>

@@ -18,8 +18,9 @@ $primary: rgb(0, 0, 0);
   --color-background--1: var(--palette-1--2);
   --color-background--2: var(--palette-1--1);
 
-  --transition--duration: .5s;
+  --transition--duration: 0.5s;
   --transition--easing: ease;
   --transition--properties: all;
-  --transition--default: var(--transition--duration) var(--transition--easing) var(--transition--properties);
+  --transition--default: var(--transition--duration) var(--transition--easing)
+    var(--transition--properties);
 }
