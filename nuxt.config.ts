@@ -4,7 +4,13 @@ import { resolve } from 'path';
 export default defineNuxtConfig({
   compatibilityDate: '2024-04-03',
   devtools: { enabled: true },
-  modules: ['@nuxtjs/strapi', '@nuxt/eslint', '@nuxtjs/i18n', 'nuxt-svgo', '@vee-validate/nuxt'],
+  modules: [
+    '@nuxtjs/strapi',
+    '@nuxt/eslint',
+    '@nuxtjs/i18n',
+    'nuxt-svgo',
+    '@vee-validate/nuxt',
+  ],
   css: ['@/assets/styles/main.scss'],
   app: {
     head: {
@@ -30,8 +36,20 @@ export default defineNuxtConfig({
   },
   i18n: {
     locales: [
-      { code: 'en', language: 'en-US', file: 'en.json', dir: 'ltr', name: 'English' },
-      { code: 'ru', language: 'ru-RU', file: 'ru.json', dir: 'rtl', name: 'Русский' },
+      {
+        code: 'en',
+        language: 'en-US',
+        file: 'en.json',
+        dir: 'ltr',
+        name: 'English',
+      },
+      {
+        code: 'ru',
+        language: 'ru-RU',
+        file: 'ru.json',
+        dir: 'rtl',
+        name: 'Русский',
+      },
     ],
     defaultLocale: 'en',
     strategy: 'prefix_except_default',

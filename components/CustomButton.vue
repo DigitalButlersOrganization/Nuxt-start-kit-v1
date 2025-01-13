@@ -1,28 +1,28 @@
 <script setup lang="ts">
-const MAIN_CLASS = 'button';
+  const MAIN_CLASS = 'button';
 
-interface Props {
-  tag?: 'button' | 'a' | 'div';
-  size?: 'medium' | 'small' | 'large';
-  style?: 'solid' | 'outline' | 'string';
-  type?: 'button' | 'submit' | 'reset';
-  to?: string;
-  isDisabled?: boolean;
-  isFullWidth?: boolean;
-  isLoading?: boolean;
-}
-const props = withDefaults(defineProps<Props>(), {
-  tag: 'button',
-  style: 'solid',
-  size: 'medium',
-  isFullWidth: false,
-  isLoading: false,
-});
+  interface Props {
+    tag?: 'button' | 'a' | 'div';
+    size?: 'medium' | 'small' | 'large';
+    style?: 'solid' | 'outline' | 'string';
+    type?: 'button' | 'submit' | 'reset';
+    to?: string;
+    isDisabled?: boolean;
+    isFullWidth?: boolean;
+    isLoading?: boolean;
+  }
+  const props = withDefaults(defineProps<Props>(), {
+    tag: 'button',
+    style: 'solid',
+    size: 'medium',
+    isFullWidth: false,
+    isLoading: false,
+  });
 
-const tag = computed(() => {
-  if (props.to || props.tag === 'a') return defineNuxtLink({});
-  return props.tag;
-});
+  const tag = computed(() => {
+    if (props.to || props.tag === 'a') return defineNuxtLink({});
+    return props.tag;
+  });
 </script>
 
 <template>
@@ -51,90 +51,96 @@ const tag = computed(() => {
       <slot name="append" />
     </div>
     <div
-      :class="[`${MAIN_CLASS}__loader`, props.isLoading ? `${MAIN_CLASS}__loader--visible` : null]"
+      :class="[
+        `${MAIN_CLASS}__loader`,
+        props.isLoading ? `${MAIN_CLASS}__loader--visible` : null,
+      ]"
     >
-      <ProgressCircular :is-loader="props.isLoading" :class="`${MAIN_CLASS}__loader-progress`" />
+      <ProgressCircular
+        :is-loader="props.isLoading"
+        :class="`${MAIN_CLASS}__loader-progress`"
+      />
     </div>
   </component>
 </template>
 
 <style lang="scss" scoped>
-.button {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-  user-select: none;
-  position: relative;
-  overflow: hidden;
-
-  &__prepend,
-  &__append,
-  &__content {
+  .button {
     display: flex;
     justify-content: center;
     align-items: center;
-  }
+    cursor: pointer;
+    user-select: none;
+    position: relative;
+    overflow: hidden;
 
-  &__loader {
-    position: absolute;
-    inset: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1;
-    pointer-events: none;
-    transition: var(--transition--default);
-    background: inherit;
-    opacity: 0;
+    &__prepend,
+    &__append,
+    &__content {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
 
-    &--visible {
-      opacity: 1;
+    &__loader {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 1;
+      pointer-events: none;
+      transition: var(--transition--default);
+      background: inherit;
+      opacity: 0;
+
+      &--visible {
+        opacity: 1;
+      }
+    }
+
+    &__loader-progress {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: auto;
+    }
+
+    &--full-width {
+      width: 100%;
+    }
+    &[disabled],
+    &--loading,
+    &--disabled {
+      opacity: 0.7;
+      pointer-events: none;
+    }
+
+    &--solid {
+      background-color: #000;
+      color: #fff;
+    }
+    &--outline {
+      background-color: transparent;
+      color: #000;
+      border: 1px solid #000;
+    }
+    &--string {
+      background-color: transparent;
+      color: #000;
+      padding: 0;
+    }
+    &--medium {
+      padding: 0.5rem 1rem;
+      gap: 1rem;
+    }
+    &--small {
+      padding: 0.25rem 0.5rem;
+      gap: 0.5rem;
+    }
+    &--large {
+      padding: 1rem 2rem;
+      gap: 1.5rem;
     }
   }
-
-  &__loader-progress {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: auto;
-  }
-
-  &--full-width {
-    width: 100%;
-  }
-  &[disabled],
-  &--loading,
-  &--disabled {
-    opacity: 0.7;
-    pointer-events: none;
-  }
-
-  &--solid {
-    background-color: #000;
-    color: #fff;
-  }
-  &--outline {
-    background-color: transparent;
-    color: #000;
-    border: 1px solid #000;
-  }
-  &--string {
-    background-color: transparent;
-    color: #000;
-    padding: 0;
-  }
-  &--medium {
-    padding: 0.5rem 1rem;
-    gap: 1rem;
-  }
-  &--small {
-    padding: 0.25rem 0.5rem;
-    gap: 0.5rem;
-  }
-  &--large {
-    padding: 1rem 2rem;
-    gap: 1.5rem;
-  }
-}
 </style>

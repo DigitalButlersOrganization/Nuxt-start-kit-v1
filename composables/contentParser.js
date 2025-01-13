@@ -3,7 +3,14 @@ export class ContentParser {
     this.content = content || [];
     this.htmlMarkup = '';
     this.showEmptyParagraphs = options.showEmptyParagraphs || false;
-    this.imagesSizes = ['full', 'huge', 'large', 'medium', 'small', 'thumbnail'];
+    this.imagesSizes = [
+      'full',
+      'huge',
+      'large',
+      'medium',
+      'small',
+      'thumbnail',
+    ];
     this.imagesSize =
       options.imagesSize && this.imagesSizes.includes(options.imagesSize)
         ? options.imagesSize
@@ -48,14 +55,24 @@ export class ContentParser {
           temporaryMarkup += this.generateOuterMarkup({ item, tag: 'li' });
           break;
         case 'heading':
-          temporaryMarkup += this.generateOuterMarkup({ item, tag: `h${item.level}` });
+          temporaryMarkup += this.generateOuterMarkup({
+            item,
+            tag: `h${item.level}`,
+          });
           break;
         case 'quote':
-          temporaryMarkup += this.generateOuterMarkup({ item, tag: 'blockquote' });
+          temporaryMarkup += this.generateOuterMarkup({
+            item,
+            tag: 'blockquote',
+          });
           break;
         case 'code':
           const language =
-            item.language === 'css' ? 'style' : item.language === 'javascript' ? 'script' : 'code';
+            item.language === 'css'
+              ? 'style'
+              : item.language === 'javascript'
+                ? 'script'
+                : 'code';
           temporaryMarkup += this.generateOuterMarkup({ item, tag: language });
           break;
         default:
@@ -71,7 +88,9 @@ export class ContentParser {
     if (!image) return '';
     const origin = new URL(image.url).origin;
     const alternativeText = image.alternativeText || image.name;
-    const figcaptionMarkup = item.image.caption ? `<figcaption>${image.caption}</figcaption>` : '';
+    const figcaptionMarkup = item.image.caption
+      ? `<figcaption>${image.caption}</figcaption>`
+      : '';
 
     const hugeImageMarkup = `<img src="${image.url}" alt="${alternativeText}" type="${image.mime}"/>`;
     let imageMarkup = '';
@@ -118,7 +137,8 @@ export class ContentParser {
   }
 
   handleTextStyle(child) {
-    const textContent = child.text || (this.showEmptyParagraphs ? '&zwnj;' : '');
+    const textContent =
+      child.text || (this.showEmptyParagraphs ? '&zwnj;' : '');
     let markup = '';
     if (child.children) {
       markup = this.parseContent([child]);

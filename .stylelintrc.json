@@ -1,0 +1,25 @@
+{
+  "extends": [
+    "stylelint-config-standard",
+    "stylelint-config-recommended-vue",
+    "stylelint-scss"
+  ],
+  "plugins": ["stylelint-order"],
+  "rules": {
+    "at-rule-no-unknown": [
+      true,
+      {
+        "ignoreAtRules": [
+          "tailwind",
+          "apply",
+          "variants",
+          "responsive",
+          "screen"
+        ]
+      }
+    ],
+    "order/properties-alphabetical-order": true,
+    "selector-class-pattern": "^[a-z][a-zA-Z0-9]+$",
+    "declaration-block-trailing-semicolon": "always"
+  }
+}

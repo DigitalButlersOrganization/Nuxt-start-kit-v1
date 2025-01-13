@@ -1,10 +1,10 @@
 <script setup lang="ts">
-interface Props {
-  size?: string;
-}
-const props = withDefaults(defineProps<Props>(), {
-  size: 'medium',
-});
+  interface Props {
+    size?: string;
+  }
+  const props = withDefaults(defineProps<Props>(), {
+    size: 'medium',
+  });
 </script>
 
 <template>
@@ -14,20 +14,20 @@ const props = withDefaults(defineProps<Props>(), {
 </template>
 
 <style lang="scss" scoped>
-@use '@/assets/styles/functions' as *;
+  @use '@/assets/styles/functions' as *;
 
-.container {
-  width: 100%;
-  margin-left: auto;
-  margin-right: auto;
-  padding-left: linearClump(2, 1);
-  padding-right: linearClump(2, 1);
+  .container {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: linearClump(2, 1);
+    padding-right: linearClump(2, 1);
 
-  &--medium {
-    max-width: pxToRem(1400);
+    &--medium {
+      max-width: pxToRem(1400);
+    }
+    &--small {
+      max-width: pxToRem(1280);
+    }
   }
-  &--small {
-    max-width: pxToRem(1280);
-  }
-}
 </style>

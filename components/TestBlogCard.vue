@@ -1,28 +1,28 @@
 <script setup lang="ts">
-import { useRuntimeConfig } from '#app';
+  import { useRuntimeConfig } from '#app';
 
-interface Props {
-  href?: string;
-  title?: string;
-  description?: string;
-  imageSrc?: string;
-  imageAlt?: string;
-  dateOfCreating?: string;
-  blogCategories?: {
-    id: number;
-    categoryName: string;
-    backgroundColor: string;
-    textColor: string;
-  }[];
-}
-const props = withDefaults(defineProps<Props>(), {
-  href: '',
-});
+  interface Props {
+    href?: string;
+    title?: string;
+    description?: string;
+    imageSrc?: string;
+    imageAlt?: string;
+    dateOfCreating?: string;
+    blogCategories?: {
+      id: number;
+      categoryName: string;
+      backgroundColor: string;
+      textColor: string;
+    }[];
+  }
+  const props = withDefaults(defineProps<Props>(), {
+    href: '',
+  });
 
-const getFullImageUrl = () => {
-  const baseUrl = useRuntimeConfig()?.public?.strapiBaseUrl;
-  return `${baseUrl}${props.imageSrc}`;
-};
+  const getFullImageUrl = () => {
+    const baseUrl = useRuntimeConfig()?.public?.strapiBaseUrl;
+    return `${baseUrl}${props.imageSrc}`;
+  };
 </script>
 
 <template>
@@ -47,13 +47,13 @@ const getFullImageUrl = () => {
 </template>
 
 <style lang="scss" scoped>
-.card {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  &__tags {
+  .card {
     display: flex;
-    gap: 0.5rem;
+    flex-direction: column;
+    gap: 1rem;
+    &__tags {
+      display: flex;
+      gap: 0.5rem;
+    }
   }
-}
 </style>

@@ -1,26 +1,45 @@
-import withNuxt from './.nuxt/eslint.config.mjs';
-import { writeFile } from 'fs/promises';
-import { defineFlatConfig } from 'eslint-define-config';
+const { defineConfig } = require('eslint-define-config');
 
-const config = await withNuxt();
-await writeFile('./generated-eslint-config.json', JSON.stringify(config, null, 2));
-
-const nuxtConfig = await withNuxt();
-
-export default defineFlatConfig([
-  ...nuxtConfig,
-  {
-    globals: {
-      definePageMeta: 'readonly',
-    },
-    rules: {
-      'no-undef': 'off',
+module.exports = defineConfig({
+  root: true,
+  env: {
+    browser: true,
+    node: true,
+    es2021: true,
+  },
+  parser: 'vue-eslint-parser',
+  parserOptions: {
+    parser: '@typescript-eslint/parser',
+    ecmaVersion: 2021,
+    sourceType: 'module',
+  },
+  extends: [
+    'airbnb-base',
+    'plugin:vue/vue3-recommended',
+    'plugin:@typescript-eslint/recommended',
+    'plugin:prettier/recommended',
+  ],
+  plugins: ['vue', '@typescript-eslint', 'prettier'],
+  rules: {
+    'prettier/prettier': 'error',
+    'import/extensions': [
+      'error',
+      'ignorePackages',
+      {
+        ts: 'never',
+        vue: 'never',
+        js: 'never',
+      },
+    ],
+    'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
+    'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
+    'vue/multi-word-component-names': 'off',
+  },
+  settings: {
+    'import/resolver': {
+      node: {
+        extensions: ['.js', '.jsx', '.ts', '.tsx', '.vue'],
+      },
     },
   },
-  {
-    extends: ['plugin:prettier/recommended'],
-    rules: {
-      'prettier/prettier': 'error',
-    },
-  },
-]);
+});

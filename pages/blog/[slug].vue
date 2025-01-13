@@ -1,44 +1,44 @@
 <script setup lang="ts">
-import { useRoute } from '#app';
-import { useI18n } from 'vue-i18n';
+  import { useRoute } from '#app';
+  import { useI18n } from 'vue-i18n';
 
-const route = useRoute();
-const slug = route.params.slug;
-const { locale, t } = useI18n();
+  const route = useRoute();
+  const slug = route.params.slug;
+  const { locale, t } = useI18n();
 
-interface Article {
-  id: number;
-  articleName: string;
-  locale: string;
-  mainContent: string;
-  shortDescription: string;
-}
-const { data } = (await useStrapi().find('blogs', {
-  filters: {
-    slug: { $eq: slug },
-  },
-  populate: {
-    singleImage: true,
-    galleryImages: true,
-  },
-  locale: locale.value,
-})) as { data: Article[] };
-console.log(data);
+  interface Article {
+    id: number;
+    articleName: string;
+    locale: string;
+    mainContent: string;
+    shortDescription: string;
+  }
+  const { data } = (await useStrapi().find('blogs', {
+    filters: {
+      slug: { $eq: slug },
+    },
+    populate: {
+      singleImage: true,
+      galleryImages: true,
+    },
+    locale: locale.value,
+  })) as { data: Article[] };
+  console.log(data);
 
-if (!data || data.length === 0) {
-  throw createError({
-    statusCode: 404,
-    statusMessage: t('ERROR.PAGE_NOT_FOUND.TITLE'),
+  if (!data || data.length === 0) {
+    throw createError({
+      statusCode: 404,
+      statusMessage: t('ERROR.PAGE_NOT_FOUND.TITLE'),
+    });
+  }
+  useHead({
+    title: data[0].articleName,
+    meta: [
+      { name: 'description', content: data[0].shortDescription },
+      { property: 'og:title', content: data[0].articleName },
+      { property: 'og:description', content: data[0].shortDescription },
+    ],
   });
-}
-useHead({
-  title: data[0].articleName,
-  meta: [
-    { name: 'description', content: data[0].shortDescription },
-    { property: 'og:title', content: data[0].articleName },
-    { property: 'og:description', content: data[0].shortDescription },
-  ],
-});
 </script>
 
 <template>
@@ -71,12 +71,12 @@ useHead({
 </template>
 
 <style scoped lang="scss">
-.example {
-  width: 100%;
-  &__list {
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
+  .example {
+    width: 100%;
+    &__list {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
   }
-}
 </style>

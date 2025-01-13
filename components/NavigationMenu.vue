@@ -1,13 +1,13 @@
 <script setup lang="ts">
-const { locale, locales, t } = useI18n();
-const switchLocalePath = useSwitchLocalePath();
+  const { locale, locales, t } = useI18n();
+  const switchLocalePath = useSwitchLocalePath();
 
-const currentLocale = computed(() => {
-  return locales.value.find((i) => i.code === locale.value);
-});
-const availableLocales = computed(() => {
-  return locales.value.filter((i) => i.code !== locale.value);
-});
+  const currentLocale = computed(() => {
+    return locales.value.find((i) => i.code === locale.value);
+  });
+  const availableLocales = computed(() => {
+    return locales.value.filter((i) => i.code !== locale.value);
+  });
 </script>
 
 <template>
@@ -39,7 +39,10 @@ const availableLocales = computed(() => {
             <Text :text="t('AUTHORIZATION.INFO.PUBLIC_GREETING')" size="lg" />
           </div>
           <div class="navigation-menu__content-detail">
-            <Text :text="t('AUTHORIZATION.INFO.PUBLIC_DESCRIPTION')" size="lg" />
+            <Text
+              :text="t('AUTHORIZATION.INFO.PUBLIC_DESCRIPTION')"
+              size="lg"
+            />
           </div>
           <div class="navigation-menu__content-detail-box">
             <div class="navigation-menu__content-detail">
@@ -77,59 +80,59 @@ const availableLocales = computed(() => {
 </template>
 
 <style lang="scss">
-.navigation-menu {
-  position: relative;
-  &__list {
-    display: flex;
-    list-style: none;
-  }
-  &__trigger {
-    padding: 0.25rem 1rem;
-    min-height: 2.5rem;
-    display: flex;
-    gap: 0.5rem;
-    &-arrow {
-      transition:
-        transform,
-        150ms ease;
+  .navigation-menu {
+    position: relative;
+    &__list {
+      display: flex;
+      list-style: none;
     }
-    &[aria-expanded='true'] {
-      .navigation-menu__trigger-arrow {
-        transform: rotate(-180deg);
+    &__trigger {
+      padding: 0.25rem 1rem;
+      min-height: 2.5rem;
+      display: flex;
+      gap: 0.5rem;
+      &-arrow {
+        transition:
+          transform,
+          150ms ease;
+      }
+      &[aria-expanded='true'] {
+        .navigation-menu__trigger-arrow {
+          transform: rotate(-180deg);
+        }
       }
     }
-  }
-  &__content {
-    position: absolute;
-    top: 0;
-    left: 0;
-    animation-duration: 250ms;
-    animation-timing-function: ease;
-    background: #fff;
-    width: 100%;
-    border: 1px solid #000;
-    padding: 0.5rem 1rem;
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-
-    &-detail-box {
+    &__content {
+      position: absolute;
+      top: 0;
+      left: 0;
+      animation-duration: 250ms;
+      animation-timing-function: ease;
+      background: #fff;
+      width: 100%;
+      border: 1px solid #000;
+      padding: 0.5rem 1rem;
       display: flex;
       flex-direction: column;
       gap: 0.5rem;
+
+      &-detail-box {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+      &-detail {
+        width: 100%;
+      }
     }
-    &-detail {
+    &__viewport {
+      position: relative;
       width: 100%;
+      height: 100%;
+      transition:
+        width,
+        height,
+        250ms ease;
     }
   }
-  &__viewport {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    transition:
-      width,
-      height,
-      250ms ease;
-  }
-}
 </style>

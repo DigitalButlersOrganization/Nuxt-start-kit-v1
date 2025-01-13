@@ -1,16 +1,16 @@
 <script setup lang="ts">
-const { locale, locales, t } = useI18n();
-const switchLocalePath = useSwitchLocalePath();
+  const { locale, locales, t } = useI18n();
+  const switchLocalePath = useSwitchLocalePath();
 
-const currentDir = computed(() => {
-  return locales?.value?.find((l) => l.code === locale.value)?.dir || 'ltr';
-});
+  const currentDir = computed(() => {
+    return locales?.value?.find((l) => l.code === locale.value)?.dir || 'ltr';
+  });
 
-useHead({
-  htmlAttrs: {
-    dir: currentDir,
-  },
-});
+  useHead({
+    htmlAttrs: {
+      dir: currentDir,
+    },
+  });
 </script>
 
 <template>
@@ -18,8 +18,12 @@ useHead({
     <Container>
       <div class="header__markup">
         <div class="header__markup-column">
-          <NuxtLink :to="$localePath('index')">{{ t('PAGE.HOME.TITLE') }}</NuxtLink>
-          <NuxtLink :to="$localePath('blog')">{{ t('PAGE.BLOG.TITLE') }}</NuxtLink>
+          <NuxtLink :to="$localePath('index')">{{
+            t('PAGE.HOME.TITLE')
+          }}</NuxtLink>
+          <NuxtLink :to="$localePath('blog')">{{
+            t('PAGE.BLOG.TITLE')
+          }}</NuxtLink>
         </div>
         <div class="header__markup-column">
           <NavigationMenu />
@@ -33,23 +37,23 @@ useHead({
 </template>
 
 <style lang="scss" scoped>
-@use '@/assets/styles/functions' as *;
+  @use '@/assets/styles/functions' as *;
 
-.header {
-  width: 100%;
-  padding-top: linearClump(2, 1);
-  padding-bottom: linearClump(2, 1);
-  &__markup {
+  .header {
     width: 100%;
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 2rem;
-    &-column {
+    padding-top: linearClump(2, 1);
+    padding-bottom: linearClump(2, 1);
+    &__markup {
+      width: 100%;
       display: flex;
-      align-items: center;
-      gap: 1rem;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 2rem;
+      &-column {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+      }
     }
   }
-}
 </style>
