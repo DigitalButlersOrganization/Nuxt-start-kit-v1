@@ -1,9 +1,12 @@
 <script setup lang="ts">
   const { locale, locales, t } = useI18n();
-  const switchLocalePath = useSwitchLocalePath();
 
   const currentDir = computed(() => {
-    return locales?.value?.find((l) => l.code === locale.value)?.dir || 'ltr';
+    return (
+      locales?.value?.find(
+        (l: { code: string; dir: string }) => l.code === locale.value
+      )?.dir || 'ltr'
+    );
   });
 
   useHead({
@@ -18,10 +21,10 @@
     <Container>
       <div class="header__markup">
         <div class="header__markup-column">
-          <NuxtLink :to="$localePath('index')">{{
+          <NuxtLink :to="useLocalePath('index')">{{
             t('PAGE.HOME.TITLE')
           }}</NuxtLink>
-          <NuxtLink :to="$localePath('blog')">{{
+          <NuxtLink :to="useLocalePath('blog')">{{
             t('PAGE.BLOG.TITLE')
           }}</NuxtLink>
         </div>

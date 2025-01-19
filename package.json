@@ -9,12 +9,12 @@
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
-    "lint": "eslint . --ext .js,.ts,.vue",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
     "lint:style": "stylelint \"**/*.{vue,scss}\"",
     "format": "prettier --write \"**/*.{js,ts,vue,scss,json}\""
   },
   "dependencies": {
-    "@nuxt/eslint": "^0.7.0",
     "@nuxtjs/i18n": "9.0.0-rc.2",
     "@nuxtjs/strapi": "^2.0.0",
     "@vee-validate/nuxt": "^4.15.0",
@@ -28,15 +28,16 @@
   },
   "packageManager": "pnpm@9.12.3+sha512.cce0f9de9c5a7c95bef944169cc5dfe8741abfb145078c0d508b868056848a87c81e626246cb60967cbd7fd29a6c062ef73ff840d96b3c86c40ac92cf4a813ee",
   "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^8.20.0",
+    "@typescript-eslint/parser": "^8.20.0",
     "eslint": "^9.18.0",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-config-prettier": "^9.1.0",
-    "eslint-define-config": "^2.1.0",
     "eslint-plugin-import": "^2.31.0",
-    "eslint-plugin-nuxt": "^4.0.0",
-    "eslint-plugin-prettier": "^5.2.1",
+    "eslint-plugin-prettier": "^5.2.3",
     "eslint-plugin-typescript": "^0.14.0",
     "eslint-plugin-vue": "^9.32.0",
+    "globals": "^15.14.0",
     "prettier": "^3.4.2",
     "prettier-plugin-vue": "^1.1.6",
     "sass": "^1.81.0",
@@ -45,6 +46,7 @@
     "stylelint-config-recommended-vue": "^1.5.0",
     "stylelint-config-standard": "^36.0.1",
     "stylelint-order": "^6.0.4",
-    "stylelint-scss": "^6.10.0"
+    "stylelint-scss": "^6.10.0",
+    "vue-eslint-parser": "^9.4.3"
   }
 }

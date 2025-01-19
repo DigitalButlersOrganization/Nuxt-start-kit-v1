@@ -5,7 +5,6 @@
   import { handleValidationErrors, decodeContent } from '@/utils';
 
   const { t } = useI18n();
-  const strapi = useStrapi();
 
   interface Form {
     email?: string;
