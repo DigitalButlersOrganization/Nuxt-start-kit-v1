@@ -1,7 +1,7 @@
 version: '3.5'
 services:
   node:
-    container_name: ${APP_CONTAINER_NAME}-nuxt
+    container_name: ${APP_CONTAINER_NAME}
     build: .
     volumes:
       - .:/app
@@ -11,7 +11,7 @@ services:
     networks:
       default-network:
         aliases:
-          - ${APP_CONTAINER_NAME}-nuxt.docker
+          - ${APP_CONTAINER_NAME}.docker
 
 networks:
   default-network:
