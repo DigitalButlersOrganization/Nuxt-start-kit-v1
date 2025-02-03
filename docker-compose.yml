@@ -1,7 +1,7 @@
 version: '3.5'
 services:
   node:
-    container_name: ${APP_NAME}-nuxt
+    container_name: ${APP_CONTAINER_NAME}-nuxt
     build: .
     volumes:
       - .:/app
