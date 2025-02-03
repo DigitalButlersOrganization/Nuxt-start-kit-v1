@@ -11,7 +11,7 @@ services:
     networks:
       default-network:
         aliases:
-          - ${APP_NAME}-nuxt.docker
+          - ${APP_CONTAINER_NAME}-nuxt.docker
 
 networks:
   default-network:
