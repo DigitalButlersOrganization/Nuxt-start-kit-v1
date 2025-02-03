@@ -1,0 +1,19 @@
+version: '3.5'
+services:
+  node:
+    container_name: ${APP_NAME}-nuxt
+    build: .
+    volumes:
+      - .:/app
+      - /app/node_modules
+      - /app/.nuxt
+      - /app/.output
+    networks:
+      default-network:
+        aliases:
+          - ${APP_NAME}-nuxt.docker
+
+networks:
+  default-network:
+    external:
+      name: digitalbutler-network
