@@ -1,6 +1,11 @@
 <script setup lang="ts">
   const { locale, locales, t } = useI18n();
 
+  // Вычисляем пути заранее
+  const localePath = useLocalePath();
+  const homePath = computed(() => localePath('index'));
+  const blogPath = computed(() => localePath('blog'));
+
   const currentDir = computed(() => {
     return (
       locales?.value?.find(
@@ -21,12 +26,8 @@
     <Container>
       <div class="header__markup">
         <div class="header__markup-column">
-          <NuxtLink :to="useLocalePath('index')">{{
-            t('PAGE.HOME.TITLE')
-          }}</NuxtLink>
-          <NuxtLink :to="useLocalePath('blog')">{{
-            t('PAGE.BLOG.TITLE')
-          }}</NuxtLink>
+          <NuxtLink :to="homePath">{{ t('PAGE.HOME.TITLE') }}</NuxtLink>
+          <NuxtLink :to="blogPath">{{ t('PAGE.BLOG.TITLE') }}</NuxtLink>
         </div>
         <div class="header__markup-column">
           <NavigationMenu />
