@@ -4,13 +4,7 @@ import { resolve } from 'path';
 export default defineNuxtConfig({
   compatibilityDate: '2024-04-03',
   devtools: { enabled: true },
-  modules: [
-    '@nuxtjs/strapi',
-    '@nuxt/eslint',
-    '@nuxtjs/i18n',
-    'nuxt-svgo',
-    '@vee-validate/nuxt',
-  ],
+  modules: ['@nuxtjs/strapi', '@nuxtjs/i18n', 'nuxt-svgo', '@vee-validate/nuxt'],
   css: ['@/assets/styles/main.scss'],
   app: {
     head: {
@@ -26,6 +20,7 @@ export default defineNuxtConfig({
     url: process.env.STRAPI_BASE_URL,
     prefix: '/api',
     admin: '/admin',
+
     version: 'v5',
     cookie: {},
     cookieName: 'strapi_jwt',
@@ -73,6 +68,20 @@ export default defineNuxtConfig({
       Field: 'VeeField',
       FieldArray: 'VeeFieldArray',
       ErrorMessage: 'VeeErrorMessage',
+    },
+  },
+  eslint: {
+    config: {
+      standalone: true, // Turn off ESLint Nuxt
+    },
+  },
+  vite: {
+    css: {
+      preprocessorOptions: {
+        scss: {
+          additionalData: `@use "@/assets/styles/_variables.scss" as *;`, // Global SCSS variables
+        },
+      },
     },
   },
 });

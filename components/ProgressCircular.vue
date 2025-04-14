@@ -15,7 +15,7 @@
     value: {
       type: Number,
       default: 0,
-      validator: (value) => value >= 0 && value <= 1,
+      validator: value => value >= 0 && value <= 1,
       required: false,
     },
     isLoader: {
@@ -43,11 +43,7 @@
     aria-valuemin="0"
     :aria-valuenow="value"
   >
-    <svg
-      class="progress-circular__svg"
-      viewBox="-5 -5 110 110"
-      xmlns="http://www.w3.org/2000/svg"
-    >
+    <svg class="progress-circular__svg" viewBox="-5 -5 110 110" xmlns="http://www.w3.org/2000/svg">
       <circle cx="50" cy="50" r="50" />
     </svg>
   </div>

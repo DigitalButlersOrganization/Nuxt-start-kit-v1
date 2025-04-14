@@ -8,9 +8,8 @@
 
   const currentDir = computed(() => {
     return (
-      locales?.value?.find(
-        (l: { code: string; dir: string }) => l.code === locale.value
-      )?.dir || 'ltr'
+      locales?.value?.find((l: { code: string; dir: string }) => l.code === locale.value)?.dir ||
+      'ltr'
     );
   });
 

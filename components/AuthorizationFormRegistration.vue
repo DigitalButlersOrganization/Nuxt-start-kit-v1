@@ -30,20 +30,17 @@
     console.log('Попытка регистрации началась');
     isLoading.value = true;
     try {
-      const response = await fetch(
-        'http://localhost:1337/api/auth/local/register',
-        {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            username: form.email,
-            email: form.email,
-            password: form.password,
-          }),
-        }
-      );
+      const response = await fetch('http://localhost:1337/api/auth/local/register', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          username: form.email,
+          email: form.email,
+          password: form.password,
+        }),
+      });
 
       console.log('Ответ сервера:', response);
       isLoading.value = false;
@@ -62,10 +59,7 @@
   };
 
   const validateForm = async () => {
-    console.log(
-      'Текущие данные формы перед валидацией:',
-      JSON.stringify(form, null, 2)
-    );
+    console.log('Текущие данные формы перед валидацией:', JSON.stringify(form, null, 2));
 
     console.log('validateForm');
 

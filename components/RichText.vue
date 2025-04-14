@@ -11,13 +11,14 @@
     content: props.content,
     options: {
       showEmptyParagraphs: true,
+
       imagesSize: 'full',
     },
   });
 </script>
 
 <template>
-  <div class="rich-text" v-html="parsedData.init()"></div>
+  <div class="rich-text" v-html="parsedData.init()" />
 </template>
 
 <style lang="scss" scoped>

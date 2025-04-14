@@ -3,10 +3,10 @@
   const switchLocalePath = useSwitchLocalePath();
 
   const currentLocale = computed(() => {
-    return locales.value.find((i) => i.code === locale.value);
+    return locales.value.find(i => i.code === locale.value);
   });
   const availableLocales = computed(() => {
-    return locales.value.filter((i) => i.code !== locale.value);
+    return locales.value.filter(i => i.code !== locale.value);
   });
 </script>
 
@@ -39,10 +39,7 @@
             <Text :text="t('AUTHORIZATION.INFO.PUBLIC_GREETING')" size="lg" />
           </div>
           <div class="navigation-menu__content-detail">
-            <Text
-              :text="t('AUTHORIZATION.INFO.PUBLIC_DESCRIPTION')"
-              size="lg"
-            />
+            <Text :text="t('AUTHORIZATION.INFO.PUBLIC_DESCRIPTION')" size="lg" />
           </div>
           <div class="navigation-menu__content-detail-box">
             <div class="navigation-menu__content-detail">

@@ -1,10 +1,10 @@
-@use 'modern-normalize/modern-normalize.css'; // instead of 'normalize'
-@use 'fonts';
-@use 'reset';
+@use "modern-normalize/modern-normalize.css"; // instead of 'normalize'
+@use "fonts";
+@use "reset";
 
-@use 'variables' as *;
-@use 'functions' as *;
-@use 'mixins' as *;
+@use "variables" as *;
+@use "functions" as *;
+@use "mixins" as *;
 
 html {
   font-size: 16px;
@@ -13,7 +13,7 @@ html {
 body {
   color: var(--color-text--1);
   background-color: var(--color-background--1);
-  font-family: 'Oswald', sans-serif;
+  font-family: "Oswald", sans-serif;
   font-size: linearClump(1.5, 1.25);
 }
 

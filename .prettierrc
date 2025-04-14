@@ -3,5 +3,16 @@
   "semi": true,
   "tabWidth": 2,
   "trailingComma": "es5",
-  "vueIndentScriptAndStyle": true
+  "vueIndentScriptAndStyle": true,
+  "printWidth": 100,
+  "arrowParens": "avoid",
+  "endOfLine": "auto",
+  "overrides": [
+    {
+      "files": "*.scss",
+      "options": {
+        "singleQuote": false
+      }
+    }
+  ]
 }

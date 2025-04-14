@@ -1,4 +1,4 @@
-@use 'sass:math';
+@use "sass:math";
 
 @function pxToRem($pixels, $context: 16) {
   @return math.div($pixels, $context) * 1rem;
@@ -12,10 +12,7 @@
 ) {
   $targetSizeRange: $targetSizeOnMaxViewport - $targetSizeOnMinViewport;
   $viewportRange: $maxViewport - $minViewport;
-  $slope: math.div(
-    round(math.div($targetSizeRange, $viewportRange) * 1000),
-    1000
-  );
+  $slope: math.div(round(math.div($targetSizeRange, $viewportRange) * 1000), 1000);
   $intersectionYAxis: math.div(
     round((-1 * $minViewport * $slope + $targetSizeOnMinViewport) * 1000),
     1000

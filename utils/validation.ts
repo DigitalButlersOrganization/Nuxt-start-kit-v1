@@ -10,7 +10,7 @@ export const handleValidationErrors = (
 ) => {
   const errors: Record<string, string> = {};
 
-  validationErrors.inner.forEach((err) => {
+  validationErrors.inner.forEach(err => {
     if (err.path) {
       errors[err.path] = err.message || t('VALIDATION.FIELD_INVALID');
     }

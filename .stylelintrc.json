@@ -1,25 +1,13 @@
 {
-  "extends": [
-    "stylelint-config-standard",
-    "stylelint-config-recommended-vue",
-    "stylelint-scss"
-  ],
+  "extends": ["stylelint-config-standard-scss", "stylelint-config-recommended-vue/scss"],
   "plugins": ["stylelint-order"],
   "rules": {
-    "at-rule-no-unknown": [
-      true,
-      {
-        "ignoreAtRules": [
-          "tailwind",
-          "apply",
-          "variants",
-          "responsive",
-          "screen"
-        ]
-      }
-    ],
+    "at-rule-no-unknown": null,
+    "scss/at-rule-no-unknown": true,
     "order/properties-alphabetical-order": true,
-    "selector-class-pattern": "^[a-z][a-zA-Z0-9]+$",
-    "declaration-block-trailing-semicolon": "always"
+    "selector-class-pattern": null,
+    "declaration-block-trailing-semicolon": "always",
+    "no-empty-source": null,
+    "custom-property-pattern": null
   }
 }

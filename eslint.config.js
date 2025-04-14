@@ -2,8 +2,6 @@ import vuePlugin from 'eslint-plugin-vue';
 import parserVue from 'vue-eslint-parser';
 import typescriptPlugin from '@typescript-eslint/eslint-plugin';
 import typescriptParser from '@typescript-eslint/parser';
-import airbnbBase from 'eslint-config-airbnb-base';
-import importPlugin from 'eslint-plugin-import';
 
 export default [
   {
@@ -15,27 +13,21 @@ export default [
         parser: typescriptParser,
         ecmaVersion: 'latest',
         sourceType: 'module',
-        extraFileExtensions: ['.vue'],
       },
     },
     plugins: {
       vue: vuePlugin,
       '@typescript-eslint': typescriptPlugin,
-      import: importPlugin,
     },
     rules: {
-      ...airbnbBase.rules,
       ...vuePlugin.configs['flat/recommended'].rules,
-      'vue/multi-word-component-names': 'off',
       ...typescriptPlugin.configs.recommended.rules,
+      'vue/multi-word-component-names': 'off',
       '@typescript-eslint/no-unused-vars': 'warn',
       '@typescript-eslint/no-explicit-any': 'warn',
-      '@typescript-eslint/no-unused-expressions': [
-        'error',
-        { allowShortCircuit: true, allowTernary: true },
-      ],
       'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
       'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
+      'vue/html-self-closing': ['error', { html: { void: 'always' } }],
     },
   },
 ];

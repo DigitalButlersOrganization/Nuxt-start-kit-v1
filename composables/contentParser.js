@@ -3,14 +3,7 @@ export class ContentParser {
     this.content = content || [];
     this.htmlMarkup = '';
     this.showEmptyParagraphs = options.showEmptyParagraphs || false;
-    this.imagesSizes = [
-      'full',
-      'huge',
-      'large',
-      'medium',
-      'small',
-      'thumbnail',
-    ];
+    this.imagesSizes = ['full', 'huge', 'large', 'medium', 'small', 'thumbnail'];
     this.imagesSize =
       options.imagesSize && this.imagesSizes.includes(options.imagesSize)
         ? options.imagesSize
@@ -30,7 +23,7 @@ export class ContentParser {
 
   parseContent(content) {
     let temporaryMarkup = '';
-    content.forEach((item) => {
+    content.forEach(item => {
       switch (item.type) {
         case 'image':
           temporaryMarkup += this.generateImageMarkup(item);
@@ -68,11 +61,7 @@ export class ContentParser {
           break;
         case 'code':
           const language =
-            item.language === 'css'
-              ? 'style'
-              : item.language === 'javascript'
-                ? 'script'
-                : 'code';
+            item.language === 'css' ? 'style' : item.language === 'javascript' ? 'script' : 'code';
           temporaryMarkup += this.generateOuterMarkup({ item, tag: language });
           break;
         default:
@@ -88,9 +77,7 @@ export class ContentParser {
     if (!image) return '';
     const origin = new URL(image.url).origin;
     const alternativeText = image.alternativeText || image.name;
-    const figcaptionMarkup = item.image.caption
-      ? `<figcaption>${image.caption}</figcaption>`
-      : '';
+    const figcaptionMarkup = item.image.caption ? `<figcaption>${image.caption}</figcaption>` : '';
 
     const hugeImageMarkup = `<img src="${image.url}" alt="${alternativeText}" type="${image.mime}"/>`;
     let imageMarkup = '';
@@ -100,7 +87,7 @@ export class ContentParser {
     } else if (this.imagesSize === 'full') {
       let baseSourceMarkup = '';
 
-      Object.keys(image.formats).forEach((format) => {
+      Object.keys(image.formats).forEach(format => {
         baseSourceMarkup =
           `<source media="(min-width:${image.formats[format].width}px)" srcset="${origin}${image.formats[format].url}" type="${image.formats[format].mime}">` +
           baseSourceMarkup;
@@ -127,7 +114,7 @@ export class ContentParser {
   generateInnerMarkup(item) {
     if (item.children) {
       return item.children
-        .map((child) => {
+        .map(child => {
           return this.handleTextStyle(child);
         })
         .join('');
@@ -137,8 +124,7 @@ export class ContentParser {
   }
 
   handleTextStyle(child) {
-    const textContent =
-      child.text || (this.showEmptyParagraphs ? '&zwnj;' : '');
+    const textContent = child.text || (this.showEmptyParagraphs ? '&zwnj;' : '');
     let markup = '';
     if (child.children) {
       markup = this.parseContent([child]);
@@ -146,7 +132,7 @@ export class ContentParser {
     }
 
     markup = textContent;
-    this.typesOfTextStylization.forEach((type) => {
+    this.typesOfTextStylization.forEach(type => {
       if (child[type.jsonName]) {
         markup = `<${type.tagName}>${markup}</${type.tagName}>`;
       }

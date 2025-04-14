@@ -33,14 +33,7 @@
   }
 
   const { data } = (await useStrapi().find('blogs', {
-    fields: [
-      'id',
-      'articleName',
-      'locale',
-      'shortDescription',
-      'slug',
-      'dateOfCreating',
-    ],
+    fields: ['id', 'articleName', 'locale', 'shortDescription', 'slug', 'dateOfCreating'],
     populate: {
       singleImage: true,
       blogCategories: true,

@@ -51,15 +51,9 @@
       <slot name="append" />
     </div>
     <div
-      :class="[
-        `${MAIN_CLASS}__loader`,
-        props.isLoading ? `${MAIN_CLASS}__loader--visible` : null,
-      ]"
+      :class="[`${MAIN_CLASS}__loader`, props.isLoading ? `${MAIN_CLASS}__loader--visible` : null]"
     >
-      <ProgressCircular
-        :is-loader="props.isLoading"
-        :class="`${MAIN_CLASS}__loader-progress`"
-      />
+      <ProgressCircular :is-loader="props.isLoading" :class="`${MAIN_CLASS}__loader-progress`" />
     </div>
   </component>
 </template>
