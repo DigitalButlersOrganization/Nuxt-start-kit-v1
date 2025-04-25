@@ -23,7 +23,6 @@
     },
     locale: locale.value,
   })) as { data: Article[] };
-  console.log(data);
 
   if (!data || data.length === 0) {
     throw createError({

@@ -27,7 +27,7 @@
   const schema = useSchema(t);
 
   const registerUser = async () => {
-    console.log('Попытка регистрации началась');
+    console.log('Try to register user');
     isLoading.value = true;
     try {
       const response = await fetch('http://localhost:1337/api/auth/local/register', {
@@ -42,7 +42,6 @@
         }),
       });
 
-      console.log('Ответ сервера:', response);
       isLoading.value = false;
       if (!response.ok) {
         const errorData = await response.json();
@@ -51,29 +50,27 @@
       }
 
       const data = await response.json();
-      console.log('Успешная регистрация:', data);
+      console.log('Success', data);
     } catch (error) {
       isLoading.value = false;
-      console.error('Ошибка при выполнении запроса:', error);
+      console.error('Error:', error);
     }
   };
 
   const validateForm = async () => {
-    console.log('Текущие данные формы перед валидацией:', JSON.stringify(form, null, 2));
-
-    console.log('validateForm');
+    console.log(JSON.stringify(form));
 
     errors.value = {};
 
     try {
       await schema.validate(form, { abortEarly: false });
-      console.log('Форма прошла валидацию:', form);
+      console.log('Form is Valid:', form);
       await registerUser();
     } catch (validationErrors: unknown) {
-      console.log('Ошибка валидации:', validationErrors);
+      console.log('Error:', validationErrors);
 
       if (validationErrors instanceof ValidationError) {
-        console.log('Обработанная ошибка валидации:', validationErrors.errors);
+        console.log('Error:', validationErrors.errors);
         errors.value = handleValidationErrors(validationErrors, t);
       } else {
         console.error('Unexpected error:', validationErrors);

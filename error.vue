@@ -1,12 +1,9 @@
 <script setup lang="ts">
   import { useI18n } from 'vue-i18n';
-  const route = useRoute();
-  console.log(route);
 
   const { t } = useI18n();
 
   const props = defineProps({ error: Object });
-  console.log(props.error);
 
   const errorData = computed(() => {
     const data = {

@@ -41,8 +41,6 @@
     sort: ['dateOfCreating:desc'],
     locale: locale.value,
   })) as { data: Article[] };
-
-  console.log(data);
 </script>
 
 <template>

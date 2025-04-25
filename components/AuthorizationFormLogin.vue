@@ -31,7 +31,7 @@
 
     try {
       await schema.validate(form, { abortEarly: false });
-      console.log('Форма прошла валидацию:', form);
+      console.log('Form is valid:', form);
     } catch (validationErrors: unknown) {
       if (validationErrors instanceof ValidationError) {
         errors.value = handleValidationErrors(validationErrors, t);

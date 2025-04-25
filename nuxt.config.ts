@@ -70,16 +70,11 @@ export default defineNuxtConfig({
       ErrorMessage: 'VeeErrorMessage',
     },
   },
-  eslint: {
-    config: {
-      standalone: true, // Turn off ESLint Nuxt
-    },
-  },
   vite: {
     css: {
       preprocessorOptions: {
         scss: {
-          additionalData: `@use "@/assets/styles/_variables.scss" as *;`, // Global SCSS variables
+          additionalData: `@use "@/assets/styles/variables.scss" as *;`,
         },
       },
     },

@@ -1,6 +1,7 @@
 <script setup lang="ts">
   import { useI18n } from 'vue-i18n';
   const { t } = useI18n();
+  import { NButton } from 'naive-ui';
 
   useHead({
     title: t('PAGE.HOME.TITLE'),
@@ -15,6 +16,8 @@
 <template>
   <Section>
     <Container>
+      <n-button>naive-ui</n-button>
+
       <h1>{{ t('PAGE.HOME.TITLE') }}</h1>
     </Container>
   </Section>
