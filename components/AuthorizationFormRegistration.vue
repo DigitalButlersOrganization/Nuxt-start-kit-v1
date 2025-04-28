@@ -3,6 +3,7 @@
   import { useSchema } from '@/schemas/formSchema';
   import { ValidationError } from 'yup';
   import { handleValidationErrors, decodeContent } from '@/utils';
+  import { ROUTES } from '~/constants';
 
   const { t } = useI18n();
 
@@ -107,17 +108,9 @@
       {{ t('CTA.REGISTER') }}
     </CustomButton>
 
-    <Dialog
-      :title="t('AUTHORIZATION.LOGIN.TITLE')"
-      :description="t('AUTHORIZATION.LOGIN.DESCRIPTION')"
-    >
-      <template #trigger>
-        {{ t('AUTHORIZATION.LOGIN.TITLE') }}
-      </template>
-      <template #default>
-        <AuthorizationFormLogin />
-      </template>
-    </Dialog>
+    <CustomButton tag="a" :to="ROUTES.LOGIN.PATH">
+      {{ t('CTA.LOGIN') }}
+    </CustomButton>
   </VeeForm>
 </template>
 

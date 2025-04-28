@@ -13,6 +13,10 @@
     "BLOG": {
       "TITLE": "Blog",
       "DESCRIPTION": "Some description about the blog page"
+    },
+    "LOGIN": {
+      "TITLE": "Login",
+      "DESCRIPTION": "Log in to your account"
     }
   },
   "ERROR": {
@@ -57,7 +61,7 @@
       "AUTHENTICATED_DESCRIPTION": "You are logged in. Enjoy your stay!"
     },
     "LOGIN": {
-      "TITLE": "Authentication",
+      "TITLE": "Login",
       "DESCRIPTION": "Log in to your account",
       "CTA": "Log in",
       "FORGOT_PASSWORD": "Forgot your password?",

@@ -1,4 +1,6 @@
 <script setup lang="ts">
+  import { ROUTES } from '~/constants';
+
   const { locale, locales, t } = useI18n();
   const switchLocalePath = useSwitchLocalePath();
 
@@ -43,17 +45,9 @@
           </div>
           <div class="navigation-menu__content-detail-box">
             <div class="navigation-menu__content-detail">
-              <Dialog
-                :title="t('AUTHORIZATION.LOGIN.TITLE')"
-                :description="t('AUTHORIZATION.LOGIN.DESCRIPTION')"
-              >
-                <template #trigger>
-                  <Text :text="t('AUTHORIZATION.LOGIN.TITLE')" size="lg" />
-                </template>
-                <template #default>
-                  <AuthorizationFormLogin />
-                </template>
-              </Dialog>
+              <NuxtLink :to="ROUTES.LOGIN.PATH">
+                <Text :text="t('AUTHORIZATION.LOGIN.TITLE')" size="lg" />
+              </NuxtLink>
             </div>
             <div class="navigation-menu__content-detail">
               <Dialog

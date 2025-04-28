@@ -1,10 +1,7 @@
 <script setup lang="ts">
-  const { locale, locales, t } = useI18n();
+  import { ROUTES } from '~/constants';
 
-  // Вычисляем пути заранее
-  const localePath = useLocalePath();
-  const homePath = computed(() => localePath('index'));
-  const blogPath = computed(() => localePath('blog'));
+  const { locale, locales, t } = useI18n();
 
   const currentDir = computed(() => {
     return (
@@ -25,8 +22,8 @@
     <Container>
       <div class="header__markup">
         <div class="header__markup-column">
-          <NuxtLink :to="homePath">{{ t('PAGE.HOME.TITLE') }}</NuxtLink>
-          <NuxtLink :to="blogPath">{{ t('PAGE.BLOG.TITLE') }}</NuxtLink>
+          <NuxtLink :to="ROUTES.HOME.PATH">{{ t('PAGE.HOME.TITLE') }}</NuxtLink>
+          <NuxtLink :to="ROUTES.BLOG.PATH">{{ t('PAGE.BLOG.TITLE') }}</NuxtLink>
         </div>
         <div class="header__markup-column">
           <NavigationMenu />
