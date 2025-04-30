@@ -1,9 +1,12 @@
 <script setup lang="ts">
+  import { CONTAINER_SIZES } from '~/enums';
+
   interface Props {
-    size?: string;
+    size?: CONTAINER_SIZES;
   }
+
   const props = withDefaults(defineProps<Props>(), {
-    size: 'medium',
+    size: CONTAINER_SIZES.MEDIUM,
   });
 </script>
 

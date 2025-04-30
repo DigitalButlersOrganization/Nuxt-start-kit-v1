@@ -1,6 +1,7 @@
 <script setup lang="ts">
   import { useRoute } from '#app';
   import { useI18n } from 'vue-i18n';
+  import { HTTP_STATUS_CODES } from '~/enums';
 
   const route = useRoute();
   const slug = route.params.slug;
@@ -26,7 +27,7 @@
 
   if (!data || data.length === 0) {
     throw createError({
-      statusCode: 404,
+      statusCode: HTTP_STATUS_CODES.NOT_FOUND,
       statusMessage: t('ERROR.PAGE_NOT_FOUND.TITLE'),
     });
   }

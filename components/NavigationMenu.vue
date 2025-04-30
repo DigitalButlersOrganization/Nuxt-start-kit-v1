@@ -1,5 +1,5 @@
 <script setup lang="ts">
-  import { ROUTES } from '~/constants';
+  import { ROUTES, TEXT_SIZES } from '~/enums';
 
   const { locale, locales, t } = useI18n();
   const switchLocalePath = useSwitchLocalePath();
@@ -38,15 +38,18 @@
         </NavigationMenuTrigger>
         <NavigationMenuContent class="navigation-menu__content">
           <div class="navigation-menu__content-detail">
-            <SharedText :text="t('AUTHORIZATION.INFO.PUBLIC_GREETING')" size="lg" />
+            <SharedText :text="t('AUTHORIZATION.INFO.PUBLIC_GREETING')" :size="TEXT_SIZES.LARGE" />
           </div>
           <div class="navigation-menu__content-detail">
-            <SharedText :text="t('AUTHORIZATION.INFO.PUBLIC_DESCRIPTION')" size="lg" />
+            <SharedText
+              :text="t('AUTHORIZATION.INFO.PUBLIC_DESCRIPTION')"
+              :size="TEXT_SIZES.LARGE"
+            />
           </div>
           <div class="navigation-menu__content-detail-box">
             <div class="navigation-menu__content-detail">
-              <NuxtLink :to="ROUTES.LOGIN.PATH">
-                <SharedText :text="t('AUTHORIZATION.LOGIN.TITLE')" size="lg" />
+              <NuxtLink :to="ROUTES.LOGIN">
+                <SharedText :text="t('AUTHORIZATION.LOGIN.TITLE')" :size="TEXT_SIZES.LARGE" />
               </NuxtLink>
             </div>
             <div class="navigation-menu__content-detail">
@@ -55,7 +58,7 @@
                 :description="t('AUTHORIZATION.REGISTER.DESCRIPTION')"
               >
                 <template #trigger>
-                  <SharedText :text="t('AUTHORIZATION.REGISTER.TITLE')" size="lg" />
+                  <SharedText :text="t('AUTHORIZATION.REGISTER.TITLE')" :size="TEXT_SIZES.LARGE" />
                 </template>
                 <template #default>
                   <AuthorizationFormRegistration />

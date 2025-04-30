@@ -1,5 +1,6 @@
 <script setup lang="ts">
   import { useI18n } from 'vue-i18n';
+  import { HTTP_STATUS_CODES } from './enums';
 
   const { t } = useI18n();
 
@@ -11,11 +12,11 @@
       description: '',
     };
     data.title =
-      props.error && props.error.statusCode === 404
+      props.error && props.error.statusCode === HTTP_STATUS_CODES[404]
         ? t('ERROR.PAGE_NOT_FOUND.TITLE')
         : t('ERROR.INDEFINITE.TITLE');
     data.description =
-      props.error && props.error.statusCode === 404
+      props.error && props.error.statusCode === HTTP_STATUS_CODES[404]
         ? t('ERROR.PAGE_NOT_FOUND.DESCRIPTION')
         : t('ERROR.INDEFINITE.DESCRIPTION');
     return data;

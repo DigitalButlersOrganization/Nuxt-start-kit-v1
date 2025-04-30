@@ -3,7 +3,7 @@
   import { useSchema } from '@/schemas/formSchema';
   import { ValidationError } from 'yup';
   import { handleValidationErrors, decodeContent } from '@/utils';
-  import { ROUTES } from '~/constants';
+  import { BUTTON_TAGS, BUTTON_TYPES, INPUT_TAGS, INPUT_TYPES, ROUTES } from '~/enums';
 
   const { t } = useI18n();
 
@@ -85,28 +85,30 @@
     <SharedInput
       v-model="form.email"
       name="email"
-      type="email"
+      :type="INPUT_TYPES.EMAIL"
       :labelText="`${t('FORM.EMAIL.LABEL')}`"
       :placeholder="`${decodeContent(t('FORM.EMAIL.PLACEHOLDER'))}`"
     />
     <SharedInput
       v-model="form.password"
       name="password"
-      type="password"
+      :type="INPUT_TYPES.PASSWORD"
       :labelText="t('FORM.PASSWORD.LABEL')"
       :placeholder="t('FORM.PASSWORD.PLACEHOLDER')"
     />
     <SharedInput
       v-model="form.confirmPassword"
       name="confirmPassword"
-      type="password"
+      :type="INPUT_TYPES.PASSWORD"
       :labelText="t('FORM.CONFIRM_PASSWORD.LABEL')"
       :placeholder="t('FORM.CONFIRM_PASSWORD.PLACEHOLDER')"
     />
 
-    <SharedButton type="submit" :isLoading="isLoading"> {{ t('CTA.REGISTER') }} </SharedButton>
+    <SharedButton :type="BUTTON_TYPES.SUBMIT" :isLoading="isLoading">
+      {{ t('CTA.REGISTER') }}
+    </SharedButton>
 
-    <SharedButton tag="a" :to="ROUTES.LOGIN.PATH"> {{ t('CTA.LOGIN') }} </SharedButton>
+    <SharedButton :tag="BUTTON_TAGS.A" :to="ROUTES.LOGIN"> {{ t('CTA.LOGIN') }} </SharedButton>
   </VeeForm>
 </template>
 

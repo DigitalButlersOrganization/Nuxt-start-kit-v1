@@ -1,5 +1,5 @@
 <script setup lang="ts">
-  import { ROUTES } from '~/constants';
+  import { ROUTES } from '~/enums';
 
   const { locale, locales, t } = useI18n();
 
@@ -22,8 +22,8 @@
     <SharedContainer>
       <div class="header__markup">
         <div class="header__markup-column">
-          <NuxtLink :to="ROUTES.HOME.PATH">{{ t('PAGE.HOME.TITLE') }}</NuxtLink>
-          <NuxtLink :to="ROUTES.BLOG.PATH">{{ t('PAGE.BLOG.TITLE') }}</NuxtLink>
+          <NuxtLink :to="ROUTES.HOME">{{ t('PAGE.HOME.TITLE') }}</NuxtLink>
+          <NuxtLink :to="ROUTES.BLOG">{{ t('PAGE.BLOG.TITLE') }}</NuxtLink>
         </div>
         <div class="header__markup-column">
           <NavigationMenu />

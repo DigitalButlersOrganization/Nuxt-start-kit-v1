@@ -1,11 +1,12 @@
 <script setup lang="ts">
-  const MAIN_CLASS = 'button';
+  import { BUTTON_SIZES, BUTTON_STYLES, BUTTON_TAGS, BUTTON_TYPES } from '~/enums';
 
+  const MAIN_CLASS = 'button';
   interface Props {
-    tag?: 'button' | 'a' | 'div';
-    size?: 'medium' | 'small' | 'large';
-    style?: 'solid' | 'outline' | 'string';
-    type?: 'button' | 'submit' | 'reset';
+    tag?: BUTTON_TAGS;
+    size?: BUTTON_SIZES;
+    style?: BUTTON_STYLES;
+    type?: BUTTON_TYPES;
     to?: string;
     isDisabled?: boolean;
     isFullWidth?: boolean;
@@ -13,9 +14,9 @@
   }
 
   const props = withDefaults(defineProps<Props>(), {
-    tag: 'button',
-    style: 'solid',
-    size: 'medium',
+    tag: BUTTON_TAGS.BUTTON,
+    style: BUTTON_STYLES.SOLID,
+    size: BUTTON_SIZES.MEDIUM,
     isFullWidth: false,
     isLoading: false,
   });
@@ -37,10 +38,10 @@
       `button--${props.size}`,
       props.isLoading ? `${MAIN_CLASS}--loading` : null,
     ]"
-    :to="props.tag === 'a' ? props.to : null"
-    :disabled="props.isDisabled && props.tag === 'button' ? '' : null"
-    :type="props.tag !== 'button' ? null : props.type || props.tag"
-    :tabindex="props.tag === 'button' ? null : props.isDisabled ? -1 : 0"
+    :to="props.tag === BUTTON_TAGS.A ? props.to : null"
+    :disabled="props.isDisabled && props.tag === BUTTON_TAGS.BUTTON ? '' : null"
+    :type="props.tag !== BUTTON_TAGS.BUTTON ? null : props.type || props.tag"
+    :tabindex="props.tag === BUTTON_TAGS.BUTTON ? null : props.isDisabled ? -1 : 0"
   >
     <div v-if="$slots['prepend']" :class="`${MAIN_CLASS}__prepend`">
       <slot name="prepend" />

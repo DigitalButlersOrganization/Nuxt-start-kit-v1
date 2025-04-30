@@ -1,14 +1,16 @@
 <script setup lang="ts">
   import { withDefaults, defineProps } from 'vue';
+  import { TEXT_SIZES, TEXT_TAGS } from '~/enums';
 
   interface Props {
-    tag?: string;
-    size?: 'xxs' | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'xxl';
+    tag?: TEXT_TAGS;
+    size?: TEXT_SIZES;
     text?: string;
   }
 
   const props = withDefaults(defineProps<Props>(), {
-    tag: 'p',
+    tag: TEXT_TAGS.P,
+    size: TEXT_SIZES.MEDIUM,
   });
 </script>
 

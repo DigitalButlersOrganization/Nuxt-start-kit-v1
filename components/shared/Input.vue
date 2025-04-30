@@ -1,14 +1,15 @@
 <script setup lang="ts">
   import { withDefaults, defineProps } from 'vue';
+  import { INPUT_TAGS, INPUT_TYPES, TEXT_SIZES } from '~/enums';
 
   interface Props {
     modelValue?: string;
     value?: string;
     placeholder?: string;
-    type?: string;
+    type?: INPUT_TYPES;
     id?: string;
     name: string;
-    tag?: 'input' | 'textarea';
+    tag?: INPUT_TAGS;
     labelText?: string;
     isLabelHidden?: boolean;
     error?: string;
@@ -17,8 +18,8 @@
   const emit = defineEmits(['update:modelValue']);
 
   const props = withDefaults(defineProps<Props>(), {
-    tag: 'input',
-    type: 'text',
+    tag: INPUT_TAGS.INPUT,
+    type: INPUT_TYPES.TEXT,
     isLabelHidden: false,
   });
 </script>
@@ -30,7 +31,7 @@
         :text="props.labelText || props.name"
         class="pseudo-label"
         :class="{ 'pseudo-label--visually-hidden': props.isLabelHidden }"
-        size="lg"
+        :size="TEXT_SIZES.MEDIUM"
       />
       <VeeField
         :value="props.modelValue || props.value || null"
