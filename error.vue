@@ -29,11 +29,11 @@
 
 <template>
   <NuxtLayout name="error">
-    <Section>
-      <Container>
+    <SharedSection>
+      <SharedContainer>
         <h1>{{ errorData.title }}</h1>
         <p>{{ errorData.description }}</p>
-      </Container>
-    </Section>
+      </SharedContainer>
+    </SharedSection>
   </NuxtLayout>
 </template>

@@ -15,10 +15,10 @@
       <DialogOverlay class="overlay" />
       <DialogContent class="content">
         <DialogTitle class="title">
-          <Text :text="props.title" tag="span" size="lg" />
+          <SharedText :text="props.title" tag="span" size="lg" />
         </DialogTitle>
         <DialogDescription class="description">
-          <Text :text="props.description" tag="span" size="md" />
+          <SharedText :text="props.description" tag="span" size="md" />
         </DialogDescription>
         <slot name="default" />
         <DialogClose class="close-button" aria-label="Close">
@@ -47,6 +47,7 @@
   }
 
   .content {
+    background-color: red !important;
     position: fixed;
     top: 0;
     left: 0;

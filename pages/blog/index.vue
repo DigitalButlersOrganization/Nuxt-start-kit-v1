@@ -6,7 +6,7 @@
   useHead({
     title: t('PAGE.BLOG.TITLE'),
     meta: [
-      { name: 'description', content: t('PA GE.BLOG.DESCRIPTION') },
+      { name: 'description', content: t('PAGE.BLOG.DESCRIPTION') },
       { property: 'og:title', content: t('PAGE.BLOG.TITLE') },
       { property: 'og:description', content: t('PAGE.BLOG.DESCRIPTION') },
     ],
@@ -44,8 +44,8 @@
 </script>
 
 <template>
-  <Section class="section">
-    <Container>
+  <SharedSection class="section">
+    <SharedContainer>
       <h1>{{ t('PAGE.BLOG.TITLE') }}</h1>
       <div class="grid">
         <TestBlogCard
@@ -61,8 +61,8 @@
           class="grid__item"
         />
       </div>
-    </Container>
-  </Section>
+    </SharedContainer>
+  </SharedSection>
 </template>
 
 <style scoped lang="scss">

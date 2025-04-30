@@ -44,16 +44,13 @@
 
 <template>
   <VeeForm :validation-schema="schema" @submit="validateForm" class="form">
-    <CustomInput
+    <SharedInput
       name="email"
       type="email"
       :labelText="`${t('FORM.EMAIL.LABEL')}`"
       :placeholder="`${decodeContent(t('FORM.EMAIL.PLACEHOLDER'))}`"
     />
-
-    <CustomButton type="submit" :isLoading="false">
-      {{ t('CTA.RESET_PASSWORD') }}
-    </CustomButton>
+    <SharedButton type="submit" :isLoading="false"> {{ t('CTA.RESET_PASSWORD') }}</SharedButton>
   </VeeForm>
 </template>
 

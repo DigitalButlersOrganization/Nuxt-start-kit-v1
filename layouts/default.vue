@@ -19,7 +19,7 @@
 
 <template>
   <header class="header">
-    <Container>
+    <SharedContainer>
       <div class="header__markup">
         <div class="header__markup-column">
           <NuxtLink :to="ROUTES.HOME.PATH">{{ t('PAGE.HOME.TITLE') }}</NuxtLink>
@@ -29,7 +29,7 @@
           <NavigationMenu />
         </div>
       </div>
-    </Container>
+    </SharedContainer>
   </header>
   <main>
     <slot />

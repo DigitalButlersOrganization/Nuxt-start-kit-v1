@@ -7,11 +7,11 @@
   const { t } = useI18n();
 
   useHead({
-    title: t('PAGE.AUTHORIZATION.TITLE'),
+    title: t('PAGE.LOGIN.TITLE'),
     meta: [
-      { name: 'description', content: t('PAGE.AUTHORIZATION.DESCRIPTION') },
-      { property: 'og:title', content: t('PAGE.AUTHORIZATION.TITLE') },
-      { property: 'og:description', content: t('PAGE.AUTHORIZATION.DESCRIPTION') },
+      { name: 'description', content: t('PAGE.LOGIN.DESCRIPTION') },
+      { property: 'og:title', content: t('PAGE.LOGIN.TITLE') },
+      { property: 'og:description', content: t('PAGE.LOGIN.DESCRIPTION') },
     ],
   });
 
@@ -52,24 +52,22 @@
 </script>
 
 <template>
-  <Section>
-    <Container>
+  <SharedSection>
+    <SharedContainer>
       <VeeForm :validation-schema="schema" @submit="validateForm" class="form">
-        <CustomInput
+        <SharedInput
           name="email"
           type="email"
           :labelText="`${t('FORM.EMAIL.LABEL')}`"
           :placeholder="`${decodeContent(t('FORM.EMAIL.PLACEHOLDER'))}`"
         />
-        <CustomInput
+        <SharedInput
           name="password"
           type="password"
           :labelText="t('FORM.PASSWORD.LABEL')"
           :placeholder="t('FORM.PASSWORD.PLACEHOLDER')"
         />
-        <CustomButton type="submit" :isLoading="false">
-          {{ t('CTA.LOGIN') }}
-        </CustomButton>
+        <SharedButton type="submit" :isLoading="false"> {{ t('CTA.LOGIN') }} </SharedButton>
 
         <Dialog
           :title="t('AUTHORIZATION.REGISTER.TITLE')"
@@ -94,8 +92,8 @@
           </template>
         </Dialog>
       </VeeForm>
-    </Container>
-  </Section>
+    </SharedContainer>
+  </SharedSection>
 </template>
 
 <style lang="scss" scoped></style>

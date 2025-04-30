@@ -38,15 +38,15 @@
         </NavigationMenuTrigger>
         <NavigationMenuContent class="navigation-menu__content">
           <div class="navigation-menu__content-detail">
-            <Text :text="t('AUTHORIZATION.INFO.PUBLIC_GREETING')" size="lg" />
+            <SharedText :text="t('AUTHORIZATION.INFO.PUBLIC_GREETING')" size="lg" />
           </div>
           <div class="navigation-menu__content-detail">
-            <Text :text="t('AUTHORIZATION.INFO.PUBLIC_DESCRIPTION')" size="lg" />
+            <SharedText :text="t('AUTHORIZATION.INFO.PUBLIC_DESCRIPTION')" size="lg" />
           </div>
           <div class="navigation-menu__content-detail-box">
             <div class="navigation-menu__content-detail">
               <NuxtLink :to="ROUTES.LOGIN.PATH">
-                <Text :text="t('AUTHORIZATION.LOGIN.TITLE')" size="lg" />
+                <SharedText :text="t('AUTHORIZATION.LOGIN.TITLE')" size="lg" />
               </NuxtLink>
             </div>
             <div class="navigation-menu__content-detail">
@@ -55,7 +55,7 @@
                 :description="t('AUTHORIZATION.REGISTER.DESCRIPTION')"
               >
                 <template #trigger>
-                  <Text :text="t('AUTHORIZATION.REGISTER.TITLE')" size="lg" />
+                  <SharedText :text="t('AUTHORIZATION.REGISTER.TITLE')" size="lg" />
                 </template>
                 <template #default>
                   <AuthorizationFormRegistration />

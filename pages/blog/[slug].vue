@@ -41,8 +41,8 @@
 </script>
 
 <template>
-  <Section>
-    <Container>
+  <SharedSection>
+    <SharedContainer>
       <div class="example" v-for="item in data" :key="item.id">
         <h1>{{ item.articleName }}</h1>
         <div class="example__list">
@@ -65,8 +65,8 @@
           </div>
         </div>
       </div>
-    </Container>
-  </Section>
+    </SharedContainer>
+  </SharedSection>
 </template>
 
 <style scoped lang="scss">

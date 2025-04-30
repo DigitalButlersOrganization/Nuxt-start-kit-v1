@@ -82,21 +82,21 @@
 
 <template>
   <VeeForm :validation-schema="schema" @submit="validateForm">
-    <CustomInput
+    <SharedInput
       v-model="form.email"
       name="email"
       type="email"
       :labelText="`${t('FORM.EMAIL.LABEL')}`"
       :placeholder="`${decodeContent(t('FORM.EMAIL.PLACEHOLDER'))}`"
     />
-    <CustomInput
+    <SharedInput
       v-model="form.password"
       name="password"
       type="password"
       :labelText="t('FORM.PASSWORD.LABEL')"
       :placeholder="t('FORM.PASSWORD.PLACEHOLDER')"
     />
-    <CustomInput
+    <SharedInput
       v-model="form.confirmPassword"
       name="confirmPassword"
       type="password"
@@ -104,13 +104,9 @@
       :placeholder="t('FORM.CONFIRM_PASSWORD.PLACEHOLDER')"
     />
 
-    <CustomButton type="submit" :isLoading="isLoading">
-      {{ t('CTA.REGISTER') }}
-    </CustomButton>
+    <SharedButton type="submit" :isLoading="isLoading"> {{ t('CTA.REGISTER') }} </SharedButton>
 
-    <CustomButton tag="a" :to="ROUTES.LOGIN.PATH">
-      {{ t('CTA.LOGIN') }}
-    </CustomButton>
+    <SharedButton tag="a" :to="ROUTES.LOGIN.PATH"> {{ t('CTA.LOGIN') }} </SharedButton>
   </VeeForm>
 </template>
 

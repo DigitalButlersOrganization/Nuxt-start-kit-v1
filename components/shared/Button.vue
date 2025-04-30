@@ -11,6 +11,7 @@
     isFullWidth?: boolean;
     isLoading?: boolean;
   }
+
   const props = withDefaults(defineProps<Props>(), {
     tag: 'button',
     style: 'solid',
@@ -53,7 +54,10 @@
     <div
       :class="[`${MAIN_CLASS}__loader`, props.isLoading ? `${MAIN_CLASS}__loader--visible` : null]"
     >
-      <ProgressCircular :is-loader="props.isLoading" :class="`${MAIN_CLASS}__loader-progress`" />
+      <SharedProgressCircular
+        :is-loader="props.isLoading"
+        :class="`${MAIN_CLASS}__loader-progress`"
+      />
     </div>
   </component>
 </template>

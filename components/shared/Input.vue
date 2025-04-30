@@ -13,6 +13,7 @@
     isLabelHidden?: boolean;
     error?: string;
   }
+
   const emit = defineEmits(['update:modelValue']);
 
   const props = withDefaults(defineProps<Props>(), {
@@ -25,7 +26,7 @@
 <template>
   <div class="custom-input">
     <label class="label">
-      <Text
+      <SharedText
         :text="props.labelText || props.name"
         class="pseudo-label"
         :class="{ 'pseudo-label--visually-hidden': props.isLabelHidden }"

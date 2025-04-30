@@ -14,13 +14,13 @@
 </script>
 
 <template>
-  <Section>
-    <Container>
+  <SharedSection>
+    <SharedContainer>
       <n-button>naive-ui</n-button>
 
       <h1>{{ t('PAGE.HOME.TITLE') }}</h1>
-    </Container>
-  </Section>
+    </SharedContainer>
+  </SharedSection>
 </template>
 
 <style scoped lang="scss"></style>
