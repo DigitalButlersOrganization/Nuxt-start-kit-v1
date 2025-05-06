@@ -49,7 +49,7 @@
 
 <br/>
 
-- Two libraries are used for form validation: "@vee-validate/nuxt" and "yup".
+- Two libraries are used for form validation: "@vee-validate/nuxt" and "zod".
 <br/>
 <hr/>
 

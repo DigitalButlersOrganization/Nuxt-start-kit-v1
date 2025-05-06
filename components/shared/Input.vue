@@ -33,18 +33,18 @@
         :class="{ 'pseudo-label--visually-hidden': props.isLabelHidden }"
         :size="TEXT_SIZES.MEDIUM"
       />
-      <VeeField
+      <component
         :value="props.modelValue || props.value || null"
         @input="emit('update:modelValue', $event.target.value)"
         :name="props.name"
-        :as="props.tag"
+        :is="props.tag"
         :type="props.type || 'text'"
         :placeholder="props.placeholder"
         :class="props.tag || 'input'"
       />
     </label>
 
-    <VeeErrorMessage :name="props.name" class="error-message" />
+    <SharedText :text="error" class="error-message" />
   </div>
 </template>
 

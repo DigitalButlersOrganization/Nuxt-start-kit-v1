@@ -1,19 +1,12 @@
-import { ValidationError } from 'yup';
+import { ZodError } from 'zod';
 
-interface TranslationFunction {
-  (key: string): string;
-}
-
-export const handleValidationErrors = (
-  validationErrors: ValidationError,
-  t: TranslationFunction
-) => {
+export const handleValidationErrors = (error: ZodError, t: (key: string) => string) => {
   const errors: Record<string, string> = {};
 
-  validationErrors.inner.forEach(err => {
-    if (err.path) {
-      errors[err.path] = err.message || t('VALIDATION.FIELD_INVALID');
-    }
+  error.issues.forEach(issue => {
+    const fieldName = issue.path[0] as string;
+    errors[fieldName] = issue.message || t('VALIDATION.FIELD_INVALID');
   });
+
   return errors;
 };

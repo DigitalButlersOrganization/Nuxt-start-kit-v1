@@ -1,5 +1,6 @@
 <script setup lang="ts">
   import { ROUTES } from '~/enums';
+  import { TEXT_SIZES } from '~/enums';
 
   const { locale, locales, t } = useI18n();
 
@@ -22,8 +23,12 @@
     <SharedContainer>
       <div class="header__markup">
         <div class="header__markup-column">
-          <NuxtLink :to="ROUTES.HOME">{{ t('PAGE.HOME.TITLE') }}</NuxtLink>
-          <NuxtLink :to="ROUTES.BLOG">{{ t('PAGE.BLOG.TITLE') }}</NuxtLink>
+          <NuxtLink :to="ROUTES.HOME">
+            <SharedText :text="t('PAGE.HOME.TITLE')" :size="TEXT_SIZES.XX_LARGE" />
+          </NuxtLink>
+          <NuxtLink :to="ROUTES.BLOG">
+            <SharedText :text="t('PAGE.BLOG.TITLE')" :size="TEXT_SIZES.XX_LARGE" />
+          </NuxtLink>
         </div>
         <div class="header__markup-column">
           <NavigationMenu />

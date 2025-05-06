@@ -1,99 +1,75 @@
 <script setup lang="ts">
+  import { useForm } from 'vee-validate';
+  import { z } from 'zod';
+  import { toFormValidator } from '@vee-validate/zod';
+  import { BUTTON_TYPES, INPUT_TYPES, BUTTON_SIZES } from '~/enums';
   import { useI18n } from 'vue-i18n';
-  import { useSchema } from '@/schemas/formSchema';
-  import { ValidationError } from 'yup';
-  import { handleValidationErrors, decodeContent } from '@/utils';
 
   const { t } = useI18n();
 
-  useHead({
-    title: t('PAGE.LOGIN.TITLE'),
-    meta: [
-      { name: 'description', content: t('PAGE.LOGIN.DESCRIPTION') },
-      { property: 'og:title', content: t('PAGE.LOGIN.TITLE') },
-      { property: 'og:description', content: t('PAGE.LOGIN.DESCRIPTION') },
-    ],
+  // Схема валидации
+  const loginSchema = toFormValidator(
+    z
+      .object({
+        email: z.string().min(1, 'Required').email('Invalid email'),
+        password: z.string().min(1, 'Required').min(6, 'Min 6 chars'),
+        confirmPassword: z.string(),
+      })
+      .refine(data => data.password === data.confirmPassword, {
+        message: "Passwords don't match",
+        path: ['confirmPassword'],
+      })
+  );
+
+  const { handleSubmit, errors } = useForm({
+    validationSchema: loginSchema,
   });
 
-  interface Form {
-    email?: string;
-    password: string;
-    confirmPassword: string;
-  }
-
-  interface Errors {
-    [key: string]: string;
-  }
-
-  const form = reactive<Form>({
-    email: '',
-    password: '',
-    confirmPassword: '',
+  const onSubmit = handleSubmit(values => {
+    console.log('Submitted:', values);
   });
-
-  const errors = ref<Errors>({});
-
-  const schema = useSchema(t);
-
-  const validateForm = async () => {
-    errors.value = {};
-
-    try {
-      await schema.validate(form, { abortEarly: false });
-      console.log('Form is valid:', form);
-    } catch (validationErrors: unknown) {
-      if (validationErrors instanceof ValidationError) {
-        errors.value = handleValidationErrors(validationErrors, t);
-      } else {
-        console.error('Unexpected error:', validationErrors);
-      }
-    }
-  };
 </script>
 
 <template>
   <SharedSection>
     <SharedContainer>
-      <VeeForm :validation-schema="schema" @submit="validateForm" class="form">
-        <SharedInput
-          name="email"
-          type="email"
-          :labelText="`${t('FORM.EMAIL.LABEL')}`"
-          :placeholder="`${decodeContent(t('FORM.EMAIL.PLACEHOLDER'))}`"
-        />
-        <SharedInput
-          name="password"
-          type="password"
-          :labelText="t('FORM.PASSWORD.LABEL')"
-          :placeholder="t('FORM.PASSWORD.PLACEHOLDER')"
-        />
-        <SharedButton type="submit" :isLoading="false"> {{ t('CTA.LOGIN') }} </SharedButton>
+      <form @submit="onSubmit">
+        <Field name="email" v-slot="{ field }">
+          <SharedInput
+            v-bind="field"
+            name="email"
+            :type="INPUT_TYPES.EMAIL"
+            :labelText="`${t('FORM.EMAIL.LABEL')}`"
+            :placeholder="`${decodeContent(t('FORM.EMAIL.PLACEHOLDER'))}`"
+            :error="errors.email"
+          />
+        </Field>
+        <Field name="password" v-slot="{ field }">
+          <SharedInput
+            v-bind="field"
+            name="email"
+            :type="INPUT_TYPES.PASSWORD"
+            :labelText="`${t('FORM.PASSWORD.LABEL')}`"
+            :placeholder="`${t('FORM.PASSWORD.PLACEHOLDER')}`"
+            :error="errors.password"
+          />
+        </Field>
 
-        <Dialog
-          :title="t('AUTHORIZATION.REGISTER.TITLE')"
-          :description="t('AUTHORIZATION.REGISTER.DESCRIPTION')"
-        >
-          <template #trigger>
-            {{ t('AUTHORIZATION.REGISTER.TITLE') }}
-          </template>
-          <template #default>
-            <AuthorizationFormRegistration />
-          </template>
-        </Dialog>
-        <Dialog
-          :title="t('AUTHORIZATION.FORGOT_PASSWORD.TITLE')"
-          :description="t('AUTHORIZATION.FORGOT_PASSWORD.DESCRIPTION')"
-        >
-          <template #trigger>
-            {{ t('AUTHORIZATION.FORGOT_PASSWORD.TITLE') }}
-          </template>
-          <template #default>
-            <AuthorizationFormForgotPassword />
-          </template>
-        </Dialog>
-      </VeeForm>
+        <Field name="confirmPassword" v-slot="{ field }">
+          <SharedInput
+            v-bind="field"
+            name="email"
+            :type="INPUT_TYPES.PASSWORD"
+            :labelText="`${t('FORM.CONFIRM_PASSWORD.LABEL')}`"
+            :placeholder="`${t('FORM.CONFIRM_PASSWORD.PLACEHOLDER')}`"
+            :error="errors.confirmPassword"
+          />
+        </Field>
+
+        <SharedButton :type="BUTTON_TYPES.SUBMIT" :size="BUTTON_SIZES.MEDIUM">
+          {{ t('AUTHORIZATION.LOGIN.CTA') }}
+        </SharedButton>
+      </form>
     </SharedContainer>
   </SharedSection>
 </template>
-
-<style lang="scss" scoped></style>

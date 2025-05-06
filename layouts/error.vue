@@ -2,9 +2,7 @@
 <template>
   <NuxtLayout name="default">
     <SharedSection>
-      <SharedContainer>
-        <sidebar>AAAAAAAA</sidebar>
-      </SharedContainer>
+      <SharedContainer> AAAAAAAA </SharedContainer>
       <slot />
     </SharedSection>
   </NuxtLayout>
