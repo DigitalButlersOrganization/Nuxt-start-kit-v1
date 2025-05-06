@@ -1,25 +1,11 @@
 <script setup lang="ts">
   import { useForm } from 'vee-validate';
-  import { z } from 'zod';
-  import { toFormValidator } from '@vee-validate/zod';
   import { BUTTON_TYPES, INPUT_TYPES, BUTTON_SIZES } from '~/enums';
   import { useI18n } from 'vue-i18n';
+  import { decodeAtSign } from '@/utils';
+  import { loginSchema } from '~/schemas';
 
   const { t } = useI18n();
-
-  // Схема валидации
-  const loginSchema = toFormValidator(
-    z
-      .object({
-        email: z.string().min(1, 'Required').email('Invalid email'),
-        password: z.string().min(1, 'Required').min(6, 'Min 6 chars'),
-        confirmPassword: z.string(),
-      })
-      .refine(data => data.password === data.confirmPassword, {
-        message: "Passwords don't match",
-        path: ['confirmPassword'],
-      })
-  );
 
   const { handleSubmit, errors } = useForm({
     validationSchema: loginSchema,
@@ -40,7 +26,7 @@
             name="email"
             :type="INPUT_TYPES.EMAIL"
             :labelText="`${t('FORM.EMAIL.LABEL')}`"
-            :placeholder="`${decodeContent(t('FORM.EMAIL.PLACEHOLDER'))}`"
+            :placeholder="`${decodeAtSign(t('FORM.EMAIL.PLACEHOLDER'))}`"
             :error="errors.email"
           />
         </Field>

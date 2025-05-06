@@ -2,7 +2,7 @@
   import { useI18n } from 'vue-i18n';
   import { useSchema } from '@/schemas/formSchema';
   import { ValidationError } from 'yup';
-  import { handleValidationErrors, decodeContent } from '@/utils';
+  import { handleValidationErrors, decodeAtSign } from '@/utils';
   import { BUTTON_TAGS, BUTTON_TYPES, INPUT_TAGS, INPUT_TYPES, ROUTES } from '~/enums';
 
   const { t } = useI18n();
@@ -87,7 +87,7 @@
       name="email"
       :type="INPUT_TYPES.EMAIL"
       :labelText="`${t('FORM.EMAIL.LABEL')}`"
-      :placeholder="`${decodeContent(t('FORM.EMAIL.PLACEHOLDER'))}`"
+      :placeholder="`${decodeAtSign(t('FORM.EMAIL.PLACEHOLDER'))}`"
     />
     <SharedInput
       v-model="form.password"

@@ -2,7 +2,7 @@
   import { useI18n } from 'vue-i18n';
   import { useSchema } from '@/schemas/formSchema';
   import { ValidationError } from 'yup';
-  import { handleValidationErrors, decodeContent } from '@/utils';
+  import { handleValidationErrors, decodeAtSign } from '@/utils';
 
   const { t } = useI18n();
 
@@ -48,7 +48,7 @@
       name="email"
       type="email"
       :labelText="`${t('FORM.EMAIL.LABEL')}`"
-      :placeholder="`${decodeContent(t('FORM.EMAIL.PLACEHOLDER'))}`"
+      :placeholder="`${decodeAtSign(t('FORM.EMAIL.PLACEHOLDER'))}`"
     />
     <SharedButton type="submit" :isLoading="false"> {{ t('CTA.RESET_PASSWORD') }}</SharedButton>
   </VeeForm>
