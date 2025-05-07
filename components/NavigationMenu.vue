@@ -18,7 +18,7 @@
       <NavigationMenuItem class="navigation-menu__item">
         <NavigationMenuTrigger class="navigation-menu__trigger">
           <div class="navigation-menu__trigger-text">
-            {{ currentLocale.name }}
+            {{ currentLocale.code }}
           </div>
           <div class="navigation-menu__trigger-arrow">⬇️</div>
         </NavigationMenuTrigger>
@@ -28,7 +28,7 @@
             :key="locale.code"
             :to="switchLocalePath(locale.code)"
           >
-            {{ locale.name }}
+            {{ locale.code }}
           </NuxtLink>
         </NavigationMenuContent>
       </NavigationMenuItem>

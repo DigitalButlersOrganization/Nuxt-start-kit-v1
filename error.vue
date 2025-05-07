@@ -12,11 +12,11 @@
       description: '',
     };
     data.title =
-      props.error && props.error.statusCode === HTTP_STATUS_CODES[404]
+      props.error && props.error.statusCode === HTTP_STATUS_CODES.NOT_FOUND
         ? t('ERROR.PAGE_NOT_FOUND.TITLE')
         : t('ERROR.INDEFINITE.TITLE');
     data.description =
-      props.error && props.error.statusCode === HTTP_STATUS_CODES[404]
+      props.error && props.error.statusCode === HTTP_STATUS_CODES.NOT_FOUND
         ? t('ERROR.PAGE_NOT_FOUND.DESCRIPTION')
         : t('ERROR.INDEFINITE.DESCRIPTION');
     return data;
@@ -34,6 +34,7 @@
       <SharedContainer>
         <h1>{{ errorData.title }}</h1>
         <p>{{ errorData.description }}</p>
+        <p>statusCode: {{ props.error?.statusCode }}</p>
       </SharedContainer>
     </SharedSection>
   </NuxtLayout>
