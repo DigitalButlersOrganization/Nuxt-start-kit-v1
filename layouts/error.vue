@@ -2,7 +2,9 @@
 <template>
   <NuxtLayout name="default">
     <SharedSection>
-      <SharedContainer> AAAAAAAA </SharedContainer>
+      <SharedContainer>
+        <img src="/images/error.gif" alt="Logo" />
+      </SharedContainer>
       <slot />
     </SharedSection>
   </NuxtLayout>
