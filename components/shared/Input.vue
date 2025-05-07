@@ -51,9 +51,6 @@
 <style lang="scss" scoped>
   @use '@/assets/styles/mixins' as *;
 
-  .custom-input {
-    margin-bottom: 1rem;
-  }
   .label {
     display: flex;
     flex-direction: column;

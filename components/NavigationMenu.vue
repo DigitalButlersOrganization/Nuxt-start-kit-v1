@@ -53,17 +53,9 @@
               </NuxtLink>
             </div>
             <div class="navigation-menu__content-detail">
-              <Dialog
-                :title="t('AUTHORIZATION.REGISTER.TITLE')"
-                :description="t('AUTHORIZATION.REGISTER.DESCRIPTION')"
-              >
-                <template #trigger>
-                  <SharedText :text="t('AUTHORIZATION.REGISTER.TITLE')" :size="TEXT_SIZES.LARGE" />
-                </template>
-                <template #default>
-                  <AuthorizationFormRegistration />
-                </template>
-              </Dialog>
+              <NuxtLink :to="ROUTES.SIGNUP">
+                <SharedText :text="t('AUTHORIZATION.SIGN_UP.TITLE')" :size="TEXT_SIZES.LARGE" />
+              </NuxtLink>
             </div>
           </div>
         </NavigationMenuContent>

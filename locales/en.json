@@ -1,4 +1,5 @@
 {
+  "address": "{account}{'@'}{domain}",
   "CTA": {
     "REGISTER": "Register",
     "LOGIN": "Log in",
@@ -17,6 +18,14 @@
     "LOGIN": {
       "TITLE": "Login",
       "DESCRIPTION": "Log in to your account"
+    },
+    "SIGN_UP": {
+      "TITLE": "Sign Up",
+      "DESCRIPTION": "Create a new account"
+    },
+    "FORGOT_PASSWORD": {
+      "TITLE": "Forgot Password",
+      "DESCRIPTION": "Enter your email address and we'll send you a link to reset your password"
     }
   },
   "ERROR": {
@@ -30,9 +39,19 @@
     }
   },
   "FORM": {
+    "FIRST_NAME": {
+      "LABEL": "Enter your first name",
+      "PLACEHOLDER": "John",
+      "VALUE": ""
+    },
+    "LAST_NAME": {
+      "LABEL": "Enter your last name",
+      "PLACEHOLDER": "Doe",
+      "VALUE": ""
+    },
     "EMAIL": {
       "LABEL": "Enter your email address",
-      "PLACEHOLDER": "youraddress&#64;google.com",
+      "PLACEHOLDER": "your_address&#64;google.com",
       "VALUE": ""
     },
     "PASSWORD": {
@@ -67,7 +86,7 @@
       "FORGOT_PASSWORD": "Forgot your password?",
       "SECOND_VARIANT": "Don't have an account? Register"
     },
-    "REGISTER": {
+    "SIGN_UP": {
       "TITLE": "Registration",
       "DESCRIPTION": "Create a new account",
       "CTA": "Register",

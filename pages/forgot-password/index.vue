@@ -10,21 +10,21 @@
   } from '~/enums';
   import { useI18n } from 'vue-i18n';
   import { decodeAtSign } from '@/utils';
-  import { loginSchema } from '~/schemas';
+  import { forgotPasswordSchema } from '~/schemas';
 
   const { t } = useI18n();
 
   useHead({
-    title: t('PAGE.LOGIN.TITLE'),
+    title: t('PAGE.FORGOT_PASSWORD.TITLE'),
     meta: [
-      { name: 'description', content: t('PAGE.LOGIN.DESCRIPTION') },
-      { property: 'og:title', content: t('PAGE.LOGIN.TITLE') },
-      { property: 'og:description', content: t('PAGE.LOGIN.DESCRIPTION') },
+      { name: 'description', content: t('PAGE.FORGOT_PASSWORD.DESCRIPTION') },
+      { property: 'og:title', content: t('PAGE.FORGOT_PASSWORD.TITLE') },
+      { property: 'og:description', content: t('PAGE.FORGOT_PASSWORD.DESCRIPTION') },
     ],
   });
 
   const { handleSubmit, errors } = useForm({
-    validationSchema: loginSchema,
+    validationSchema: forgotPasswordSchema,
   });
 
   const onSubmit = handleSubmit(values => {
@@ -36,7 +36,7 @@
   <SharedSection>
     <SharedContainer>
       <div class="layout">
-        <SharedText :text="t('PAGE.LOGIN.TITLE')" :size="TEXT_SIZES.LARGE" />
+        <SharedText :text="t('PAGE.FORGOT_PASSWORD.TITLE')" :size="TEXT_SIZES.LARGE" />
 
         <form @submit="onSubmit" class="form">
           <Field name="email" v-slot="{ field }">
@@ -49,25 +49,11 @@
               :error="errors.email"
             />
           </Field>
-          <Field name="password" v-slot="{ field }">
-            <SharedInput
-              v-bind="field"
-              name="email"
-              :type="INPUT_TYPES.PASSWORD"
-              :labelText="`${t('FORM.PASSWORD.LABEL')}`"
-              :placeholder="`${t('FORM.PASSWORD.PLACEHOLDER')}`"
-              :error="errors.password"
-            />
-          </Field>
           <SharedButton :type="BUTTON_TYPES.SUBMIT" :size="BUTTON_SIZES.MEDIUM">
-            {{ t('AUTHORIZATION.LOGIN.CTA') }}
+            {{ t('AUTHORIZATION.FORGOT_PASSWORD.CTA') }}
           </SharedButton>
-          <SharedButton
-            :tag="BUTTON_TAGS.A"
-            :to="ROUTES.FORGOT_PASSWORD"
-            :size="BUTTON_SIZES.MEDIUM"
-          >
-            {{ t('PAGE.FORGOT_PASSWORD.TITLE') }}
+          <SharedButton :tag="BUTTON_TAGS.A" :to="ROUTES.LOGIN" :size="BUTTON_SIZES.MEDIUM">
+            {{ t('PAGE.LOGIN.TITLE') }}
           </SharedButton>
         </form>
       </div>
