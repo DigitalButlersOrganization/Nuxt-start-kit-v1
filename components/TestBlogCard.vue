@@ -51,6 +51,10 @@
     display: flex;
     flex-direction: column;
     gap: 1rem;
+    box-shadow: 0 0 3px 0px rgba(0, 0, 0, 0.3);
+    background-color: #fff;
+    padding: 1rem;
+
     &__tags {
       display: flex;
       gap: 0.5rem;

@@ -28,7 +28,6 @@
     "naive-ui": "^2.41.0",
     "nuxt": "^3.14.159",
     "nuxt-svgo": "4.0.9",
-    "radix-vue": "^1.9.11",
     "vue": "latest",
     "vue-router": "latest",
     "zod": "^3.24.3"

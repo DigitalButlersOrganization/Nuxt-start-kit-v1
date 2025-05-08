@@ -24,7 +24,7 @@
         </div>
         <div class="header__markup-column">
           <CustomHeaderLanguages />
-          <NavigationMenu />
+          <CustomHeaderUser />
         </div>
       </div>
     </SharedContainer>

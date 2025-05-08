@@ -13,11 +13,13 @@
 </script>
 
 <template>
-  <ul class="languages">
-    <li class="languages__item languages__item--current">
+  <div class="languages">
+    <div class="languages__item languages__item--current">
       <SharedText :text="currentLocale.code" :size="TEXT_SIZES.XX_LARGE" />
-    </li>
-    <li class="languages__item">
+    </div>
+    <div class="languages__divider" />
+
+    <div class="languages__item">
       <NuxtLink
         v-for="locale in availableLocales"
         :key="locale.code"
@@ -25,22 +27,29 @@
       >
         <SharedText :text="locale.code" :size="TEXT_SIZES.XX_LARGE" />
       </NuxtLink>
-    </li>
-  </ul>
+    </div>
+  </div>
 </template>
 
 <style lang="scss" scoped>
   .languages {
     display: flex;
-    list-style: none;
-    gap: 1rem;
+    gap: 0.5rem;
 
     &__item {
       text-transform: uppercase;
+      position: relative;
 
       &--current {
         opacity: 0.5;
       }
+    }
+
+    &__divider {
+      width: 1px;
+      height: auto;
+      border-radius: 50%;
+      background-color: rgba(0, 0, 0, 0.5);
     }
   }
 </style>
