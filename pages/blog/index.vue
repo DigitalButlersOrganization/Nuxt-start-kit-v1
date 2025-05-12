@@ -41,17 +41,23 @@
     sort: ['dateOfCreating:desc'],
     locale: locale.value,
   })) as { data: Article[] };
+
+  const generateHref = (slug: string) => {
+    const baseDir = locale.value === 'en' ? '/' : `/${locale.value}/`;
+    return `${baseDir}blog/${slug}`;
+  };
 </script>
 
 <template>
   <SharedSection class="section">
     <SharedContainer>
+      {{ locale }}
       <h1>{{ t('PAGE.BLOG.TITLE') }}</h1>
       <div class="grid">
         <TestBlogCard
           v-for="item in data"
           :key="item.id"
-          :href="`/blog/${item.slug}`"
+          :href="generateHref(item.slug)"
           :title="item.articleName"
           :description="item.shortDescription"
           :imageSrc="item.singleImage.url"

@@ -1,5 +1,6 @@
 <script setup lang="ts">
   import { BUTTON_SIZES, BUTTON_TAGS, ROUTES, TEXT_SIZES } from '~/enums';
+  const localePath = useLocalePath();
 
   const { t } = useI18n();
 </script>
@@ -16,7 +17,7 @@
       <div class="dropdown__footer">
         <SharedButton
           :tag="BUTTON_TAGS.A"
-          :to="ROUTES.LOGIN"
+          :to="localePath(ROUTES.LOGIN)"
           :size="BUTTON_SIZES.MEDIUM"
           class="button"
         >
@@ -24,7 +25,7 @@
         </SharedButton>
         <SharedButton
           :tag="BUTTON_TAGS.A"
-          :to="ROUTES.SIGNUP"
+          :to="localePath(ROUTES.SIGNUP)"
           :size="BUTTON_SIZES.MEDIUM"
           class="button"
         >

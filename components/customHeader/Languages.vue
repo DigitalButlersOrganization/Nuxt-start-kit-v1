@@ -2,7 +2,7 @@
   import { TEXT_SIZES } from '~/enums';
 
   const { locale, locales } = useI18n();
-  const switchLocalePath = useSwitchLocalePath();
+  const route = useRoute();
 
   const currentLocale = computed(() => {
     return locales.value.find(i => i.code === locale.value);
@@ -10,6 +10,31 @@
   const availableLocales = computed(() => {
     return locales.value.filter(i => i.code !== locale.value);
   });
+
+  const getLocalePath = (code: string): string | undefined => {
+    const mainLanguageCode = 'en';
+    const mainLanguagePath = '/';
+    const currentPath = route.path;
+
+    // For main page
+    if (
+      currentPath === mainLanguagePath ||
+      locales.value.some(lang => currentPath === `/${lang.code}`)
+    ) {
+      return code === mainLanguageCode ? mainLanguagePath : `/${code}`;
+    }
+
+    // For other pages
+    if (locales.value.some(lang => currentPath.startsWith(`/${lang.code}/`))) {
+      const directory = code === 'en' ? '/' : `/${code}/`;
+      const path = currentPath.replace(`/${locale.value}/`, `${directory}`);
+      return path;
+    } else {
+      const directory = code === 'en' ? '/' : `/${code}/`;
+      const path = currentPath.replace(`/`, `${directory}`);
+      return path;
+    }
+  };
 </script>
 
 <template>
@@ -23,7 +48,7 @@
       <NuxtLink
         v-for="locale in availableLocales"
         :key="locale.code"
-        :to="switchLocalePath(locale.code)"
+        :to="getLocalePath(locale.code)"
       >
         <SharedText :text="locale.code" :size="TEXT_SIZES.XX_LARGE" />
       </NuxtLink>

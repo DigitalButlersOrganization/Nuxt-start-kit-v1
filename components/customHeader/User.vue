@@ -1,6 +1,7 @@
 <script setup lang="ts">
   import { NDropdown } from 'naive-ui';
   import UserDropdown from '@/components/customHeader/UserDropdown.vue';
+  import { BUTTON_SIZES, BUTTON_TYPES } from '~/enums';
 
   const dropdownOptions = [
     {
@@ -14,13 +15,15 @@
 <template>
   <ClientOnly>
     <NDropdown
-      placement="bottom"
+      placement="bottom-end"
       class="dropdown-select"
       size="medium"
       trigger="click"
       :options="dropdownOptions"
     >
-      <SvgoUserPublicAvatar class="svg svg--small" />
+      <SharedButton :type="BUTTON_TYPES.BUTTON" :size="BUTTON_SIZES.SMALL">
+        <SvgoUserPublicAvatar class="svg svg--small" />
+      </SharedButton>
     </NDropdown>
   </ClientOnly>
 </template>

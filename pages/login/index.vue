@@ -11,6 +11,7 @@
   import { useI18n } from 'vue-i18n';
   import { decodeAtSign } from '@/utils';
   import { loginSchema } from '~/schemas';
+  const localePath = useLocalePath();
 
   const { t } = useI18n();
 
@@ -64,7 +65,7 @@
           </SharedButton>
           <SharedButton
             :tag="BUTTON_TAGS.A"
-            :to="ROUTES.FORGOT_PASSWORD"
+            :to="localePath(ROUTES.FORGOT_PASSWORD)"
             :size="BUTTON_SIZES.MEDIUM"
           >
             {{ t('PAGE.FORGOT_PASSWORD.TITLE') }}

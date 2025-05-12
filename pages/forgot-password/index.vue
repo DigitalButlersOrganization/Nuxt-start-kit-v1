@@ -11,6 +11,7 @@
   import { useI18n } from 'vue-i18n';
   import { decodeAtSign } from '@/utils';
   import { forgotPasswordSchema } from '~/schemas';
+  const localePath = useLocalePath();
 
   const { t } = useI18n();
 
@@ -52,7 +53,11 @@
           <SharedButton :type="BUTTON_TYPES.SUBMIT" :size="BUTTON_SIZES.MEDIUM">
             {{ t('AUTHORIZATION.FORGOT_PASSWORD.CTA') }}
           </SharedButton>
-          <SharedButton :tag="BUTTON_TAGS.A" :to="ROUTES.LOGIN" :size="BUTTON_SIZES.MEDIUM">
+          <SharedButton
+            :tag="BUTTON_TAGS.A"
+            :to="localePath(ROUTES.LOGIN)"
+            :size="BUTTON_SIZES.MEDIUM"
+          >
             {{ t('PAGE.LOGIN.TITLE') }}
           </SharedButton>
         </form>
