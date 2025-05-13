@@ -1,5 +1,4 @@
 {
-  "address": "{account}{'@'}{domain}",
   "CTA": {
     "REGISTER": "Register",
     "LOGIN": "Log in",

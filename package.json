@@ -10,6 +10,7 @@
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
     "start": "nuxt start",
+    "sync-locales": "node sync-locales.js",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "lint:style": "stylelint \"**/*.{vue,scss}\" --ignore-path .gitignore",
